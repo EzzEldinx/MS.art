@@ -42,24 +42,22 @@
 
         /* --- Header & Navigation --- */
         .main-header {
-            position: sticky;
+            position: absolute;
             top: 0;
             width: 100%;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 15px 60px;
+            padding: 30px 40px; /* Masafa a2al 3ashan el menu el 3ared */
             box-sizing: border-box;
             z-index: 1000;
-            background-color: #ffffff;
-            border-bottom: 1px solid #eaeaea;
-            box-shadow: 0 4px 20px rgba(0,0,0,0.03);
+            background-color: transparent;
         }
 
         .logo { flex: 1; }
 
         .logo img {
-            max-height: 85px; /* Logo Kbeer w Wadeh */
+            max-height: 70px; 
             width: auto;
             display: block;
             transition: transform 0.3s ease;
@@ -67,7 +65,7 @@
         .logo img:hover { transform: scale(1.02); }
 
         .main-nav {
-            flex: 3;
+            flex: 4; /* Kbnaha shwya 3ashan el 3anaser kteer */
             display: flex;
             justify-content: center;
         }
@@ -75,55 +73,35 @@
         .main-nav ul {
             list-style: none;
             display: flex;
-            gap: 40px;
+            gap: 25px; /* Masafa asghar ben el links */
             margin: 0;
             padding: 0;
         }
 
         .main-nav a {
-            color: #000000;
+            color: #ffffff;
             text-decoration: none;
-            font-size: 0.95rem;
+            font-size: 0.8rem; /* Font asghar sena */
             font-weight: bold;
             text-transform: uppercase;
-            letter-spacing: 2px;
+            letter-spacing: 1.5px;
             transition: opacity 0.3s ease;
+            text-shadow: 1px 1px 5px rgba(0,0,0,0.5);
+            white-space: nowrap; /* Bymn3 el kalam ykser 3ala satreen */
         }
 
         .main-nav a:hover, .main-nav a.active {
-            opacity: 0.5;
-            border-bottom: 2px solid #000000;
+            opacity: 0.7;
+            border-bottom: 2px solid #ffffff;
             padding-bottom: 5px;
         }
 
-        .header-action {
-            flex: 1;
-            display: flex;
-            justify-content: flex-end;
-        }
-
-        .btn-talk {
-            border: 2px solid #000000;
-            padding: 12px 30px;
-            border-radius: 40px;
-            color: #000000;
-            background-color: transparent;
-            text-decoration: none;
-            font-size: 0.95rem;
-            font-weight: bold;
-            letter-spacing: 2px;
-            transition: all 0.3s ease;
-        }
-
-        .btn-talk:hover {
-            background-color: #000000;
-            color: #ffffff;
-        }
+        .header-spacer { flex: 1; }
 
         /* --- Hero Section --- */
         .hero {
             position: relative;
-            height: calc(100vh - 116px);
+            height: 100vh;
             display: flex;
             align-items: center;
             padding: 0 60px;
@@ -238,8 +216,7 @@
 
         /* --- Exhibitions (Parallax Background) --- */
         .exhibitions-bg-section {
-            /* Hena el Parallax w el overlay el fatih */
-            background: linear-gradient(rgba(255,255,255,0.92), rgba(255,255,255,0.95)), url('assets/photo1.jpg') fixed center/cover no-repeat;
+            background: linear-gradient(rgba(255,255,255,0.92), rgba(255,255,255,0.95)), url('assets/photo3.jpg') fixed center/cover no-repeat;
             border-top: 1px solid #eaeaea;
             border-bottom: 1px solid #eaeaea;
         }
@@ -319,23 +296,24 @@
 
         /* Responsive */
         @media (max-width: 1024px) {
-            .main-nav ul { gap: 15px; }
-            .main-nav a { font-size: 0.8rem; }
+            .main-nav ul { gap: 15px; flex-wrap: wrap; justify-content: center; }
+            .main-nav a { font-size: 0.75rem; }
             .hero-title { font-size: 4rem; }
             .about-snippet { flex-direction: column; }
             .exhibition-item { flex-direction: column; gap: 15px; }
             .exhibition-date { flex: none; }
             .partners-grid { justify-content: center; }
+            .header-spacer { display: none; }
         }
     </style>
 </head>
 <body>
 
-    <!-- Header -->
     <header class="main-header">
         <div class="logo">
             <a href="index.html"><img src="assets/Logo.png" alt="Mahmoud Saïd Logo"></a>
         </div>
+        
         <nav class="main-nav">
             <ul>
                 <li><a href="index.html" class="active">HOME</a></li>
@@ -344,15 +322,13 @@
                 <li><a href="exhibitions.html">EXHIBITIONS</a></li>
                 <li><a href="curation.html">CURATION & EXHIBITION DESIGN</a></li>
                 <li><a href="projects.html">PROJECTS</a></li>
-                <li><a href="gallery.html">GALLERY</a></li>
+                <li><a href="heritage.html">ARCHITECTURAL HERITAGE</a></li>
             </ul>
         </nav>
-        <div class="header-action">
-            <a href="contact.html" class="btn-talk">Let's Talk</a>
-        </div>
+
+        <div class="header-spacer"></div>
     </header>
 
-    <!-- Hero Section -->
     <section class="hero">
         <div class="hero-content">
             <h1 class="hero-title">MAHMOUD SAÏD</h1>
@@ -364,7 +340,7 @@
     </section>
 
     <main>
-        <!-- About Snippet -->
+        
         <section class="container reveal">
             <div class="about-snippet">
                 <div class="about-text">
@@ -379,7 +355,6 @@
             </div>
         </section>
 
-        <!-- Selected Artworks Grid -->
         <section class="bg-light-grey reveal">
             <div class="container">
                 <h2 class="section-title">Selected Works</h2>
@@ -410,12 +385,11 @@
                 </div>
                 
                 <div style="text-align: center; margin-top: 70px;">
-                    <a href="gallery.html" class="link-btn">Explore Full Gallery</a>
+                    <a href="artworks.html" class="link-btn">Explore All Artworks</a>
                 </div>
             </div>
         </section>
 
-        <!-- Exhibitions Editorial List with Background Image Parallax -->
         <section class="exhibitions-bg-section reveal">
             <div class="container">
                 <h2 class="section-title">Recent Exhibitions</h2>
@@ -443,7 +417,6 @@
             </div>
         </section>
 
-        <!-- Animated Testimonial -->
         <section class="testimonial-section reveal">
             <div class="container testimonial-content" style="padding: 0;">
                 <p class="testimonial-quote">"His work does not merely document the past; it breathes life into archival material, turning heritage into a living, spatial narrative."</p>
@@ -451,7 +424,6 @@
             </div>
         </section>
 
-        <!-- Partners Grid -->
         <section class="container partners-section reveal">
             <h2 class="section-title" style="text-align: center;">Institutions & Partners</h2>
             <div class="section-divider" style="margin: 0 auto;"></div>
@@ -466,7 +438,6 @@
 
     </main>
 
-    <!-- Footer -->
     <footer class="main-footer">
         <div class="footer-container">
             <div class="footer-col about-col">
@@ -483,7 +454,7 @@
                     <li><a href="exhibitions.html">Exhibitions</a></li>
                     <li><a href="curation.html">Curation & Exhibition Design</a></li>
                     <li><a href="projects.html">Projects</a></li>
-                    <li><a href="gallery.html">Gallery</a></li>
+                    <li><a href="heritage.html">Architectural Heritage</a></li>
                 </ul>
             </div>
 
@@ -499,7 +470,6 @@
         </div>
     </footer>
 
-    <!-- Script lel Scroll Animations -->
     <script>
         document.addEventListener("DOMContentLoaded", function() {
             const reveals = document.querySelectorAll('.reveal');
@@ -514,7 +484,7 @@
                 }
             };
             window.addEventListener('scroll', revealOnScroll);
-            revealOnScroll(); // Trigger on load
+            revealOnScroll(); 
         });
     </script>
 </body>
