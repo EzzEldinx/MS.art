@@ -1,0 +1,521 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mahmoud Saïd Art | Home</title>
+    
+    <style>
+        /* Font Aptos */
+        @font-face {
+            font-family: 'Aptos';
+            src: url('assets/Aptos.ttf') format('truetype');
+            font-weight: normal;
+        }
+        @font-face {
+            font-family: 'Aptos';
+            src: url('assets/Aptos-Bold.ttf') format('truetype');
+            font-weight: bold;
+        }
+
+        body {
+            margin: 0;
+            padding: 0;
+            background-color: #ffffff;
+            color: #111111;
+            font-family: 'Aptos', sans-serif;
+            overflow-x: hidden;
+            letter-spacing: 1.5px; 
+            line-height: 1.9;
+        }
+
+        /* --- Scroll Animations --- */
+        .reveal {
+            opacity: 0;
+            transform: translateY(40px);
+            transition: all 1s ease-out;
+        }
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* --- Header & Navigation --- */
+        .main-header {
+            position: sticky;
+            top: 0;
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 60px;
+            box-sizing: border-box;
+            z-index: 1000;
+            background-color: #ffffff;
+            border-bottom: 1px solid #eaeaea;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.03);
+        }
+
+        .logo { flex: 1; }
+
+        .logo img {
+            max-height: 85px; /* Logo Kbeer w Wadeh */
+            width: auto;
+            display: block;
+            transition: transform 0.3s ease;
+        }
+        .logo img:hover { transform: scale(1.02); }
+
+        .main-nav {
+            flex: 3;
+            display: flex;
+            justify-content: center;
+        }
+
+        .main-nav ul {
+            list-style: none;
+            display: flex;
+            gap: 40px;
+            margin: 0;
+            padding: 0;
+        }
+
+        .main-nav a {
+            color: #000000;
+            text-decoration: none;
+            font-size: 0.95rem;
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            transition: opacity 0.3s ease;
+        }
+
+        .main-nav a:hover, .main-nav a.active {
+            opacity: 0.5;
+            border-bottom: 2px solid #000000;
+            padding-bottom: 5px;
+        }
+
+        .header-action {
+            flex: 1;
+            display: flex;
+            justify-content: flex-end;
+        }
+
+        .btn-talk {
+            border: 2px solid #000000;
+            padding: 12px 30px;
+            border-radius: 40px;
+            color: #000000;
+            background-color: transparent;
+            text-decoration: none;
+            font-size: 0.95rem;
+            font-weight: bold;
+            letter-spacing: 2px;
+            transition: all 0.3s ease;
+        }
+
+        .btn-talk:hover {
+            background-color: #000000;
+            color: #ffffff;
+        }
+
+        /* --- Hero Section --- */
+        .hero {
+            position: relative;
+            height: calc(100vh - 116px);
+            display: flex;
+            align-items: center;
+            padding: 0 60px;
+            background: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.6)), url('assets/background.jpg') center/cover no-repeat;
+        }
+
+        @keyframes fadeUp {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .hero-content {
+            max-width: 900px;
+            animation: fadeUp 1.5s ease-out forwards;
+        }
+
+        .hero-title {
+            color: #ffffff;
+            font-size: 5.5rem;
+            font-weight: bold;
+            margin: 0 0 15px 0;
+            letter-spacing: 6px;
+            text-transform: uppercase;
+            text-shadow: 2px 4px 15px rgba(0,0,0,0.5);
+        }
+
+        .hero-subtitle {
+            font-size: 1.35rem;
+            text-transform: uppercase;
+            letter-spacing: 8px;
+            margin: 0 0 35px 0;
+            color: #d4af37;
+            font-weight: bold;
+            text-shadow: 1px 2px 10px rgba(0,0,0,0.5);
+        }
+
+        .hero-description {
+            font-size: 1.25rem;
+            max-width: 700px;
+            color: #f4f4f4;
+            letter-spacing: 1.5px;
+            text-shadow: 1px 2px 10px rgba(0,0,0,0.5);
+        }
+
+        /* --- General Layout --- */
+        .container {
+            max-width: 1300px;
+            margin: 0 auto;
+            padding: 120px 20px;
+        }
+
+        .section-title {
+            color: #000000;
+            font-size: 3rem;
+            text-transform: uppercase;
+            letter-spacing: 4px;
+            margin-bottom: 20px;
+            font-weight: bold;
+        }
+
+        .section-divider {
+            width: 80px;
+            height: 3px;
+            background-color: #b8962e;
+            margin-bottom: 50px;
+        }
+
+        .link-btn {
+            color: #000000;
+            text-decoration: none;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            font-size: 0.95rem;
+            font-weight: bold;
+            border-bottom: 2px solid #b8962e;
+            padding-bottom: 5px;
+            transition: color 0.3s ease;
+            display: inline-block;
+            margin-top: 30px;
+        }
+        .link-btn:hover { color: #b8962e; }
+
+        /* --- About Snippet --- */
+        .about-snippet { display: flex; align-items: center; gap: 80px; }
+        .about-text { flex: 1; }
+        .about-text p { color: #444444; margin-bottom: 35px; font-size: 1.15rem; }
+        .about-image { flex: 1; }
+        .about-image img {
+            width: 100%; height: auto; border-radius: 5px;
+            box-shadow: 0 15px 40px rgba(0,0,0,0.08);
+            transition: transform 0.5s ease;
+        }
+        .about-image img:hover { transform: translateY(-10px); }
+
+        /* --- Artworks Grid --- */
+        .bg-light-grey { background-color: #fcfcfc; border-top: 1px solid #eaeaea; border-bottom: 1px solid #eaeaea; }
+        .art-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(380px, 1fr)); gap: 40px; margin-top: 60px; }
+        .art-card {
+            position: relative; overflow: hidden; cursor: pointer;
+            border-radius: 8px; box-shadow: 0 10px 25px rgba(0,0,0,0.06);
+        }
+        .art-card img { width: 100%; height: 500px; object-fit: cover; transition: transform 0.8s ease; display: block; }
+        .art-card:hover img { transform: scale(1.08); }
+        .art-overlay {
+            position: absolute; bottom: 0; left: 0; width: 100%; padding: 40px 30px;
+            background: linear-gradient(transparent, rgba(0,0,0,0.85));
+            box-sizing: border-box; opacity: 0; transition: opacity 0.4s ease;
+        }
+        .art-card:hover .art-overlay { opacity: 1; }
+        .art-overlay h4 { margin: 0 0 8px 0; color: #ffffff; font-size: 1.4rem; letter-spacing: 2px; }
+        .art-overlay p { margin: 0; color: #d4af37; font-size: 1rem; letter-spacing: 2px; }
+
+        /* --- Exhibitions (Parallax Background) --- */
+        .exhibitions-bg-section {
+            /* Hena el Parallax w el overlay el fatih */
+            background: linear-gradient(rgba(255,255,255,0.92), rgba(255,255,255,0.95)), url('assets/photo1.jpg') fixed center/cover no-repeat;
+            border-top: 1px solid #eaeaea;
+            border-bottom: 1px solid #eaeaea;
+        }
+
+        .exhibition-list { display: flex; flex-direction: column; }
+        .exhibition-item { display: flex; padding: 50px 0; border-top: 1px solid #ddd; align-items: flex-start; transition: transform 0.3s ease; }
+        .exhibition-item:hover { transform: translateX(10px); }
+        .exhibition-item:last-child { border-bottom: 1px solid #ddd; }
+        .exhibition-date { flex: 0 0 250px; color: #b8962e; font-weight: bold; font-size: 1.1rem; letter-spacing: 4px; text-transform: uppercase; }
+        .exhibition-details { flex: 1; }
+        .exhibition-title { font-size: 2rem; font-weight: bold; margin: 0 0 15px 0; color: #111; letter-spacing: 2px; }
+        .exhibition-desc { color: #444; font-size: 1.15rem; margin: 0; max-width: 800px; }
+
+        /* --- Testimonial Section (Parallax Dark) --- */
+        @keyframes float {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-15px); }
+            100% { transform: translateY(0px); }
+        }
+
+        .testimonial-section {
+            background: linear-gradient(rgba(10,10,10,0.85), rgba(10,10,10,0.85)), url('assets/photo1.jpg') fixed center/cover no-repeat;
+            color: #ffffff; text-align: center; padding: 150px 20px;
+        }
+
+        .testimonial-content {
+            animation: float 6s ease-in-out infinite;
+        }
+
+        .testimonial-quote {
+            font-size: 2.5rem; font-style: italic; max-width: 1000px;
+            margin: 0 auto 40px; line-height: 1.6; color: #ffffff; letter-spacing: 2px;
+        }
+
+        .testimonial-author {
+            color: #d4af37; text-transform: uppercase; letter-spacing: 4px;
+            font-weight: bold; font-size: 1.1rem;
+        }
+
+        /* --- Partners Section --- */
+        .partners-section { padding-top: 80px; padding-bottom: 80px; }
+        .partners-grid {
+            display: flex; flex-wrap: wrap; justify-content: space-between;
+            align-items: center; gap: 40px; margin-top: 60px;
+        }
+        .partners-grid h3 {
+            font-size: 1.4rem; text-transform: uppercase; letter-spacing: 5px;
+            color: #999; margin: 0; transition: color 0.4s ease; cursor: pointer;
+        }
+        .partners-grid h3:hover { color: #111; transform: scale(1.05); }
+
+        /* --- Footer --- */
+        .main-footer {
+            background-color: #f9f9f9; padding: 80px 50px 30px;
+            border-top: 1px solid #eaeaea; color: #444;
+        }
+        .footer-container {
+            max-width: 1300px; margin: 0 auto; display: flex; flex-wrap: wrap;
+            gap: 60px; justify-content: space-between;
+        }
+        .footer-col { flex: 1; min-width: 250px; }
+        .footer-logo { max-height: 60px; margin-bottom: 25px; display: block; }
+        .about-col p { font-size: 1.05rem; color: #666; margin-top: 15px; }
+        .footer-col h4 { font-size: 1.2rem; text-transform: uppercase; letter-spacing: 4px; margin: 0 0 30px 0; color: #111; }
+        .footer-col ul { list-style: none; padding: 0; margin: 0; }
+        .footer-col ul li { margin-bottom: 15px; }
+        .footer-col ul a, .footer-col p a {
+            color: #666; text-decoration: none; text-transform: uppercase;
+            font-size: 0.95rem; letter-spacing: 2px; transition: color 0.3s ease;
+        }
+        .footer-col ul a:hover, .footer-col p a:hover { color: #b8962e; }
+        .footer-bottom {
+            text-align: center; padding-top: 50px; margin-top: 80px;
+            border-top: 1px solid #eaeaea; font-size: 0.85rem; letter-spacing: 3px;
+            text-transform: uppercase; color: #888;
+        }
+
+        /* Responsive */
+        @media (max-width: 1024px) {
+            .main-nav ul { gap: 15px; }
+            .main-nav a { font-size: 0.8rem; }
+            .hero-title { font-size: 4rem; }
+            .about-snippet { flex-direction: column; }
+            .exhibition-item { flex-direction: column; gap: 15px; }
+            .exhibition-date { flex: none; }
+            .partners-grid { justify-content: center; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Header -->
+    <header class="main-header">
+        <div class="logo">
+            <a href="index.html"><img src="assets/Logo.png" alt="Mahmoud Saïd Logo"></a>
+        </div>
+        <nav class="main-nav">
+            <ul>
+                <li><a href="index.html" class="active">HOME</a></li>
+                <li><a href="about.html">ABOUT</a></li>
+                <li><a href="artworks.html">ARTWORKS</a></li>
+                <li><a href="exhibitions.html">EXHIBITIONS</a></li>
+                <li><a href="curation.html">CURATION & EXHIBITION DESIGN</a></li>
+                <li><a href="projects.html">PROJECTS</a></li>
+                <li><a href="gallery.html">GALLERY</a></li>
+            </ul>
+        </nav>
+        <div class="header-action">
+            <a href="contact.html" class="btn-talk">Let's Talk</a>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-content">
+            <h1 class="hero-title">MAHMOUD SAÏD</h1>
+            <h3 class="hero-subtitle">Art &bull; Heritage &bull; Exhibition Design</h3>
+            <p class="hero-description">
+                Bridging art history, modernism, and contemporary practice through the language of heritage and spatial design.
+            </p>
+        </div>
+    </section>
+
+    <main>
+        <!-- About Snippet -->
+        <section class="container reveal">
+            <div class="about-snippet">
+                <div class="about-text">
+                    <h2 class="section-title">The Intersection of Heritage & Modernism</h2>
+                    <div class="section-divider"></div>
+                    <p>Discovering the essence of Egyptian identity through vibrant colors, profound compositions, and a deep understanding of spatial design. Mahmoud Saïd's work is a continuous exploration of cultural roots blended with contemporary vision.</p>
+                    <a href="about.html" class="link-btn">Read Full Biography</a>
+                </div>
+                <div class="about-image">
+                    <img src="assets/about-placeholder.png" alt="Mahmoud Saïd in Studio">
+                </div>
+            </div>
+        </section>
+
+        <!-- Selected Artworks Grid -->
+        <section class="bg-light-grey reveal">
+            <div class="container">
+                <h2 class="section-title">Selected Works</h2>
+                <div class="section-divider"></div>
+                
+                <div class="art-grid">
+                    <div class="art-card" onclick="window.location.href='artworks.html'">
+                        <img src="assets/art-1.jpg" alt="Artwork 1">
+                        <div class="art-overlay">
+                            <h4>The Alexandrian Beauty</h4>
+                            <p>Oil on Canvas, 1935</p>
+                        </div>
+                    </div>
+                    <div class="art-card" onclick="window.location.href='artworks.html'">
+                        <img src="assets/art-2.jpg" alt="Artwork 2">
+                        <div class="art-overlay">
+                            <h4>Nile Symphony</h4>
+                            <p>Oil on Canvas, 1940</p>
+                        </div>
+                    </div>
+                    <div class="art-card" onclick="window.location.href='artworks.html'">
+                        <img src="assets/art-3.jpg" alt="Artwork 3">
+                        <div class="art-overlay">
+                            <h4>Echoes of the Past</h4>
+                            <p>Mixed Media, 1942</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div style="text-align: center; margin-top: 70px;">
+                    <a href="gallery.html" class="link-btn">Explore Full Gallery</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Exhibitions Editorial List with Background Image Parallax -->
+        <section class="exhibitions-bg-section reveal">
+            <div class="container">
+                <h2 class="section-title">Recent Exhibitions</h2>
+                <div class="section-divider"></div>
+                
+                <div class="exhibition-list">
+                    <div class="exhibition-item">
+                        <div class="exhibition-date">OCTOBER 2025</div>
+                        <div class="exhibition-details">
+                            <h3 class="exhibition-title">Alexandria Through Time</h3>
+                            <p class="exhibition-desc">A solo exhibition exploring the architectural heritage of Alexandria through spatial design and portraiture at the Museum of Fine Arts.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="exhibition-item">
+                        <div class="exhibition-date">MARCH 2025</div>
+                        <div class="exhibition-details">
+                            <h3 class="exhibition-title">Echoes of Modernism</h3>
+                            <p class="exhibition-desc">Group exhibition featuring contemporary Egyptian artists, curated to highlight the evolution of modern art in Cairo.</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <a href="exhibitions.html" class="link-btn">View All Exhibitions</a>
+            </div>
+        </section>
+
+        <!-- Animated Testimonial -->
+        <section class="testimonial-section reveal">
+            <div class="container testimonial-content" style="padding: 0;">
+                <p class="testimonial-quote">"His work does not merely document the past; it breathes life into archival material, turning heritage into a living, spatial narrative."</p>
+                <div class="testimonial-author">&mdash; Centre d’Études Alexandrines (CNRS)</div>
+            </div>
+        </section>
+
+        <!-- Partners Grid -->
+        <section class="container partners-section reveal">
+            <h2 class="section-title" style="text-align: center;">Institutions & Partners</h2>
+            <div class="section-divider" style="margin: 0 auto;"></div>
+            
+            <div class="partners-grid">
+                <h3>CNRS</h3>
+                <h3>Alexandria Museum</h3>
+                <h3>Ministry of Culture</h3>
+                <h3>Bibliotheca Alexandrina</h3>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="main-footer">
+        <div class="footer-container">
+            <div class="footer-col about-col">
+                <img src="assets/Logo.png" alt="Mahmoud Saïd Logo" class="footer-logo">
+                <p>At the intersection of art history, modernism, and contemporary practice, where heritage becomes spatial narrative.</p>
+            </div>
+            
+            <div class="footer-col links-col">
+                <h4>Explore</h4>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="about.html">About</a></li>
+                    <li><a href="artworks.html">Artworks</a></li>
+                    <li><a href="exhibitions.html">Exhibitions</a></li>
+                    <li><a href="curation.html">Curation & Exhibition Design</a></li>
+                    <li><a href="projects.html">Projects</a></li>
+                    <li><a href="gallery.html">Gallery</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-col contact-col">
+                <h4>Contact</h4>
+                <p>Email: <br><a href="mailto:info@mahmoudsaidart.com" style="text-transform: lowercase;">info@mahmoudsaidart.com</a></p>
+                <p style="margin-top: 15px;">Instagram: <br><a href="https://instagram.com/mahmoudsaiid" target="_blank" style="text-transform: lowercase;">@mahmoudsaiid</a></p>
+            </div>
+        </div>
+        
+        <div class="footer-bottom">
+            <p>&copy; 2026 Mahmoud Saïd. All Rights Reserved.</p>
+        </div>
+    </footer>
+
+    <!-- Script lel Scroll Animations -->
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            const reveals = document.querySelectorAll('.reveal');
+            const revealOnScroll = () => {
+                for (let i = 0; i < reveals.length; i++) {
+                    let windowHeight = window.innerHeight;
+                    let elementTop = reveals[i].getBoundingClientRect().top;
+                    let elementVisible = 100;
+                    if (elementTop < windowHeight - elementVisible) {
+                        reveals[i].classList.add('active');
+                    }
+                }
+            };
+            window.addEventListener('scroll', revealOnScroll);
+            revealOnScroll(); // Trigger on load
+        });
+    </script>
+</body>
+</html>

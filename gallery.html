@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gallery | Mahmoud Saïd Art</title>
+    
+    <style>
+        @font-face { font-family: 'Aptos'; src: url('assets/Aptos.ttf') format('truetype'); font-weight: normal; }
+        @font-face { font-family: 'Aptos'; src: url('assets/Aptos-Bold.ttf') format('truetype'); font-weight: bold; }
+
+        body { margin: 0; padding: 0; background-color: #ffffff; color: #333333; font-family: 'Aptos', sans-serif; letter-spacing: 1.5px; line-height: 1.9; }
+
+        .main-header { position: sticky; top: 0; width: 100%; display: flex; justify-content: space-between; align-items: center; padding: 15px 60px; box-sizing: border-box; z-index: 1000; background-color: #ffffff; border-bottom: 1px solid #eaeaea; box-shadow: 0 4px 20px rgba(0,0,0,0.03); }
+        .logo img { max-height: 85px; width: auto; display: block; transition: transform 0.3s ease; }
+        .logo img:hover { transform: scale(1.02); }
+        .main-nav ul { list-style: none; display: flex; gap: 40px; margin: 0; padding: 0; }
+        .main-nav a { color: #000000; text-decoration: none; font-size: 0.95rem; font-weight: bold; text-transform: uppercase; letter-spacing: 2px; transition: opacity 0.3s ease; }
+        .main-nav a:hover, .main-nav a.active { opacity: 0.5; border-bottom: 2px solid #000000; padding-bottom: 5px; }
+        .btn-talk { border: 2px solid #000000; padding: 12px 30px; border-radius: 40px; color: #000000; text-decoration: none; font-size: 0.95rem; font-weight: bold; letter-spacing: 2px; transition: all 0.3s ease; }
+        .btn-talk:hover { background-color: #000000; color: #ffffff; }
+
+        /* Page specific styling */
+        .page-header { text-align: center; padding: 120px 20px 60px; background: linear-gradient(rgba(255,255,255,0.95), rgba(255,255,255,0.95)), url('assets/photo1.jpg') center/cover; }
+        .page-title { font-size: 4rem; text-transform: uppercase; letter-spacing: 4px; margin: 0 0 15px 0; }
+        .page-subtitle { color: #b8962e; font-size: 1.25rem; letter-spacing: 5px; text-transform: uppercase; font-weight: bold; }
+
+        .gallery-container { max-width: 1500px; margin: 0 auto; padding: 80px 20px; }
+        .gallery-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 30px; }
+        .gallery-item { position: relative; overflow: hidden; border-radius: 6px; cursor: pointer; box-shadow: 0 5px 15px rgba(0,0,0,0.05); }
+        .gallery-item img { width: 100%; height: 450px; object-fit: cover; display: block; transition: transform 0.6s ease; }
+        .gallery-item:hover img { transform: scale(1.08); }
+        .gallery-overlay { position: absolute; top: 0; left: 0; right: 0; bottom: 0; background: rgba(255, 255, 255, 0.85); display: flex; align-items: center; justify-content: center; opacity: 0; transition: opacity 0.4s ease; }
+        .gallery-item:hover .gallery-overlay { opacity: 1; }
+        .gallery-overlay-text { color: #000000; font-size: 1.2rem; font-weight: bold; letter-spacing: 2px; text-transform: uppercase; border: 2px solid #b8962e; padding: 12px 25px; transition: background 0.3s; }
+        .gallery-item:hover .gallery-overlay-text:hover { background-color: #b8962e; color: #fff; }
+
+        /* Footer */
+        .main-footer { background-color: #f9f9f9; padding: 80px 50px 30px; border-top: 1px solid #eaeaea; color: #444; }
+        .footer-container { max-width: 1300px; margin: 0 auto; display: flex; flex-wrap: wrap; gap: 60px; justify-content: space-between; }
+        .footer-col { flex: 1; min-width: 250px; }
+        .footer-logo { max-height: 60px; margin-bottom: 25px; display: block; }
+        .footer-col h4 { font-size: 1.2rem; text-transform: uppercase; letter-spacing: 4px; margin: 0 0 30px 0; color: #111; }
+        .footer-col ul { list-style: none; padding: 0; margin: 0; }
+        .footer-col ul li { margin-bottom: 15px; }
+        .footer-col ul a, .footer-col p a { color: #666; text-decoration: none; text-transform: uppercase; font-size: 0.95rem; letter-spacing: 2px; transition: color 0.3s ease; }
+        .footer-col ul a:hover, .footer-col p a:hover { color: #b8962e; }
+        .footer-bottom { text-align: center; padding-top: 50px; margin-top: 80px; border-top: 1px solid #eaeaea; font-size: 0.85rem; letter-spacing: 3px; text-transform: uppercase; color: #888; }
+    </style>
+</head>
+<body>
+
+    <header class="main-header">
+        <div class="logo">
+            <a href="index.html"><img src="assets/Logo.png" alt="Mahmoud Saïd Logo"></a>
+        </div>
+        <nav class="main-nav">
+            <ul>
+                <li><a href="index.html">HOME</a></li>
+                <li><a href="about.html">ABOUT</a></li>
+                <li><a href="artworks.html">ARTWORKS</a></li>
+                <li><a href="exhibitions.html">EXHIBITIONS</a></li>
+                <li><a href="curation.html">CURATION & EXHIBITION DESIGN</a></li>
+                <li><a href="projects.html">PROJECTS</a></li>
+                <li><a href="gallery.html" class="active">GALLERY</a></li>
+            </ul>
+        </nav>
+        <div class="header-action">
+            <a href="contact.html" class="btn-talk">Let's Talk</a>
+        </div>
+    </header>
+
+    <div class="page-header">
+        <h1 class="page-title">Gallery</h1>
+        <div class="page-subtitle">A Visual Journey</div>
+    </div>
+
+    <main class="gallery-container">
+        <div class="gallery-grid">
+            <div class="gallery-item"><img src="assets/art-1.jpg" alt="Art 1"><div class="gallery-overlay"><div class="gallery-overlay-text">View Artwork</div></div></div>
+            <div class="gallery-item"><img src="assets/art-2.jpg" alt="Art 2"><div class="gallery-overlay"><div class="gallery-overlay-text">View Artwork</div></div></div>
+            <div class="gallery-item"><img src="assets/art-3.jpg" alt="Art 3"><div class="gallery-overlay"><div class="gallery-overlay-text">View Artwork</div></div></div>
+            <div class="gallery-item"><img src="assets/art-4.jpg" alt="Art 4"><div class="gallery-overlay"><div class="gallery-overlay-text">View Artwork</div></div></div>
+            <div class="gallery-item"><img src="assets/art-5.jpg" alt="Art 5"><div class="gallery-overlay"><div class="gallery-overlay-text">View Artwork</div></div></div>
+            <div class="gallery-item"><img src="assets/art-6.jpg" alt="Art 6"><div class="gallery-overlay"><div class="gallery-overlay-text">View Artwork</div></div></div>
+            <div class="gallery-item"><img src="assets/art-7.jpg" alt="Art 7"><div class="gallery-overlay"><div class="gallery-overlay-text">View Artwork</div></div></div>
+            <div class="gallery-item"><img src="assets/art-8.jpg" alt="Art 8"><div class="gallery-overlay"><div class="gallery-overlay-text">View Artwork</div></div></div>
+        </div>
+    </main>
+
+    <footer class="main-footer">
+        <div class="footer-container">
+            <div class="footer-col about-col">
+                <img src="assets/Logo.png" alt="Mahmoud Saïd Logo" class="footer-logo">
+                <p style="font-size: 1.05rem; color: #666; margin-top: 15px;">At the intersection of art history, modernism, and contemporary practice, where heritage becomes spatial narrative.</p>
+            </div>
+            <div class="footer-col links-col">
+                <h4>Explore</h4>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="about.html">About</a></li>
+                    <li><a href="artworks.html">Artworks</a></li>
+                    <li><a href="exhibitions.html">Exhibitions</a></li>
+                    <li><a href="curation.html">Curation & Exhibition Design</a></li>
+                    <li><a href="projects.html">Projects</a></li>
+                    <li><a href="gallery.html">Gallery</a></li>
+                </ul>
+            </div>
+            <div class="footer-col contact-col">
+                <h4>Contact</h4>
+                <p>Email: <br><a href="mailto:info@mahmoudsaidart.com" style="text-transform: lowercase;">info@mahmoudsaidart.com</a></p>
+                <p style="margin-top: 15px;">Instagram: <br><a href="https://instagram.com/mahmoudsaiid" target="_blank" style="text-transform: lowercase;">@mahmoudsaiid</a></p>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2026 Mahmoud Saïd. All Rights Reserved.</p>
+        </div>
+    </footer>
+
+</body>
+</html>

@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About | Mahmoud Saïd Art</title>
+    
+    <style>
+        @font-face { font-family: 'Aptos'; src: url('assets/Aptos.ttf') format('truetype'); font-weight: normal; }
+        @font-face { font-family: 'Aptos'; src: url('assets/Aptos-Bold.ttf') format('truetype'); font-weight: bold; }
+
+        body { margin: 0; padding: 0; background-color: #ffffff; color: #333333; font-family: 'Aptos', sans-serif; letter-spacing: 1.5px; line-height: 1.9; }
+
+        .main-header { position: sticky; top: 0; width: 100%; display: flex; justify-content: space-between; align-items: center; padding: 15px 60px; box-sizing: border-box; z-index: 1000; background-color: #ffffff; border-bottom: 1px solid #eaeaea; box-shadow: 0 4px 20px rgba(0,0,0,0.03); }
+        .logo img { max-height: 85px; width: auto; display: block; transition: transform 0.3s ease; }
+        .logo img:hover { transform: scale(1.02); }
+        .main-nav ul { list-style: none; display: flex; gap: 40px; margin: 0; padding: 0; }
+        .main-nav a { color: #000000; text-decoration: none; font-size: 0.95rem; font-weight: bold; text-transform: uppercase; letter-spacing: 2px; transition: opacity 0.3s ease; }
+        .main-nav a:hover, .main-nav a.active { opacity: 0.5; border-bottom: 2px solid #000000; padding-bottom: 5px; }
+        .btn-talk { border: 2px solid #000000; padding: 12px 30px; border-radius: 40px; color: #000000; text-decoration: none; font-size: 0.95rem; font-weight: bold; letter-spacing: 2px; transition: all 0.3s ease; }
+        .btn-talk:hover { background-color: #000000; color: #ffffff; }
+
+        /* Page specific styling */
+        .about-container { max-width: 1100px; margin: 100px auto; padding: 0 20px; }
+        .about-header { text-align: center; margin-bottom: 60px; }
+        .about-title { color: #000000; font-size: 4rem; font-weight: bold; margin: 0 0 10px 0; letter-spacing: 4px; text-transform: uppercase; }
+        .about-subtitle { font-size: 1.25rem; text-transform: uppercase; letter-spacing: 5px; color: #b8962e; font-weight: bold; }
+        .about-quotes { text-align: center; margin-bottom: 80px; padding: 0 20px; }
+        .about-quotes h2 { font-size: 2.2rem; font-weight: normal; margin-bottom: 15px; line-height: 1.5; color: #000000; letter-spacing: 1.5px; }
+        .about-quotes p { font-size: 1.25rem; color: #555555; max-width: 800px; margin: 0 auto; font-style: italic; }
+        .about-content-wrapper { display: flex; align-items: flex-start; gap: 60px; }
+        .about-image { flex: 1; }
+        .about-image img { width: 100%; height: auto; display: block; border-radius: 4px; box-shadow: 0 10px 30px rgba(0,0,0,0.08); transition: transform 0.5s ease;}
+        .about-image img:hover { transform: translateY(-10px); }
+        .about-text-block { flex: 1.2; }
+        .about-text-block p { color: #444444; font-size: 1.15rem; margin-top: 0; margin-bottom: 30px; text-align: justify; }
+
+        .about-contact { margin-top: 40px; padding-top: 30px; border-top: 1px solid #eaeaea; }
+        .about-contact h4 { color: #000000; margin: 0 0 20px 0; font-size: 1.2rem; text-transform: uppercase; letter-spacing: 2px; }
+        .about-contact ul { list-style: none; padding: 0; margin: 0; }
+        .about-contact li { display: flex; align-items: center; gap: 15px; margin-bottom: 15px; color: #333333; font-size: 1rem; }
+        .about-contact a { color: #b8962e; text-decoration: none; transition: color 0.3s ease; }
+        .about-contact a:hover { color: #000000; }
+        .icon-svg { width: 22px; height: 22px; fill: #000000; }
+
+        /* Footer */
+        .main-footer { background-color: #f9f9f9; padding: 80px 50px 30px; border-top: 1px solid #eaeaea; color: #444; margin-top: 80px; }
+        .footer-container { max-width: 1300px; margin: 0 auto; display: flex; flex-wrap: wrap; gap: 60px; justify-content: space-between; }
+        .footer-col { flex: 1; min-width: 250px; }
+        .footer-logo { max-height: 60px; margin-bottom: 25px; display: block; }
+        .footer-col h4 { font-size: 1.2rem; text-transform: uppercase; letter-spacing: 4px; margin: 0 0 30px 0; color: #111; }
+        .footer-col ul { list-style: none; padding: 0; margin: 0; }
+        .footer-col ul li { margin-bottom: 15px; }
+        .footer-col ul a, .footer-col p a { color: #666; text-decoration: none; text-transform: uppercase; font-size: 0.95rem; letter-spacing: 2px; transition: color 0.3s ease; }
+        .footer-col ul a:hover, .footer-col p a:hover { color: #b8962e; }
+        .footer-bottom { text-align: center; padding-top: 50px; margin-top: 80px; border-top: 1px solid #eaeaea; font-size: 0.85rem; letter-spacing: 3px; text-transform: uppercase; color: #888; }
+    </style>
+</head>
+<body>
+
+    <header class="main-header">
+        <div class="logo">
+            <a href="index.html"><img src="assets/Logo.png" alt="Mahmoud Saïd Logo"></a>
+        </div>
+        <nav class="main-nav">
+            <ul>
+                <li><a href="index.html">HOME</a></li>
+                <li><a href="about.html" class="active">ABOUT</a></li>
+                <li><a href="artworks.html">ARTWORKS</a></li>
+                <li><a href="exhibitions.html">EXHIBITIONS</a></li>
+                <li><a href="curation.html">CURATION & EXHIBITION DESIGN</a></li>
+                <li><a href="projects.html">PROJECTS</a></li>
+                <li><a href="gallery.html">GALLERY</a></li>
+            </ul>
+        </nav>
+        <div class="header-action">
+            <a href="contact.html" class="btn-talk">Let's Talk</a>
+        </div>
+    </header>
+
+    <main class="about-container">
+        <div class="about-header">
+            <h1 class="about-title">MAHMOUD SAÏD</h1>
+            <h3 class="about-subtitle">Art &bull; Heritage &bull; Exhibition Design</h3>
+        </div>
+
+        <div class="about-quotes">
+            <h2>Where heritage becomes space, and history meets contemporary practice.</h2>
+            <p>At the intersection of art history, modernism, and contemporary practice, where heritage becomes spatial narrative.</p>
+        </div>
+
+        <div class="about-content-wrapper">
+            <div class="about-image">
+                <img src="assets/about-placeholder.png" alt="Mahmoud Saïd Portrait">
+            </div>
+            
+            <div class="about-text-block">
+                <p>Mahmoud Saïd is an Alexandria-based architect and artist whose practice operates at the intersection of architectural history, cultural heritage, and exhibition design. Working at the Centre d’Études Alexandrines (CNRS), he engages in the research and documentation of the city’s built heritage while developing research-based exhibitions that translate archival material into spatial and visual narratives.</p>
+                <p>His work bridges architecture and contemporary artistic practice, with a particular focus on portrait painting in dialogue with art historical references and contemporary expression, and has been presented across exhibitions, museums, art galleries, and cultural institutions in Alexandria and Cairo.</p>
+                
+                <div class="about-contact">
+                    <h4>Contact</h4>
+                    <ul>
+                        <li>
+                            <svg class="icon-svg" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 2.163c3.204 0 3.584.012 4.85.067 3.282.148 4.746 1.77 4.894 5.048.055 1.266.067 1.646.067 4.85s-.012 3.584-.067 4.85c-.148 3.278-1.612 4.9-4.894 5.048-1.266.055-1.646.067-4.85.067s-3.584-.012-4.85-.067c-3.282-.148-4.746-1.77-4.894-5.048-.055-1.266-.067-1.646-.067-4.85s.012-3.584.067-4.85c.148-3.278 1.612-4.9 4.894-5.048 1.266-.055 1.646-.067 4.85-.067zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948s.014 3.667.072 4.947c.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072s3.667-.014 4.947-.072c4.358-.2 6.78-2.618 6.98-6.98.058-1.281.072-1.689.072-4.947s-.014-3.667-.072-4.947c-.2-4.358-2.618-6.78-6.98-6.98-1.281-.058-1.689-.072-4.948-.072z"/><path d="M12 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4s1.791-4 4-4 4 1.79 4 4-1.791 4-4 4z"/><circle cx="18.406" cy="5.595" r="1.44"/></svg>
+                            Instagram: <a href="https://instagram.com/mahmoudsaiid" target="_blank">@mahmoudsaiid</a>
+                        </li>
+                        <li>
+                            <svg class="icon-svg" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg>
+                            Email: <a href="mailto:info@mahmoudsaidart.com">info@mahmoudsaidart.com</a> 
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer class="main-footer">
+        <div class="footer-container">
+            <div class="footer-col about-col">
+                <img src="assets/Logo.png" alt="Mahmoud Saïd Logo" class="footer-logo">
+                <p style="font-size: 1.05rem; color: #666; margin-top: 15px;">At the intersection of art history, modernism, and contemporary practice, where heritage becomes spatial narrative.</p>
+            </div>
+            <div class="footer-col links-col">
+                <h4>Explore</h4>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="about.html">About</a></li>
+                    <li><a href="artworks.html">Artworks</a></li>
+                    <li><a href="exhibitions.html">Exhibitions</a></li>
+                    <li><a href="curation.html">Curation & Exhibition Design</a></li>
+                    <li><a href="projects.html">Projects</a></li>
+                    <li><a href="gallery.html">Gallery</a></li>
+                </ul>
+            </div>
+            <div class="footer-col contact-col">
+                <h4>Contact</h4>
+                <p>Email: <br><a href="mailto:info@mahmoudsaidart.com" style="text-transform: lowercase;">info@mahmoudsaidart.com</a></p>
+                <p style="margin-top: 15px;">Instagram: <br><a href="https://instagram.com/mahmoudsaiid" target="_blank" style="text-transform: lowercase;">@mahmoudsaiid</a></p>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2026 Mahmoud Saïd. All Rights Reserved.</p>
+        </div>
+    </footer>
+</body>
+</html>
