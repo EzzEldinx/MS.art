@@ -9,35 +9,35 @@
         @font-face { font-family: 'Aptos'; src: url('assets/Aptos.ttf') format('truetype'); font-weight: normal; }
         @font-face { font-family: 'Aptos'; src: url('assets/Aptos-Bold.ttf') format('truetype'); font-weight: bold; }
 
-        body { margin: 0; padding: 0; background-color: #ffffff; color: #333333; font-family: 'Aptos', sans-serif; letter-spacing: 1.5px; line-height: 1.9; }
+        body { margin: 0; padding: 0; background-color: #ffffff; color: #111111; font-family: 'Aptos', sans-serif; overflow-x: hidden; letter-spacing: 1.5px; line-height: 1.9; }
 
-        .main-header { position: sticky; top: 0; width: 100%; display: flex; justify-content: space-between; align-items: center; padding: 15px 60px; box-sizing: border-box; z-index: 1000; background-color: #ffffff; border-bottom: 1px solid #eaeaea; box-shadow: 0 4px 20px rgba(0,0,0,0.03); }
-        .logo { flex: 1; }
-        .logo img { max-height: 85px; width: auto; display: block; transition: transform 0.3s ease; }
+        .main-header.solid-nav { position: sticky; top: 0; width: 100%; display: flex; justify-content: space-between; align-items: center; padding: 20px 40px; box-sizing: border-box; z-index: 1000; background-color: #ffffff; box-shadow: 0 4px 20px rgba(0,0,0,0.03); }
+        .logo { flex: 1; display: flex; align-items: center; }
+        .logo img { max-height: 70px; width: auto; display: block; transition: transform 0.3s ease; }
         .logo img:hover { transform: scale(1.02); }
-        .main-nav { flex: 3; display: flex; justify-content: center; }
-        .main-nav ul { list-style: none; display: flex; gap: 40px; margin: 0; padding: 0; }
-        .main-nav a { color: #000000; text-decoration: none; font-size: 0.95rem; font-weight: bold; text-transform: uppercase; letter-spacing: 2px; transition: opacity 0.3s ease; }
-        .main-nav a:hover, .main-nav a.active { opacity: 0.5; border-bottom: 2px solid #000000; padding-bottom: 5px; }
+        .header-spacer { flex: 1; }
+        .main-nav { flex: 4; display: flex; justify-content: center; }
+        .main-nav ul { list-style: none; display: flex; gap: 20px; margin: 0; padding: 0; }
+        .main-nav a { color: #000000; text-decoration: none; font-size: 0.8rem; font-weight: bold; text-transform: uppercase; letter-spacing: 1.5px; transition: opacity 0.3s ease; white-space: nowrap; }
+        .main-nav a:hover, .main-nav a.active { border-bottom: 2px solid #000000; padding-bottom: 5px; }
         
-        .header-spacer { flex: 1; } /* Da 3ashan yzbot el menu fel nos */
+        .menu-toggle { display: none; flex-direction: column; cursor: pointer; gap: 6px; z-index: 2001; }
+        .menu-toggle span { width: 30px; height: 2px; background-color: #000; transition: 0.3s; }
 
-        /* Page specific styling m3 photo4.jpg */
         .page-header { text-align: center; padding: 120px 20px 60px; background: linear-gradient(rgba(255,255,255,0.7), rgba(255,255,255,0.7)), url('assets/photo4.jpg') center/cover; }
-        .page-title { font-size: 4rem; text-transform: uppercase; letter-spacing: 4px; margin: 0 0 15px 0; color: #000000;}
+        .page-title { font-size: 4rem; text-transform: uppercase; letter-spacing: 4px; margin: 0 0 15px 0; color: #000000; }
         .page-subtitle { color: #b8962e; font-size: 1.25rem; letter-spacing: 5px; text-transform: uppercase; font-weight: bold; }
 
-        .gallery-container { max-width: 1500px; margin: 0 auto; padding: 80px 20px; }
-        .gallery-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 30px; }
-        .gallery-item { position: relative; overflow: hidden; border-radius: 6px; cursor: pointer; box-shadow: 0 5px 15px rgba(0,0,0,0.05); }
-        .gallery-item img { width: 100%; height: 450px; object-fit: cover; display: block; transition: transform 0.6s ease; }
-        .gallery-item:hover img { transform: scale(1.08); }
-        .gallery-overlay { position: absolute; top: 0; left: 0; right: 0; bottom: 0; background: rgba(255, 255, 255, 0.85); display: flex; align-items: center; justify-content: center; opacity: 0; transition: opacity 0.4s ease; }
-        .gallery-item:hover .gallery-overlay { opacity: 1; }
-        .gallery-overlay-text { color: #000000; font-size: 1.2rem; font-weight: bold; letter-spacing: 2px; text-transform: uppercase; border: 2px solid #b8962e; padding: 12px 25px; transition: background 0.3s; }
-        .gallery-item:hover .gallery-overlay-text:hover { background-color: #b8962e; color: #fff; }
+        .container { max-width: 1300px; margin: 0 auto; padding: 120px 20px; }
+        .art-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); gap: 40px; }
+        .art-card { position: relative; overflow: hidden; cursor: pointer; border-radius: 8px; box-shadow: 0 10px 25px rgba(0,0,0,0.06); }
+        .art-card img { width: 100%; height: 500px; object-fit: cover; transition: transform 0.8s ease; display: block; }
+        .art-card:hover img { transform: scale(1.08); }
+        .art-overlay { position: absolute; bottom: 0; left: 0; width: 100%; padding: 40px 30px; background: linear-gradient(transparent, rgba(0,0,0,0.85)); box-sizing: border-box; opacity: 0; transition: opacity 0.4s ease; }
+        .art-card:hover .art-overlay { opacity: 1; }
+        .art-overlay h4 { margin: 0 0 8px 0; color: #ffffff; font-size: 1.4rem; letter-spacing: 2px; }
+        .art-overlay p { margin: 0; color: #d4af37; font-size: 1rem; letter-spacing: 2px; }
 
-        /* Footer */
         .main-footer { background-color: #f9f9f9; padding: 80px 50px 30px; border-top: 1px solid #eaeaea; color: #444; }
         .footer-container { max-width: 1300px; margin: 0 auto; display: flex; flex-wrap: wrap; gap: 60px; justify-content: space-between; }
         .footer-col { flex: 1; min-width: 250px; }
@@ -48,14 +48,58 @@
         .footer-col ul a, .footer-col p a { color: #666; text-decoration: none; text-transform: uppercase; font-size: 0.95rem; letter-spacing: 2px; transition: color 0.3s ease; }
         .footer-col ul a:hover, .footer-col p a:hover { color: #b8962e; }
         .footer-bottom { text-align: center; padding-top: 50px; margin-top: 80px; border-top: 1px solid #eaeaea; font-size: 0.85rem; letter-spacing: 3px; text-transform: uppercase; color: #888; }
+
+        /* Modal Styles */
+        .artwork-modal { display: none; position: fixed; z-index: 3000; left: 0; top: 0; width: 100%; height: 100%; background-color: rgba(0, 0, 0, 0.95); align-items: center; justify-content: center; opacity: 0; transition: opacity 0.3s ease; }
+        .artwork-modal.active { display: flex; opacity: 1; }
+        .modal-content { position: relative; max-width: 1100px; width: 90%; background: #ffffff; border-radius: 4px; overflow: hidden; display: flex; flex-direction: column; }
+        @media (min-width: 768px) { .modal-content { flex-direction: row; height: 75vh; } }
+        .modal-image { flex: 1.5; background: #111; display: flex; align-items: center; justify-content: center; overflow: hidden; }
+        .modal-image img { width: 100%; height: 100%; object-fit: contain; display: block; }
+        .modal-details { flex: 1; padding: 50px 40px; display: flex; flex-direction: column; justify-content: center; overflow-y: auto; }
+        .modal-title { font-size: 2rem; text-transform: uppercase; margin: 0 0 15px; letter-spacing: 2px; color: #111; }
+        .modal-desc { font-size: 1.1rem; color: #555; line-height: 1.8; margin: 0; }
+        .close-modal { position: absolute; top: 15px; right: 20px; font-size: 2.5rem; color: #111; cursor: pointer; line-height: 1; z-index: 10; transition: color 0.3s; }
+        .close-modal:hover { color: #b8962e; }
+        @media (max-width: 767px) { .close-modal { color: #fff; right: 15px; top: 10px; text-shadow: 0 2px 4px rgba(0,0,0,0.8); } .modal-image img { max-height: 40vh; } }
+
+        /* Mobile */
+        @media (max-width: 992px) {
+            .main-header.solid-nav { padding: 20px 25px; }
+            .logo img { max-height: 50px; }
+            .header-spacer { display: none; }
+            .menu-toggle { display: flex; }
+            .main-nav { position: fixed; top: 0; right: -100%; width: 280px; height: 100vh; background-color: #111111; display: flex; flex-direction: column; align-items: center; justify-content: center; transition: right 0.4s ease; z-index: 2000; box-shadow: -5px 0 15px rgba(0,0,0,0.5); }
+            .main-nav.active { right: 0; }
+            .main-nav ul { flex-direction: column; gap: 30px; text-align: center; }
+            .main-nav a { font-size: 1.1rem; letter-spacing: 3px; color: #fff; text-shadow: none; white-space: normal; }
+            .menu-toggle.active span:nth-child(1) { transform: rotate(45deg) translate(5px, 6px); background-color: #fff; z-index: 2002; position: relative;}
+            .menu-toggle.active span:nth-child(2) { opacity: 0; }
+            .menu-toggle.active span:nth-child(3) { transform: rotate(-45deg) translate(5px, -6px); background-color: #fff; z-index: 2002; position: relative;}
+            .page-header { padding: 150px 20px 60px; }
+            .page-title { font-size: 2.5rem; }
+            .container { padding: 60px 20px; }
+            .art-grid { grid-template-columns: 1fr; gap: 20px; }
+            .art-card img { height: 400px; }
+            .footer-container { flex-direction: column; gap: 40px; text-align: center; }
+            .main-footer { padding: 60px 20px 30px; }
+            .footer-logo { margin: 0 auto 20px; }
+        }
     </style>
 </head>
 <body>
 
-    <header class="main-header">
+    <header class="main-header solid-nav">
         <div class="logo">
             <a href="index.html"><img src="assets/Logo.png" alt="Mahmoud Saïd Logo"></a>
         </div>
+        
+        <div class="menu-toggle" id="mobileMenuToggle">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+
         <nav class="main-nav">
             <ul>
                 <li><a href="index.html">HOME</a></li>
@@ -64,26 +108,47 @@
                 <li><a href="exhibitions.html">EXHIBITIONS</a></li>
                 <li><a href="curation.html">CURATION & EXHIBITION DESIGN</a></li>
                 <li><a href="projects.html">PROJECTS</a></li>
+                <li><a href="heritage.html">ARCHITECTURAL HERITAGE</a></li>
             </ul>
         </nav>
         <div class="header-spacer"></div>
     </header>
 
-    <div class="page-header">
+    <div class="page-header artworks-header">
         <h1 class="page-title">Artworks</h1>
         <div class="page-subtitle">A Visual Journey</div>
     </div>
 
-    <main class="gallery-container">
-        <div class="gallery-grid">
-            <div class="gallery-item"><img src="assets/art-1.jpg" alt="Art 1"><div class="gallery-overlay"><div class="gallery-overlay-text">View Artwork</div></div></div>
-            <div class="gallery-item"><img src="assets/art-2.jpg" alt="Art 2"><div class="gallery-overlay"><div class="gallery-overlay-text">View Artwork</div></div></div>
-            <div class="gallery-item"><img src="assets/art-3.jpg" alt="Art 3"><div class="gallery-overlay"><div class="gallery-overlay-text">View Artwork</div></div></div>
-            <div class="gallery-item"><img src="assets/art-4.jpg" alt="Art 4"><div class="gallery-overlay"><div class="gallery-overlay-text">View Artwork</div></div></div>
-            <div class="gallery-item"><img src="assets/art-5.jpg" alt="Art 5"><div class="gallery-overlay"><div class="gallery-overlay-text">View Artwork</div></div></div>
-            <div class="gallery-item"><img src="assets/art-6.jpg" alt="Art 6"><div class="gallery-overlay"><div class="gallery-overlay-text">View Artwork</div></div></div>
-            <div class="gallery-item"><img src="assets/art-7.jpg" alt="Art 7"><div class="gallery-overlay"><div class="gallery-overlay-text">View Artwork</div></div></div>
-            <div class="gallery-item"><img src="assets/art-8.jpg" alt="Art 8"><div class="gallery-overlay"><div class="gallery-overlay-text">View Artwork</div></div></div>
+    <main class="container">
+        <div class="art-grid">
+            <div class="art-card">
+                <img src="assets/art-1.jpg" alt="Art 1">
+                <div class="art-overlay">
+                    <h4>The Alexandrian Beauty</h4>
+                    <p>Oil on Canvas, 1935</p>
+                </div>
+            </div>
+            <div class="art-card">
+                <img src="assets/art-2.jpg" alt="Art 2">
+                <div class="art-overlay">
+                    <h4>Nile Symphony</h4>
+                    <p>Oil on Canvas, 1940</p>
+                </div>
+            </div>
+            <div class="art-card">
+                <img src="assets/art-3.jpg" alt="Art 3">
+                <div class="art-overlay">
+                    <h4>Echoes of the Past</h4>
+                    <p>Mixed Media, 1942</p>
+                </div>
+            </div>
+            <div class="art-card">
+                <img src="assets/art-4.jpg" alt="Art 4">
+                <div class="art-overlay">
+                    <h4>Heritage Whisper</h4>
+                    <p>Charcoal, 1938</p>
+                </div>
+            </div>
         </div>
     </main>
 
@@ -91,7 +156,7 @@
         <div class="footer-container">
             <div class="footer-col about-col">
                 <img src="assets/Logo.png" alt="Mahmoud Saïd Logo" class="footer-logo">
-                <p style="font-size: 1.05rem; color: #666; margin-top: 15px;">At the intersection of art history, modernism, and contemporary practice, where heritage becomes spatial narrative.</p>
+                <p>At the intersection of art history, modernism, and contemporary practice, where heritage becomes spatial narrative.</p>
             </div>
             <div class="footer-col links-col">
                 <h4>Explore</h4>
@@ -106,8 +171,8 @@
             </div>
             <div class="footer-col contact-col">
                 <h4>Contact</h4>
-                <p>Email: <br><a href="mailto:info@mahmoudsaidart.com" style="text-transform: lowercase;">info@mahmoudsaidart.com</a></p>
-                <p style="margin-top: 15px;">Instagram: <br><a href="https://instagram.com/mahmoudsaiid" target="_blank" style="text-transform: lowercase;">@mahmoudsaiid</a></p>
+                <p>Email: <br><a href="mailto:info@mahmoudsaidart.com">info@mahmoudsaidart.com</a></p>
+                <p style="margin-top: 15px;">Instagram: <br><a href="https://instagram.com/mahmoudsaiid" target="_blank">@mahmoudsaiid</a></p>
             </div>
         </div>
         <div class="footer-bottom">
@@ -115,5 +180,68 @@
         </div>
     </footer>
 
+    <div class="artwork-modal" id="artModal">
+        <div class="modal-content">
+            <span class="close-modal" id="closeModal">&times;</span>
+            <div class="modal-image">
+                <img id="modalImg" src="" alt="Artwork">
+            </div>
+            <div class="modal-details">
+                <h3 class="modal-title" id="modalTitle">Title</h3>
+                <p class="modal-desc" id="modalDesc">Description</p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            // Mobile Menu
+            const menuToggle = document.getElementById('mobileMenuToggle');
+            const mainNav = document.querySelector('.main-nav');
+            if(menuToggle) {
+                menuToggle.addEventListener('click', () => {
+                    menuToggle.classList.toggle('active');
+                    mainNav.classList.toggle('active');
+                });
+            }
+
+            // Artwork Modal
+            const modal = document.getElementById("artModal");
+            const modalImg = document.getElementById("modalImg");
+            const modalTitle = document.getElementById("modalTitle");
+            const modalDesc = document.getElementById("modalDesc");
+            const closeModal = document.getElementById("closeModal");
+            const artCards = document.querySelectorAll(".art-card");
+
+            if (modal && artCards.length > 0) {
+                artCards.forEach(card => {
+                    card.addEventListener("click", function() {
+                        const img = this.querySelector("img");
+                        const title = this.querySelector("h4") ? this.querySelector("h4").innerText : "Artwork";
+                        const shortDesc = this.querySelector("p") ? this.querySelector("p").innerText : "";
+                        
+                        if(img) modalImg.src = img.src;
+                        modalTitle.innerText = title;
+                        modalDesc.innerText = shortDesc + " — Detailed background, medium, dimensions, and curatorial notes will be dynamically loaded here from the database."; 
+
+                        modal.classList.add("active");
+                        document.body.style.overflow = 'hidden'; 
+                    });
+                });
+
+                closeModal.addEventListener("click", () => {
+                    modal.classList.remove("active");
+                    document.body.style.overflow = 'auto'; 
+                });
+
+                window.addEventListener("click", (e) => {
+                    if (e.target === modal) {
+                        modal.classList.remove("active");
+                        document.body.style.overflow = 'auto';
+                    }
+                });
+            }
+        });
+    </script>
 </body>
 </html>
