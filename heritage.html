@@ -3,10 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Projects | Mahmoud Saïd Art</title>
+    <title>Architectural Heritage | Mahmoud Saïd Art</title>
     <style>
         /* --- COPY NAFS EL CSS ELLY GOWA saf7et ARTWORKS.HTML BEL ZABT HENA --- */
-        /* (B-nafs el font-size: 0.95rem; wel gap: 40px; w style el Cards wel Modal) */
         @font-face { font-family: 'Aptos'; src: url('assets/Aptos.ttf') format('truetype'); font-weight: normal; }
         @font-face { font-family: 'Aptos'; src: url('assets/Aptos-Bold.ttf') format('truetype'); font-weight: bold; }
         body { margin: 0; padding: 0; background-color: #ffffff; color: #111111; font-family: 'Aptos', sans-serif; overflow-x: hidden; letter-spacing: 1.5px; line-height: 1.9; }
@@ -28,7 +27,7 @@
         .main-header.solid-nav .main-nav a:hover, .main-header.solid-nav .main-nav a.active { border-bottom: 2px solid #111111; opacity: 0.5; }
         .main-header.solid-nav .menu-toggle span { background-color: #111111; }
 
-        .page-header { text-align: center; padding: 120px 20px 60px; background: linear-gradient(rgba(245,245,245,0.9), rgba(245,245,245,0.9)), url('assets/photo4.jpg') center/cover; border-bottom: 1px solid #eaeaea; }
+        .page-header { text-align: center; padding: 120px 20px 60px; background: linear-gradient(rgba(245,245,245,0.9), rgba(245,245,245,0.9)), url('assets/photo1.jpg') center/cover; border-bottom: 1px solid #eaeaea; }
         .page-title { font-size: 4rem; text-transform: uppercase; letter-spacing: 4px; margin: 0 0 15px 0; color: #000000; }
         .page-subtitle { color: #b8962e; font-size: 1.25rem; letter-spacing: 5px; text-transform: uppercase; font-weight: bold; }
 
@@ -114,57 +113,49 @@
                 <li><a href="artworks.html">ARTWORKS</a></li>
                 <li><a href="exhibitions.html">EXHIBITIONS</a></li>
                 <li><a href="curation.html">CURATION & EXHIBITION DESIGN</a></li>
-                <li><a href="projects.html" class="active">PROJECTS</a></li>
-                <li><a href="heritage.html">ARCHITECTURAL HERITAGE</a></li>
+                <li><a href="projects.html">PROJECTS</a></li>
+                <li><a href="heritage.html" class="active">ARCHITECTURAL HERITAGE</a></li>
             </ul>
         </nav>
         <div class="header-spacer"></div>
     </header>
 
     <div class="page-header">
-        <h1 class="page-title">Projects</h1>
-        <div class="page-subtitle">Installations & Collaborations</div>
+        <h1 class="page-title">Heritage</h1>
+        <div class="page-subtitle">Architectural Research</div>
     </div>
 
     <main class="container">
         <div class="art-grid">
-            <!-- Project Card -->
+            <!-- Heritage Card -->
             <div class="art-card">
-                <img src="assets/art-5.jpg" alt="Project 1">
+                <img src="assets/about-placeholder.png" alt="Heritage Study 1">
                 <div class="art-overlay">
-                    <h4>Cartalex Platform</h4>
-                    <p>CEAlex Spatial Database, 2025</p>
+                    <h4>Alexandria Archives</h4>
+                    <p>Spatial Research, 2024</p>
                 </div>
             </div>
-            <!-- Project Card -->
+            <!-- Empty Card for Future Uploads -->
             <div class="art-card">
-                <img src="assets/art-6.jpg" alt="Project 2">
+                <img src="assets/photo3.jpg" alt="Heritage Study 2">
                 <div class="art-overlay">
-                    <h4>AL-HARAMAIN Branding</h4>
-                    <p>Visual Direction & Identity, 2026</p>
-                </div>
-            </div>
-            <!-- Empty Card for Future Uploads via Dashboard -->
-            <div class="art-card">
-                <img src="assets/photo1.jpg" alt="Project 3">
-                <div class="art-overlay">
-                    <h4>Future Project</h4>
-                    <p>Installation, 2027</p>
+                    <h4>Urban Narratives</h4>
+                    <p>Documentation, 2025</p>
                 </div>
             </div>
         </div>
     </main>
 
-    <!-- Modal Box for Projects -->
+    <!-- Modal Box -->
     <div class="artwork-modal" id="artModal">
         <div class="modal-content">
             <span class="close-modal" id="closeModal">&times;</span>
             <div class="modal-image">
-                <img id="modalImg" src="" alt="Project">
+                <img id="modalImg" src="" alt="Research">
             </div>
             <div class="modal-details">
-                <h3 class="modal-title" id="modalTitle">Project Title</h3>
-                <p class="modal-desc" id="modalDesc">Project description goes here.</p>
+                <h3 class="modal-title" id="modalTitle">Research Title</h3>
+                <p class="modal-desc" id="modalDesc">Detailed architectural research notes will be loaded here.</p>
             </div>
         </div>
     </div>
@@ -221,12 +212,12 @@
                 artCards.forEach(card => {
                     card.addEventListener("click", function() {
                         const img = this.querySelector("img");
-                        const title = this.querySelector("h4") ? this.querySelector("h4").innerText : "Project";
+                        const title = this.querySelector("h4") ? this.querySelector("h4").innerText : "Research";
                         const shortDesc = this.querySelector("p") ? this.querySelector("p").innerText : "";
                         
                         if(img) modalImg.src = img.src;
                         modalTitle.innerText = title;
-                        modalDesc.innerText = shortDesc + " — Comprehensive project notes, technical details, and outcomes will be dynamically loaded here."; 
+                        modalDesc.innerText = shortDesc + " — Comprehensive research notes, maps, and findings will be dynamically loaded here."; 
 
                         modal.classList.add("active");
                         document.body.style.overflow = 'hidden'; 
