@@ -4,13 +4,22 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Curation & Exhibition Design | Mahmoud Saïd Art</title>
+    
     <style>
-        /* --- COPY NAFS EL CSS ELLY GOWA saf7et EXHIBITIONS.HTML BEL ZABT HENA --- */
-        /* (B-nafs el font-size: 0.95rem; wel gap: 40px; bta3 el Navbar wel Slim Footer) */
+        /* --- Fonts --- */
         @font-face { font-family: 'Aptos'; src: url('assets/Aptos.ttf') format('truetype'); font-weight: normal; }
         @font-face { font-family: 'Aptos'; src: url('assets/Aptos-Bold.ttf') format('truetype'); font-weight: bold; }
+
+        /* --- Base --- */
         body { margin: 0; padding: 0; background-color: #ffffff; color: #111111; font-family: 'Aptos', sans-serif; overflow-x: hidden; letter-spacing: 1.5px; line-height: 1.9; }
-        
+
+        /* --- Scroll Animations & Effects --- */
+        .reveal { opacity: 0; transform: translateY(40px); transition: all 1.2s cubic-bezier(0.25, 1, 0.5, 1); }
+        .reveal.active { opacity: 1; transform: translateY(0); }
+        .delay-1 { transition-delay: 0.2s; }
+        .delay-2 { transition-delay: 0.4s; }
+
+        /* --- Header --- */
         .main-header { position: absolute; top: 0; width: 100%; display: flex; justify-content: space-between; align-items: center; padding: 40px 60px; box-sizing: border-box; z-index: 1000; background-color: transparent; }
         .logo { flex: 1; display: flex; align-items: center; }
         .logo img { max-height: 65px; width: auto; display: block; transition: transform 0.3s ease; }
@@ -28,20 +37,56 @@
         .main-header.solid-nav .main-nav a:hover, .main-header.solid-nav .main-nav a.active { border-bottom: 2px solid #111111; opacity: 0.5; }
         .main-header.solid-nav .menu-toggle span { background-color: #111111; }
 
-        .page-header { text-align: center; padding: 120px 20px 60px; background: linear-gradient(rgba(245,245,245,0.9), rgba(245,245,245,0.9)), url('assets/photo3.jpg') center/cover; border-bottom: 1px solid #eaeaea; }
-        .page-title { font-size: 4rem; text-transform: uppercase; letter-spacing: 4px; margin: 0 0 15px 0; color: #000000; }
+        /* --- Page Header --- */
+        .page-header { text-align: center; padding: 120px 20px 60px; background: linear-gradient(rgba(245,245,245,0.4), rgba(245,245,245,0.4)), url('assets/backex.jpg') center/cover; border-bottom: 1px solid #eaeaea; }        .page-title { font-size: 4rem; text-transform: uppercase; letter-spacing: 4px; margin: 0 0 15px 0; color: #000000; }
         .page-subtitle { color: #b8962e; font-size: 1.25rem; letter-spacing: 5px; text-transform: uppercase; font-weight: bold; }
 
-        .container { max-width: 1200px; margin: 0 auto; padding: 80px 20px; }
+        /* --- Landscape Curation Layout --- */
+        .container { max-width: 1400px; margin: 0 auto; padding: 100px 20px; }
+        .featured-project { display: flex; flex-direction: column; gap: 60px; margin-bottom: 80px; }
         
-        .exhibition-list { display: flex; flex-direction: column; }
-        .exhibition-item { display: flex; padding: 50px 0; border-bottom: 1px solid #ddd; align-items: flex-start; transition: transform 0.3s ease; }
-        .exhibition-item:hover { transform: translateX(10px); }
-        .exhibition-date { flex: 0 0 250px; color: #b8962e; font-weight: bold; font-size: 1.1rem; letter-spacing: 4px; text-transform: uppercase; }
-        .exhibition-details { flex: 1; }
-        .exhibition-title { font-size: 2rem; font-weight: bold; margin: 0 0 15px 0; color: #111; letter-spacing: 2px; }
-        .exhibition-desc { color: #444; font-size: 1.15rem; margin: 0; max-width: 800px; }
+        .project-top-header { display: flex; align-items: baseline; gap: 15px; margin-bottom: -40px; }
+        .project-number { font-size: 2.5rem; color: #b8962e; font-weight: bold; line-height: 1; font-family: 'Aptos', sans-serif; }
+        .project-top-title { font-size: 1.5rem; text-transform: uppercase; color: #111; letter-spacing: 3px; font-weight: bold; margin: 0; }
 
+        /* Main Image */
+        .project-image-wrapper { width: 100%; overflow: hidden; border-radius: 6px; box-shadow: 0 20px 50px rgba(0,0,0,0.1); position: relative; }
+        .project-image-wrapper img { width: 100%; height: auto; display: block; transition: transform 1.5s cubic-bezier(0.25, 1, 0.5, 1); }
+        .project-image-wrapper:hover img { transform: scale(1.03); }
+        
+        /* Info Grid */
+        .project-info-grid { display: grid; grid-template-columns: 1fr 1.5fr; gap: 80px; align-items: start; }
+        
+        /* Left Column (Titles + Sidebar Images) */
+        .project-left-column { display: flex; flex-direction: column; }
+        .meta-info { font-size: 0.85rem; color: #b8962e; text-transform: uppercase; letter-spacing: 3px; font-weight: bold; margin-bottom: 15px; display: block; }
+        .project-title { font-size: 3rem; font-weight: bold; color: #111; line-height: 1.1; text-transform: uppercase; letter-spacing: 2px; margin: 0 0 15px 0; }
+        .project-subtitle { font-size: 1.2rem; color: #555; text-transform: uppercase; letter-spacing: 4px; margin: 0 0 25px 0; font-weight: normal; }
+        .project-sponsor { font-size: 0.95rem; color: #777; letter-spacing: 1px; margin-bottom: 30px; font-style: italic; border-left: 2px solid #b8962e; padding-left: 15px; }
+        .curator-tag { display: inline-block; background-color: #111; color: #fff; padding: 8px 20px; font-size: 0.85rem; text-transform: uppercase; letter-spacing: 2px; font-weight: bold; align-self: flex-start; }
+        
+        /* Images filling the left space */
+        .sidebar-images { display: flex; flex-direction: column; gap: 40px; margin-top: 60px; }
+        .sidebar-images img { width: 100%; height: auto; display: block; border-radius: 6px; box-shadow: 0 15px 35px rgba(0,0,0,0.08); transition: transform 0.5s ease; }
+        .sidebar-images img:hover { transform: scale(1.02); }
+
+        /* Right Column (Text Body & Quote) */
+        .project-body p { font-size: 1.15rem; color: #444; line-height: 2; margin-top: 0; margin-bottom: 30px; text-align: justify; }
+        .project-body p:last-child { margin-bottom: 0; }
+
+        /* --- Project Pull-Quote --- */
+        .project-quote { margin-top: 60px; padding-left: 30px; border-left: 4px solid #b8962e; font-size: 1.6rem; font-style: italic; color: #111; line-height: 1.6; position: relative; }
+        .project-quote-author { display: block; margin-top: 20px; font-size: 0.85rem; color: #777; text-transform: uppercase; letter-spacing: 3px; font-style: normal; font-weight: bold; }
+
+        /* --- Project Gallery (Editorial Masonry) --- */
+        .project-gallery { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; margin-top: 40px; }
+        .gallery-col-portrait { height: 100%; }
+        .gallery-col-landscapes { display: flex; flex-direction: column; gap: 40px; }
+        .gallery-img-wrapper { overflow: hidden; border-radius: 6px; box-shadow: 0 20px 50px rgba(0,0,0,0.1); flex: 1; }
+        .gallery-img-wrapper img { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform 1.5s cubic-bezier(0.25, 1, 0.5, 1); }
+        .gallery-img-wrapper:hover img { transform: scale(1.03); }
+
+        /* --- Slim Footer --- */
         .main-footer { background-color: #fcfcfc; padding: 40px 60px; border-top: 1px solid #eaeaea; color: #444; margin-top: 60px; }
         .footer-container { max-width: 1300px; margin: 0 auto; display: flex; flex-wrap: wrap; justify-content: space-between; align-items: flex-start; gap: 30px; }
         .footer-col { flex: 1; min-width: 200px; }
@@ -60,6 +105,7 @@
         .btn-contact { background-color: #111; color: #fff; padding: 10px 25px; border-radius: 40px; text-decoration: none; font-size: 0.8rem; font-weight: bold; text-transform: uppercase; letter-spacing: 2px; transition: background 0.3s; border: 2px solid #111; display: inline-block; }
         .btn-contact:hover { background-color: #b8962e; border-color: #b8962e; color: #fff; }
 
+        /* --- Mobile Optimization --- */
         @media (max-width: 992px) {
             .main-header, .main-header.solid-nav { padding: 20px 25px; background-color: #ffffff !important; position: fixed; box-shadow: 0 4px 20px rgba(0,0,0,0.05); }
             .logo img { max-height: 50px; }
@@ -73,12 +119,23 @@
             .menu-toggle.active span:nth-child(1) { transform: rotate(45deg) translate(5px, 6px); background-color: #fff; z-index: 2002; position: relative;}
             .menu-toggle.active span:nth-child(2) { opacity: 0; }
             .menu-toggle.active span:nth-child(3) { transform: rotate(-45deg) translate(5px, -6px); background-color: #fff; z-index: 2002; position: relative;}
+            
             .page-header { padding: 120px 20px 50px; }
             .page-title { font-size: 2.8rem; }
-            .container { padding: 60px 20px; }
-            .exhibition-item { flex-direction: column; padding: 30px 0; gap: 15px; }
-            .exhibition-date { flex: none; font-size: 1rem; }
-            .exhibition-title { font-size: 1.6rem; }
+            
+            .project-top-header { margin-bottom: 20px; flex-direction: column; gap: 5px; }
+            .project-top-title { font-size: 1.2rem; }
+
+            .featured-project { gap: 40px; }
+            .project-info-grid { grid-template-columns: 1fr; gap: 40px; }
+            .project-title { font-size: 2.2rem; }
+            
+            .sidebar-images { margin-top: 0; }
+            .project-quote { margin-top: 30px; font-size: 1.3rem; }
+            
+            .project-gallery { grid-template-columns: 1fr; gap: 30px; }
+            .gallery-col-landscapes { gap: 30px; }
+
             .footer-container { flex-direction: column; text-align: center; align-items: center; gap: 40px; }
             .about-col { align-items: center; }
             .links-col ul { grid-template-columns: 1fr; text-align: center; }
@@ -115,27 +172,86 @@
     </div>
 
     <main class="container">
-        <div class="exhibition-list">
-            <!-- Item 1 -->
-            <div class="exhibition-item">
-                <div class="exhibition-date">DESIGN PROJECT</div>
-                <div class="exhibition-details">
-                    <h3 class="exhibition-title">Ethere Digital Gallery</h3>
-                    <p class="exhibition-desc">Curating a digital spatial narrative for Ethere, integrating full-stack architecture to showcase fine arts in an immersive online environment.</p>
+        
+        <!-- CMS Generated Project Item -->
+        <div class="featured-project">
+            
+            <!-- Top Header (Number + Title) -->
+            <div class="project-top-header reveal">
+                <span class="project-number">01 -</span>
+                <h2 class="project-top-title">St. Catherine's Cathedral</h2>
+            </div>
+
+            <!-- Main Hero Image (Landscape) -->
+            <div class="project-image-wrapper reveal delay-1">
+                <img src="assets/ex1.jpg" alt="St. Catherine Exhibition">
+            </div>
+            
+            <!-- Info Text Grid -->
+            <div class="project-info-grid">
+                
+                <!-- Left Column (Titles + Sidebar Images) -->
+                <div class="project-left-column reveal">
+                    <span class="meta-info">7 November 2024 &bull; Alexandria, Egypt</span>
+                    <h2 class="project-title">St. Catherine <br>Histoire et Architecture</h2>
+                    <h3 class="project-subtitle">St. Catherine's Cathedral - Alexandria</h3>
+                    
+                    <div class="project-sponsor">
+                        15e Journées du patrimoine alexandrin 2024<br>
+                        Centre d’Études Alexandrines (CEAlex)
+                    </div>
+                    
+                    <div class="curator-tag">Curated by Mahmoud Saïd</div>
+
+                    <!-- Images filling the left space -->
+                    <div class="sidebar-images">
+                        <img src="assets/ex5.jpg" alt="Exhibition Setup">
+                        <img src="assets/ex6.jpg" alt="Exhibition Detail">
+                    </div>
+                </div>
+
+                <!-- Right Column (Text Body + Quote) -->
+                <div class="project-body reveal delay-1">
+                    <p>As part of the 15th Journées du Patrimoine Alexandrin (Alexandria Heritage Days), St. Catherine’s Cathedral in Alexandria was transformed into a temporary museum for the first time in its history. The exhibition explored nearly 175 years of the cathedral’s architectural, religious, and urban heritage through a rich collection of archival documents, historical photographs, maps, drawings, and architectural studies.</p>
+                    
+                    <p>Developed from more than six years of research by architect and artist Mahmoud Saïd, the project traced the history and evolution of one of Alexandria’s most significant historic landmarks. Installed within the active cathedral, the exhibition featured ten freestanding panels and a series of archival display cases, thoughtfully integrated into the sacred space through a scenographic approach combining lighting, sound, and contemporary exhibition design.</p>
+                    
+                    <p>The program also included a presentation on Alexandria’s Maltese community, organized in collaboration with the Embassy of Malta and the Apostolic Vicariate of Alexandria. This complementary event highlighted the longstanding cultural and historical ties between Malta and the city of Alexandria.</p>
+                    
+                    <p>By opening the cathedral as a temporary museum, the exhibition offered visitors a unique opportunity to engage with its rich history while demonstrating how historic religious spaces can be reimagined as dynamic platforms for cultural heritage, public engagement, and collective memory.</p>
+                    
+                    <!-- Quote placed correctly in the RIGHT column -->
+                    <div class="project-quote">
+                        "Heritage is not merely preserved; it is spatially reimagined to create a living dialogue between history and the present."
+                        <span class="project-quote-author">&mdash; Curatorial Vision</span>
+                    </div>
                 </div>
             </div>
-            <!-- Item 2 -->
-            <div class="exhibition-item">
-                <div class="exhibition-date">SPATIAL NARRATIVE</div>
-                <div class="exhibition-details">
-                    <h3 class="exhibition-title">Alexandria Museum Layout</h3>
-                    <p class="exhibition-desc">Designing the physical flow and curatorial direction for the upcoming Alexandria Museum collection, focusing on viewer-artwork dialogue.</p>
+
+            <!-- Bottom Gallery -->
+            <div class="project-gallery reveal">
+                <!-- Left: Full Height Portrait -->
+                <div class="gallery-col-portrait gallery-img-wrapper">
+                    <img src="assets/ex3.jpg" alt="Exhibition Detail Portrait">
+                </div>
+                
+                <!-- Right: Two Stacked Landscapes -->
+                <div class="gallery-col-landscapes">
+                    <div class="gallery-img-wrapper">
+                        <img src="assets/ex2.jpg" alt="Exhibition Detail Landscape 1">
+                    </div>
+                    <div class="gallery-img-wrapper">
+                        <img src="assets/ex4.jpg" alt="Exhibition Detail Landscape 2">
+                    </div>
                 </div>
             </div>
+
         </div>
+        <!-- End of Project Item -->
+
     </main>
 
-    <!-- FOOTER HENA (NAFS EL SLIM FOOTER) -->
+    <!-- FOOTER -->
     <footer class="main-footer">
         <div class="footer-container">
             <div class="footer-col about-col">
@@ -174,6 +290,20 @@
                     mainNav.classList.toggle('active');
                 });
             }
+
+            const reveals = document.querySelectorAll('.reveal');
+            const revealOnScroll = () => {
+                for (let i = 0; i < reveals.length; i++) {
+                    let windowHeight = window.innerHeight;
+                    let elementTop = reveals[i].getBoundingClientRect().top;
+                    let elementVisible = 100;
+                    if (elementTop < windowHeight - elementVisible) {
+                        reveals[i].classList.add('active');
+                    }
+                }
+            };
+            window.addEventListener('scroll', revealOnScroll);
+            revealOnScroll(); 
         });
     </script>
 </body>
