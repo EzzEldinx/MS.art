@@ -13,66 +13,132 @@
         /* --- Base --- */
         body { margin: 0; padding: 0; background-color: #ffffff; color: #111111; font-family: 'Aptos', sans-serif; overflow-x: hidden; letter-spacing: 1.5px; line-height: 1.9; }
 
-        /* --- Header (Default/Floating) --- */
+        /* --- Scroll Animations & Effects --- */
+        .reveal { opacity: 0; transform: translateY(40px); transition: all 1.2s cubic-bezier(0.25, 1, 0.5, 1); }
+        .reveal.active { opacity: 1; transform: translateY(0); }
+        .delay-1 { transition-delay: 0.2s; }
+        .delay-2 { transition-delay: 0.4s; }
+
+        /* --- Header --- */
         .main-header { position: absolute; top: 0; width: 100%; display: flex; justify-content: space-between; align-items: center; padding: 40px 60px; box-sizing: border-box; z-index: 1000; background-color: transparent; }
         .logo { flex: 1; display: flex; align-items: center; }
         .logo img { max-height: 65px; width: auto; display: block; transition: transform 0.3s ease; }
         .logo img:hover { transform: scale(1.02); }
         .header-spacer { flex: 1; }
         .main-nav { flex: 4; display: flex; justify-content: center; }
-        .main-nav ul { list-style: none; display: flex; gap: 40px; margin: 0; padding: 0; } 
-        /* Font size hna mw7ad 0.85rem lkol el safahat */
-    .main-nav a { color: #ffffff; text-decoration: none; font-size: 0.95rem; font-weight: bold; text-transform: uppercase; letter-spacing: 1.5px; transition: opacity 0.3s ease; white-space: nowrap; text-shadow: 1px 1px 3px rgba(0,0,0,0.3); }
+        .main-nav ul { list-style: none; display: flex; gap: 40px; margin: 0; padding: 0; }
+        .main-nav a { color: #ffffff; text-decoration: none; font-size: 0.95rem; font-weight: bold; text-transform: uppercase; letter-spacing: 1.5px; transition: opacity 0.3s ease; white-space: nowrap; text-shadow: 1px 1px 3px rgba(0,0,0,0.3); }
         .main-nav a:hover, .main-nav a.active { opacity: 0.7; border-bottom: 2px solid #ffffff; padding-bottom: 5px; }
-        
         .menu-toggle { display: none; flex-direction: column; cursor: pointer; gap: 6px; z-index: 2001; }
         .menu-toggle span { width: 30px; height: 2px; background-color: #fff; transition: 0.3s; }
 
-        /* --- Header (Solid for Inner Pages) --- */
         .main-header.solid-nav { position: sticky; top: 0; background-color: #ffffff; box-shadow: 0 4px 20px rgba(0,0,0,0.03); padding: 20px 60px; }
         .main-header.solid-nav .main-nav a { color: #111111; text-shadow: none; }
         .main-header.solid-nav .main-nav a:hover, .main-header.solid-nav .main-nav a.active { border-bottom: 2px solid #111111; opacity: 0.5; }
         .main-header.solid-nav .menu-toggle span { background-color: #111111; }
 
         /* --- Page Header --- */
-        .page-header { text-align: center; padding: 120px 20px 60px; background: linear-gradient(rgba(245,245,245,0.9), rgba(245,245,245,0.9)), url('assets/photo3.jpg') center/cover; border-bottom: 1px solid #eaeaea; }
+        .page-header { text-align: center; padding: 120px 20px 60px; background: linear-gradient(rgba(245,245,245,0.4), rgba(245,245,245,0.4)), url('assets/photo3.jpg') center/cover; border-bottom: 1px solid #eaeaea; }
         .page-title { font-size: 4rem; text-transform: uppercase; letter-spacing: 4px; margin: 0 0 15px 0; color: #000000; }
         .page-subtitle { color: #b8962e; font-size: 1.25rem; letter-spacing: 5px; text-transform: uppercase; font-weight: bold; }
 
-        /* --- General Layout --- */
-        .container { max-width: 1200px; margin: 0 auto; padding: 80px 20px; }
+        /* --- Landscape Exhibition Layout --- */
+        .container { max-width: 1400px; margin: 0 auto; padding: 100px 20px; }
+        .featured-project { display: flex; flex-direction: column; gap: 60px; margin-bottom: 80px; }
         
-        /* --- Exhibitions List --- */
-        .exhibition-list { display: flex; flex-direction: column; }
-        .exhibition-item { display: flex; padding: 50px 0; border-bottom: 1px solid #ddd; align-items: flex-start; transition: transform 0.3s ease; }
-        .exhibition-item:hover { transform: translateX(10px); }
-        .exhibition-date { flex: 0 0 250px; color: #b8962e; font-weight: bold; font-size: 1.1rem; letter-spacing: 4px; text-transform: uppercase; }
-        .exhibition-details { flex: 1; }
-        .exhibition-title { font-size: 2rem; font-weight: bold; margin: 0 0 15px 0; color: #111; letter-spacing: 2px; }
-        .exhibition-desc { color: #444; font-size: 1.15rem; margin: 0; max-width: 800px; }
-        .exhibition-location { font-style: italic; color: #888; font-size: 1rem; margin-top: 15px; display: block; }
+        .project-top-header { display: flex; align-items: baseline; gap: 15px; margin-bottom: 20px; }
+        .project-number { font-size: 2.5rem; color: #b8962e; font-weight: bold; line-height: 1; font-family: 'Aptos', sans-serif; }
+        .project-top-title { font-size: 1.5rem; text-transform: uppercase; color: #111; letter-spacing: 3px; font-weight: bold; margin: 0; }
+
+        /* Main Image */
+        .project-image-wrapper { width: 100%; overflow: hidden; border-radius: 6px; box-shadow: 0 20px 50px rgba(0,0,0,0.1); position: relative; }
+        .project-image-wrapper img { width: 100%; height: auto; display: block; transition: transform 1.5s cubic-bezier(0.25, 1, 0.5, 1); }
+        .project-image-wrapper:hover img { transform: scale(1.03); }
+        
+        /* Info Grid - Changed align-items to stretch so columns are equal height */
+        .project-info-grid { display: grid; grid-template-columns: 1fr 1.5fr; gap: 80px; align-items: stretch; }
+        
+        /* Left Column */
+        .project-left-column { display: flex; flex-direction: column; }
+        .meta-info { font-size: 0.85rem; color: #b8962e; text-transform: uppercase; letter-spacing: 3px; font-weight: bold; margin-bottom: 15px; display: block; }
+        .project-title { font-size: 3rem; font-weight: bold; color: #111; line-height: 1.1; text-transform: uppercase; letter-spacing: 2px; margin: 0 0 15px 0; }
+        .project-subtitle { font-size: 1.2rem; color: #555; text-transform: uppercase; letter-spacing: 4px; margin: 0 0 25px 0; font-weight: normal; }
+        .curator-tag { display: inline-block; background-color: #111; color: #fff; padding: 8px 20px; font-size: 0.85rem; text-transform: uppercase; letter-spacing: 2px; font-weight: bold; align-self: flex-start; margin-bottom: 20px; }
+        
+        /* Partner/Gallery Logo */
+        .project-sponsor { margin-bottom: 40px; padding-top: 10px; }
+        .sponsor-label { display: block; font-size: 0.8rem; color: #888; text-transform: uppercase; letter-spacing: 2px; margin-bottom: 15px; font-weight: bold; }
+        .sponsor-logo { max-height: 45px; width: auto; display: block; filter: grayscale(100%); transition: all 0.4s ease; opacity: 0.7; }
+        .sponsor-logo:hover { filter: grayscale(0%); opacity: 1; transform: scale(1.02); }
+
+        /* Images filling the left space (Portrait) */
+        .sidebar-images { display: flex; flex-direction: column; gap: 40px; margin-top: auto; /* pushes image to fill space naturally */ }
+        .sidebar-images img { width: 100%; height: auto; display: block; border-radius: 6px; box-shadow: 0 15px 35px rgba(0,0,0,0.08); transition: transform 0.5s ease; }
+        .sidebar-images img:hover { transform: scale(1.02); }
+
+        /* Right Column (Text Body) - Made it a flex container to push quote to bottom */
+        .project-body { display: flex; flex-direction: column; height: 100%; }
+        .project-body p { font-size: 1.15rem; color: #444; line-height: 2; margin-top: 0; margin-bottom: 25px; text-align: justify; }
+        
+        /* --- Aurora Quote Block --- */
+        @keyframes auroraGradient {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+        .project-quote { 
+            flex-grow: 1; 
+            margin-top: 20px; 
+            padding: 60px 50px; 
+            border-left: 6px solid #b8962e; 
+            border-radius: 0 12px 12px 0;
+            /* Enhanced Aurora Background */
+            background: linear-gradient(270deg, rgba(184, 150, 46, 0.4), rgba(184, 150, 46, 0.05), rgba(0, 0, 0, 0.05), rgba(184, 150, 46, 0.35));
+            background-size: 300% 300%;
+            animation: auroraGradient 6s ease infinite; /* 5alenaha 6 sawany 3ashan tban asra3 w a7la */
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+        .project-quote-text {
+            font-size: 1.8rem; /* Bigger font */
+            font-style: italic; 
+            color: #111; 
+            line-height: 1.6; 
+        }
+        .project-quote-author { 
+            display: block; 
+            margin-top: 30px; 
+            font-size: 0.95rem; 
+            color: #777; 
+            text-transform: uppercase; 
+            letter-spacing: 3px; 
+            font-style: normal; 
+            font-weight: bold; 
+        }
+
+        /* --- Project Gallery (3 Columns for Portrait Images) --- */
+        .project-gallery { display: grid; grid-template-columns: repeat(3, 1fr); gap: 40px; margin-top: 40px; }
+        .gallery-img-wrapper { overflow: hidden; border-radius: 6px; box-shadow: 0 20px 50px rgba(0,0,0,0.1); }
+        .gallery-img-wrapper img { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform 1.5s cubic-bezier(0.25, 1, 0.5, 1); aspect-ratio: 3/4; }
+        .gallery-img-wrapper:hover img { transform: scale(1.03); }
 
         /* --- Slim Footer --- */
         .main-footer { background-color: #fcfcfc; padding: 40px 60px; border-top: 1px solid #eaeaea; color: #444; margin-top: 60px; }
         .footer-container { max-width: 1300px; margin: 0 auto; display: flex; flex-wrap: wrap; justify-content: space-between; align-items: flex-start; gap: 30px; }
-        
         .footer-col { flex: 1; min-width: 200px; }
         .about-col { display: flex; flex-direction: column; gap: 15px; }
         .footer-logo { max-height: 70px; display: block; width: fit-content; }
         .footer-copyright { font-size: 0.8rem; color: #888; letter-spacing: 2px; text-transform: uppercase; line-height: 1.6; }
-        
         .footer-col h4 { font-size: 1rem; text-transform: uppercase; letter-spacing: 4px; margin: 0 0 20px 0; color: #111; }
-        
         .links-col ul { list-style: none; padding: 0; margin: 0; display: grid; grid-template-columns: 1fr 1fr; gap: 10px 20px; }
         .links-col ul a { color: #666; text-decoration: none; text-transform: uppercase; font-size: 0.8rem; letter-spacing: 2px; transition: color 0.3s ease; }
         .links-col ul a:hover { color: #b8962e; }
-        
         .contact-col { display: flex; flex-direction: column; gap: 20px; align-items: flex-start; }
         .social-links-vertical { display: flex; flex-direction: column; gap: 15px; }
         .social-links-vertical a { color: #555; text-decoration: none; transition: color 0.3s; display: flex; align-items: center; gap: 10px; font-size: 0.85rem; font-weight: bold; letter-spacing: 1px; }
         .social-links-vertical a:hover { color: #b8962e; }
-        .social-links-vertical svg { width: 18px; height: 18px; fill: currentColor; } /* Da elly kan m5aly el icon kbera */
-        
+        .social-links-vertical svg { width: 18px; height: 18px; fill: currentColor; }
         .btn-contact { background-color: #111; color: #fff; padding: 10px 25px; border-radius: 40px; text-decoration: none; font-size: 0.8rem; font-weight: bold; text-transform: uppercase; letter-spacing: 2px; transition: background 0.3s; border: 2px solid #111; display: inline-block; }
         .btn-contact:hover { background-color: #b8962e; border-color: #b8962e; color: #fff; }
 
@@ -83,23 +149,29 @@
             .header-spacer { display: none; }
             .menu-toggle { display: flex; }
             .menu-toggle span, .main-header.solid-nav .menu-toggle span { background-color: #000; }
-            
             .main-nav { position: fixed; top: 0; right: -100%; width: 280px; height: 100vh; background-color: #111111; display: flex; flex-direction: column; align-items: center; justify-content: center; transition: right 0.4s ease; z-index: 2000; box-shadow: -5px 0 15px rgba(0,0,0,0.5); }
             .main-nav.active { right: 0; }
             .main-nav ul { flex-direction: column; gap: 30px; text-align: center; }
             .main-nav a, .main-header.solid-nav .main-nav a { font-size: 1.1rem; letter-spacing: 3px; color: #fff; text-shadow: none; white-space: normal; }
-            
             .menu-toggle.active span:nth-child(1) { transform: rotate(45deg) translate(5px, 6px); background-color: #fff; z-index: 2002; position: relative;}
             .menu-toggle.active span:nth-child(2) { opacity: 0; }
             .menu-toggle.active span:nth-child(3) { transform: rotate(-45deg) translate(5px, -6px); background-color: #fff; z-index: 2002; position: relative;}
-
+            
             .page-header { padding: 120px 20px 50px; }
             .page-title { font-size: 2.8rem; }
             
-            .container { padding: 60px 20px; }
-            .exhibition-item { flex-direction: column; padding: 30px 0; gap: 15px; }
-            .exhibition-date { flex: none; font-size: 1rem; }
-            .exhibition-title { font-size: 1.6rem; }
+            .project-top-header { margin-bottom: 20px; flex-direction: column; gap: 5px; }
+            .project-top-title { font-size: 1.2rem; }
+
+            .featured-project { gap: 40px; }
+            .project-info-grid { grid-template-columns: 1fr; gap: 40px; }
+            .project-title { font-size: 2.2rem; }
+            
+            .sidebar-images { margin-top: 0; }
+            .project-quote { margin-top: 30px; padding: 40px 30px; }
+            .project-quote-text { font-size: 1.4rem; }
+            
+            .project-gallery { grid-template-columns: 1fr; gap: 30px; }
 
             .footer-container { flex-direction: column; text-align: center; align-items: center; gap: 40px; }
             .about-col { align-items: center; }
@@ -114,15 +186,9 @@
 
     <header class="main-header solid-nav">
         <div class="logo">
-            <a href="index.html"><img src="assets/Logo2.png" alt="Mahmoud Saïd Logo"></a>
+            <a href="index.html"><img src="assets/Logo.png" alt="Mahmoud Saïd Logo"></a>
         </div>
-        
-        <div class="menu-toggle" id="mobileMenuToggle">
-            <span></span>
-            <span></span>
-            <span></span>
-        </div>
-
+        <div class="menu-toggle" id="mobileMenuToggle"><span></span><span></span><span></span></div>
         <nav class="main-nav">
             <ul>
                 <li><a href="index.html">HOME</a></li>
@@ -143,45 +209,87 @@
     </div>
 
     <main class="container">
-        <div class="exhibition-list">
-            <div class="exhibition-item">
-                <div class="exhibition-date">OCTOBER 2025</div>
-                <div class="exhibition-details">
-                    <h3 class="exhibition-title">Alexandria Through Time</h3>
-                    <p class="exhibition-desc">A solo exhibition exploring the architectural heritage of Alexandria through spatial design and portraiture.</p>
-                    <span class="exhibition-location">📍 Museum of Fine Arts, Alexandria</span>
-                </div>
+        
+        <!-- CMS Generated Exhibition Item -->
+        <div class="featured-project">
+            
+            <!-- Top Header (Number + Title) Fixed Alignment -->
+            <div class="project-top-header reveal">
+                <span class="project-number">01 -</span>
+                <h2 class="project-top-title">La Femme Exhibition</h2>
+            </div>
+
+            <!-- Main Hero Image (Landscape) -->
+            <div class="project-image-wrapper reveal delay-1">
+                <img src="assets/femme/ex1.jpg" alt="Exhibition Main Display">
             </div>
             
-            <div class="exhibition-item">
-                <div class="exhibition-date">MARCH 2025</div>
-                <div class="exhibition-details">
-                    <h3 class="exhibition-title">Echoes of Modernism</h3>
-                    <p class="exhibition-desc">Group exhibition featuring contemporary Egyptian artists, curated to highlight the evolution of modern art in Cairo.</p>
-                    <span class="exhibition-location">📍 Cairo Opera House Gallery, Cairo</span>
+            <!-- Info Text Grid -->
+            <div class="project-info-grid">
+                
+                <!-- Left Column -->
+                <div class="project-left-column reveal">
+                    <span class="meta-info">OCTOBER 2025 &bull; Fine Arts Museum</span>
+                    <h2 class="project-title">La Femme <br>Through Time</h2>
+                    <h3 class="project-subtitle">A Tribute to Egyptian Identity</h3>
+                    
+                    <div class="curator-tag">Featured Exhibition</div>
+
+                    <!-- Gallery Logo Placement -->
+                    <div class="project-sponsor">
+                        <span class="sponsor-label">In Collaboration With</span>
+                        <img src="assets/femme/tam_logo_2.png" alt="TAM Gallery" class="sponsor-logo">
+                    </div>
+
+                    <!-- Images filling the left space (Removed ex6, only ex5 is here) -->
+                    <div class="sidebar-images">
+                        <img src="assets/femme/ex5.jpg" alt="Exhibition Detail 1">
+                    </div>
+                </div>
+
+                <!-- Right Column (Text Body + Aurora Quote Box) -->
+                <div class="project-body reveal delay-1">
+                    <p>This exhibition represents a comprehensive visual journey exploring the role, influence, and enduring beauty of women in Egyptian culture. Through a carefully curated selection of contemporary artworks and historical references, the spatial design invites the viewer to experience art not just as a visual medium, but as an immersive narrative.</p>
+                    
+                    <p>The layout of the exhibition was meticulously planned to create a dialogue between light, space, and the featured pieces. Each section of the gallery is dedicated to a different era or thematic expression, allowing visitors to transition smoothly through the evolution of the artistic representation of the Egyptian woman.</p>
+                    
+                    <p>Archival documents, preparatory sketches, and final masterpieces are displayed in custom-designed vitrines, bridging the gap between the artist's initial vision and the final execution. The scenography emphasizes intimacy, encouraging the audience to pause, reflect, and engage deeply with the details of each work.</p>
+                    
+                    <p>By blending modern exhibition techniques with profound cultural heritage, the event stands as a testament to the timeless nature of art and its ability to capture the essence of identity across generations.</p>
+                    
+                    <!-- Full-Space Aurora Quote -->
+                    <div class="project-quote">
+                        <span class="project-quote-text">"Art is not just what you see, but the space you create for others to feel it."</span>
+                        <span class="project-quote-author">&mdash; Exhibition Philosophy</span>
+                    </div>
                 </div>
             </div>
 
-            <div class="exhibition-item">
-                <div class="exhibition-date">NOVEMBER 2024</div>
-                <div class="exhibition-details">
-                    <h3 class="exhibition-title">Spatial Narratives</h3>
-                    <p class="exhibition-desc">An immersive installation examining the relationship between historical archives and contemporary living spaces.</p>
-                    <span class="exhibition-location">📍 Bibliotheca Alexandrina, Alexandria</span>
+            <!-- Bottom Gallery (3 Column Grid for Portrait Images) -->
+            <div class="project-gallery reveal">
+                <div class="gallery-img-wrapper">
+                    <img src="assets/femme/ex2.jpg" alt="Exhibition Artwork 1">
+                </div>
+                <div class="gallery-img-wrapper">
+                    <img src="assets/femme/ex3.jpg" alt="Exhibition Artwork 2">
+                </div>
+                <div class="gallery-img-wrapper">
+                    <img src="assets/femme/ex4.jpg" alt="Exhibition Artwork 3">
                 </div>
             </div>
+
         </div>
+        <!-- End of Exhibition Item -->
+
     </main>
 
-    <!-- Slim Footer with Explore -->
+    <!-- FOOTER -->
     <footer class="main-footer">
         <div class="footer-container">
-            
             <div class="footer-col about-col">
                 <img src="assets/logo2.png" alt="Mahmoud Saïd Logo" class="footer-logo">
                 <div class="footer-copyright">&copy; 2026 Mahmoud Saïd.<br>All Rights Reserved.</div>
             </div>
-            
             <div class="footer-col links-col">
                 <h4>Explore</h4>
                 <ul>
@@ -193,29 +301,19 @@
                     <li><a href="projects.html">Projects</a></li>
                 </ul>
             </div>
-
             <div class="footer-col contact-col">
                 <h4>Connect</h4>
                 <div class="social-links-vertical">
-                    <a href="mailto:info@mahmoudsaidart.com" aria-label="Email">
-                        <svg viewBox="0 0 24 24"><path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg>
-                        info@mahmoudsaidart.com
-                    </a>
-                    <a href="https://instagram.com/mahmoudsaiid" target="_blank" aria-label="Instagram">
-                        <svg viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.067 3.282.148 4.746 1.77 4.894 5.048.055 1.266.067 1.646.067 4.85s-.012 3.584-.067 4.85c-.148 3.278-1.612 4.9-4.894 5.048-1.266.055-1.646.067-4.85.067s-3.584-.012-4.85-.067c-3.282-.148-4.746-1.77-4.894-5.048-.055-1.266-.067-1.646-.067-4.85s.012-3.584.067-4.85c.148-3.278 1.612-4.9 4.894-5.048 1.266-.055 1.646-.067 4.85-.067zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948s.014 3.667.072 4.947c.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072s3.667-.014 4.947-.072c4.358-.2 6.78-2.618 6.98-6.98.058-1.281.072-1.689.072-4.947s-.014-3.667-.072-4.947c-.2-4.358-2.618-6.78-6.98-6.98-1.281-.058-1.689-.072-4.948-.072z"/><path d="M12 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4s1.791-4 4-4 4 1.79 4 4-1.791 4-4 4z"/><circle cx="18.406" cy="5.595" r="1.44"/></svg>
-                        @mahmoudsaiid
-                    </a>
+                    <a href="mailto:info@mahmoudsaidart.com" aria-label="Email"><svg viewBox="0 0 24 24"><path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg>info@mahmoudsaidart.com</a>
+                    <a href="https://instagram.com/mahmoudsaiid" target="_blank" aria-label="Instagram"><svg viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.067 3.282.148 4.746 1.77 4.894 5.048.055 1.266.067 1.646.067 4.85s-.012 3.584-.067 4.85c-.148 3.278-1.612 4.9-4.894 5.048-1.266.055-1.646.067-4.85.067s-3.584-.012-4.85-.067c-3.282-.148-4.746-1.77-4.894-5.048-.055-1.266-.067-1.646-.067-4.85s.012-3.584.067-4.85c.148-3.278 1.612-4.9 4.894-5.048 1.266-.055 1.646-.067 4.85-.067zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948s.014 3.667.072 4.947c.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072s3.667-.014 4.947-.072c4.358-.2 6.78-2.618 6.98-6.98.058-1.281.072-1.689.072-4.947s-.014-3.667-.072-4.947c-.2-4.358-2.618-6.78-6.98-6.98-1.281-.058-1.689-.072-4.948-.072z"/><path d="M12 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4s1.791-4 4-4 4 1.79 4 4-1.791 4-4 4z"/><circle cx="18.406" cy="5.595" r="1.44"/></svg>@mahmoudsaiid</a>
                 </div>
-                <a href="contact.html" class="btn-contact">Contact Us</a>
+                <a href="contact.html" class="btn-contact" style="border:none;">Contact Us</a>
             </div>
-
         </div>
     </footer>
 
-    <!-- Script Gowa el file -->
     <script>
         document.addEventListener("DOMContentLoaded", function() {
-            // Mobile Menu
             const menuToggle = document.getElementById('mobileMenuToggle');
             const mainNav = document.querySelector('.main-nav');
             if(menuToggle) {
@@ -224,6 +322,20 @@
                     mainNav.classList.toggle('active');
                 });
             }
+
+            const reveals = document.querySelectorAll('.reveal');
+            const revealOnScroll = () => {
+                for (let i = 0; i < reveals.length; i++) {
+                    let windowHeight = window.innerHeight;
+                    let elementTop = reveals[i].getBoundingClientRect().top;
+                    let elementVisible = 100;
+                    if (elementTop < windowHeight - elementVisible) {
+                        reveals[i].classList.add('active');
+                    }
+                }
+            };
+            window.addEventListener('scroll', revealOnScroll);
+            revealOnScroll(); 
         });
     </script>
 </body>

@@ -25,7 +25,7 @@
         .header-spacer { flex: 1; }
         .main-nav { flex: 4; display: flex; justify-content: center; }
         .main-nav ul { list-style: none; display: flex; gap: 40px; margin: 0; padding: 0; }
-.main-nav a { color: #ffffff; text-decoration: none; font-size: 0.95rem; font-weight: bold; text-transform: uppercase; letter-spacing: 1.5px; transition: opacity 0.3s ease; white-space: nowrap; }
+        .main-nav a { color: #ffffff; text-decoration: none; font-size: 0.95rem; font-weight: bold; text-transform: uppercase; letter-spacing: 1.5px; transition: opacity 0.3s ease; white-space: nowrap; }
         .main-nav a:hover, .main-nav a.active { opacity: 0.7; border-bottom: 2px solid #ffffff; padding-bottom: 5px; }
         
         .menu-toggle { display: none; flex-direction: column; cursor: pointer; gap: 6px; z-index: 2001; }
@@ -36,12 +36,10 @@
         @keyframes fadeUp { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
         .hero-content { animation: fadeUp 1.5s ease-out forwards; width: 100%; }
         
-        /* Typography Alignment Block - Returned to Normal */
+        /* Typography Alignment Block */
         .hero-text-block { display: flex; flex-direction: column; max-width: 900px; }
         .hero-title { color: #ffffff; font-size: 5.5rem; font-weight: bold; margin: 0 0 15px 0; letter-spacing: 8px; text-transform: uppercase; line-height: 1.1; white-space: nowrap; }
-        
         .hero-subtitle { color: #ffffff; font-size: 1.25rem; text-transform: uppercase; font-weight: bold; margin: 0 0 35px 0; letter-spacing: 6px; }
-        
         .hero-description { color: #ffffff; font-size: 1.25rem; margin: 0; letter-spacing: 1.5px; line-height: 1.9; max-width: 750px; }
 
         /* --- General Layout --- */
@@ -79,6 +77,10 @@
         .exhibition-details { flex: 1; }
         .exhibition-title { font-size: 2rem; font-weight: bold; margin: 0 0 15px 0; color: #111; letter-spacing: 2px; }
         .exhibition-desc { color: #444; font-size: 1.15rem; margin: 0; max-width: 800px; }
+        
+        .sponsor-label-home { display: block; font-size: 0.75rem; color: #888; text-transform: uppercase; letter-spacing: 2px; font-weight: bold; margin-top: 20px; margin-bottom: 10px; }
+        .sponsor-logo-home { max-height: 35px; width: auto; display: block; filter: grayscale(100%); opacity: 0.7; transition: all 0.4s ease; }
+        .sponsor-logo-home:hover { filter: grayscale(0%); opacity: 1; transform: scale(1.02); }
 
         /* --- Testimonials --- */
         @keyframes float { 0% { transform: translateY(0px); } 50% { transform: translateY(-15px); } 100% { transform: translateY(0px); } }
@@ -104,7 +106,6 @@
         
         .footer-col h4 { font-size: 1rem; text-transform: uppercase; letter-spacing: 4px; margin: 0 0 20px 0; color: #111; }
         
-        /* Hena 3mlna 2 columns lel links 3ashan matakhodsh msaha fo2 ba3d */
         .links-col ul { list-style: none; padding: 0; margin: 0; display: grid; grid-template-columns: 1fr 1fr; gap: 10px 20px; }
         .links-col ul a { color: #666; text-decoration: none; text-transform: uppercase; font-size: 0.8rem; letter-spacing: 2px; transition: color 0.3s ease; }
         .links-col ul a:hover { color: #b8962e; }
@@ -169,7 +170,7 @@
             
             .partners-grid { flex-direction: column; gap: 25px; justify-content: center; text-align: center;}
             
-           .footer-container { flex-direction: column; text-align: center; align-items: center; gap: 40px; }
+            .footer-container { flex-direction: column; text-align: center; align-items: center; gap: 40px; }
             .about-col { align-items: center; }
             .links-col ul { grid-template-columns: 1fr; text-align: center; }
             .contact-col { align-items: center; }
@@ -181,7 +182,6 @@
 <body>
 
     <header class="main-header"> 
-        <!-- Mola7za: 7ot <header class="main-header solid-nav"> fel Artworks wel Exhibitions -->
         <div class="logo">
             <a href="index.html"><img src="assets/Logo.png" alt="Mahmoud Saïd Logo"></a>
         </div>
@@ -242,21 +242,21 @@
                 
                 <div class="art-grid">
                     <div class="art-card">
-                        <img src="assets/art-1.jpg" alt="Artwork 1">
+                        <img src="assets/artwork/art-1.jpg" alt="Artwork 1">
                         <div class="art-overlay">
                             <h4>The Alexandrian Beauty</h4>
                             <p>Oil on Canvas, 1935</p>
                         </div>
                     </div>
                     <div class="art-card">
-                        <img src="assets/art-2.jpg" alt="Artwork 2">
+                        <img src="assets/artwork/art-2.jpg" alt="Artwork 2">
                         <div class="art-overlay">
                             <h4>Nile Symphony</h4>
                             <p>Oil on Canvas, 1940</p>
                         </div>
                     </div>
                     <div class="art-card">
-                        <img src="assets/art-3.jpg" alt="Artwork 3">
+                        <img src="assets/artwork/art-3.jpg" alt="Artwork 3">
                         <div class="art-overlay">
                             <h4>Echoes of the Past</h4>
                             <p>Mixed Media, 1942</p>
@@ -276,18 +276,25 @@
                 <div class="section-divider"></div>
                 
                 <div class="exhibition-list">
+                    <!-- Exhibition 1 -->
                     <div class="exhibition-item">
                         <div class="exhibition-date">OCTOBER 2025</div>
                         <div class="exhibition-details">
-                            <h3 class="exhibition-title">Alexandria Through Time</h3>
-                            <p class="exhibition-desc">A solo exhibition exploring the architectural heritage of Alexandria through spatial design and portraiture at the Museum of Fine Arts.</p>
+                            <h3 class="exhibition-title">La Femme Exhibition</h3>
+                            <p class="exhibition-desc">A comprehensive visual journey exploring the role, influence, and enduring beauty of women in Egyptian culture, hosted at the Fine Arts Museum.</p>
+                            
+                            <!-- Added Logo Here -->
+                            <span class="sponsor-label-home">In Collaboration With</span>
+                            <img src="assets/femme/tam_logo_2.png" alt="TAM Gallery" class="sponsor-logo-home">
                         </div>
                     </div>
+                    
+                    <!-- Exhibition 2 -->
                     <div class="exhibition-item">
-                        <div class="exhibition-date">MARCH 2025</div>
+                        <div class="exhibition-date">NOVEMBER 2024</div>
                         <div class="exhibition-details">
-                            <h3 class="exhibition-title">Echoes of Modernism</h3>
-                            <p class="exhibition-desc">Group exhibition featuring contemporary Egyptian artists, curated to highlight the evolution of modern art in Cairo.</p>
+                            <h3 class="exhibition-title">St. Catherine Histoire et Architecture</h3>
+                            <p class="exhibition-desc">A temporary museum installation exploring nearly 175 years of the cathedral’s architectural, religious, and urban heritage in Alexandria.</p>
                         </div>
                     </div>
                 </div>
@@ -316,7 +323,6 @@
         </section>
     </main>
 
-    <!-- Slim Footer -->
     <!-- Slim Footer with Explore -->
     <footer class="main-footer">
         <div class="footer-container">
@@ -370,7 +376,7 @@
         </div>
     </div>
 
-    <!-- Script Gowa el file -->
+    <!-- Script -->
     <script>
         document.addEventListener("DOMContentLoaded", function() {
             // Mobile Menu
