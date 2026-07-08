@@ -11,6 +11,8 @@
         @font-face { font-family: 'Aptos'; src: url('assets/Aptos-Bold.ttf') format('truetype'); font-weight: bold; }
 
         body { margin: 0; padding: 0; background-color: #ffffff; color: #111111; font-family: 'Aptos', sans-serif; overflow-x: hidden; letter-spacing: 1.5px; line-height: 1.9; }
+        html { scroll-behavior: smooth; }
+        :root { --header-height: 105px; --year-nav-height: 57px; }
 
         .main-header { position: absolute; top: 0; width: 100%; display: flex; justify-content: space-between; align-items: center; padding: 40px 60px; box-sizing: border-box; z-index: 1000; background-color: transparent; }
         .logo { flex: 1; display: flex; align-items: center; }
@@ -29,20 +31,61 @@
         .main-header.solid-nav .main-nav a:hover, .main-header.solid-nav .main-nav a.active { border-bottom: 2px solid #111111; opacity: 0.5; }
         .main-header.solid-nav .menu-toggle span { background-color: #111111; }
 
-        .page-header { text-align: center; padding: 120px 20px 60px; background: linear-gradient(rgba(245,245,245,0.9), rgba(245,245,245,0.9)), url('assets/photo4.jpg') center/cover; border-bottom: 1px solid #eaeaea; }
+        .page-header { text-align: center; padding: 120px 20px 60px; background: linear-gradient(rgba(245,245,245,0.4), rgba(245,245,245,0.4)), url('assets/background.jpg') center/cover; border-bottom: 1px solid #eaeaea; }
         .page-title { font-size: 4rem; text-transform: uppercase; letter-spacing: 4px; margin: 0 0 15px 0; color: #000000; }
-        .page-subtitle { color: #b8962e; font-size: 1.25rem; letter-spacing: 5px; text-transform: uppercase; font-weight: bold; }
+        .page-subtitle { color: #888888; font-size: 1.25rem; letter-spacing: 5px; text-transform: uppercase; font-weight: bold; }
+
+        /* --- Year jump navigation --- */
+        .year-nav { position: sticky; top: var(--header-height); z-index: 900; background: rgba(255, 255, 255, 0.97); backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); border-bottom: 1px solid #eaeaea; box-shadow: 0 4px 20px rgba(0, 0, 0, 0.04); }
+        .year-nav-inner { max-width: 1300px; margin: 0 auto; padding: 0 20px; }
+        .year-nav ul { list-style: none; display: flex; justify-content: center; align-items: center; margin: 0; padding: 0; gap: 0; }
+        .year-nav li { display: flex; align-items: center; }
+        .year-nav li:not(:last-child)::after { content: ''; width: 1px; height: 18px; background-color: #dddddd; margin: 0 4px; }
+        .year-nav-link { display: block; padding: 16px 36px; color: #999999; text-decoration: none; font-size: 0.95rem; font-weight: bold; letter-spacing: 4px; text-transform: uppercase; border-bottom: 2px solid transparent; transition: color 0.3s ease, border-color 0.3s ease; white-space: nowrap; }
+        .year-nav-link:hover { color: #111111; }
+        .year-nav-link.active { color: #111111; border-bottom-color: #888888; }
 
         .container { max-width: 1300px; margin: 0 auto; padding: 80px 20px; }
+
+        .year-section { margin-bottom: 100px; scroll-margin-top: calc(var(--header-height) + var(--year-nav-height) + 24px); }
+        .year-section:last-child { margin-bottom: 0; }
+        .year-header { display: flex; align-items: center; gap: 30px; margin-bottom: 50px; }
+        .year-line { flex: 1; height: 1px; background-color: #cccccc; }
+        .year-title { font-size: 3rem; font-weight: bold; color: #111; letter-spacing: 8px; text-transform: uppercase; margin: 0; white-space: nowrap; }
+        .year-subtitle { display: block; text-align: center; font-size: 0.85rem; color: #888888; letter-spacing: 4px; text-transform: uppercase; margin-top: -40px; margin-bottom: 50px; font-weight: bold; }
+
+        .subsection { margin-top: 80px; }
+        .subsection-header { text-align: center; margin-bottom: 45px; padding-top: 20px; border-top: 1px solid #eaeaea; }
+        .subsection-title { font-size: 1.4rem; font-weight: bold; color: #111; letter-spacing: 3px; text-transform: uppercase; margin: 0 0 8px 0; }
+        .subsection-note { font-size: 0.8rem; color: #999; letter-spacing: 2px; text-transform: uppercase; margin: 0; }
         
         .art-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); gap: 40px; }
-        .art-card { position: relative; overflow: hidden; cursor: pointer; border-radius: 8px; box-shadow: 0 10px 25px rgba(0,0,0,0.06); }
-        .art-card img { width: 100%; height: 500px; object-fit: cover; transition: transform 0.8s ease; display: block; }
-        .art-card:hover img { transform: scale(1.08); }
-        .art-overlay { position: absolute; bottom: 0; left: 0; width: 100%; padding: 40px 30px; background: linear-gradient(transparent, rgba(0,0,0,0.85)); box-sizing: border-box; opacity: 0; transition: opacity 0.4s ease; }
+        .art-card { position: relative; overflow: hidden; cursor: pointer; border-radius: 8px; box-shadow: 0 10px 25px rgba(0,0,0,0.06); background: #f5f5f5; }
+        .art-card > img { width: 100%; height: 500px; object-fit: cover; transition: transform 0.8s ease; display: block; }
+        .art-card:not(.art-card-dual):hover > img { transform: scale(1.05); }
+
+        /* Dual-image carousel cards (2024) */
+        .art-card-dual .art-carousel { position: relative; height: 500px; }
+        .art-carousel-track { display: flex; height: 100%; overflow-x: auto; scroll-snap-type: x mandatory; scroll-behavior: smooth; -webkit-overflow-scrolling: touch; scrollbar-width: none; }
+        .art-carousel-track::-webkit-scrollbar { display: none; }
+        .art-carousel-slide { flex: 0 0 100%; height: 100%; scroll-snap-align: start; }
+        .art-carousel-slide img { width: 100%; height: 100%; object-fit: cover; display: block; pointer-events: none; }
+        .carousel-btn { position: absolute; top: 50%; transform: translateY(-50%); width: 40px; height: 40px; border: none; border-radius: 50%; background: rgba(255,255,255,0.92); color: #111; font-size: 1.4rem; line-height: 1; cursor: pointer; opacity: 0; transition: opacity 0.3s, background 0.3s; z-index: 2; box-shadow: 0 4px 15px rgba(0,0,0,0.15); display: flex; align-items: center; justify-content: center; padding-bottom: 2px; }
+        .art-card-dual:hover .carousel-btn { opacity: 1; }
+        .carousel-btn:hover { background: #fff; }
+        .carousel-prev { left: 12px; }
+        .carousel-next { right: 12px; }
+        .carousel-dots { position: absolute; bottom: 14px; left: 50%; transform: translateX(-50%); display: flex; gap: 8px; z-index: 2; }
+        .carousel-dot { width: 8px; height: 8px; border-radius: 50%; border: none; background: rgba(255,255,255,0.5); cursor: pointer; padding: 0; transition: background 0.3s, transform 0.3s; }
+        .carousel-dot.active { background: #fff; transform: scale(1.2); }
+        .dual-hint { display: block; margin-top: 6px; font-size: 0.75rem; color: #bbbbbb; letter-spacing: 1px; font-style: italic; }
+
+        .art-overlay { position: absolute; bottom: 0; left: 0; width: 100%; padding: 40px 30px; background: linear-gradient(transparent, rgba(0,0,0,0.85)); box-sizing: border-box; opacity: 0; transition: opacity 0.4s ease; pointer-events: none; }
         .art-card:hover .art-overlay { opacity: 1; }
         .art-overlay h4 { margin: 0 0 8px 0; color: #ffffff; font-size: 1.4rem; letter-spacing: 2px; }
-        .art-overlay p { margin: 0; color: #d4af37; font-size: 1rem; letter-spacing: 2px; }
+        .art-overlay p { margin: 0; color: #cccccc; font-size: 0.95rem; letter-spacing: 1px; line-height: 1.6; }
+
+        .year-placeholder { text-align: center; padding: 60px 20px; color: #aaa; font-size: 0.95rem; letter-spacing: 3px; text-transform: uppercase; border: 1px dashed #ddd; border-radius: 8px; }
 
         .artwork-modal { display: none; position: fixed; z-index: 3000; left: 0; top: 0; width: 100%; height: 100%; background-color: rgba(0, 0, 0, 0.95); align-items: center; justify-content: center; opacity: 0; transition: opacity 0.3s ease; }
         .artwork-modal.active { display: flex; opacity: 1; }
@@ -51,10 +94,12 @@
         .modal-image { flex: 1.5; background: #111; display: flex; align-items: center; justify-content: center; overflow: hidden; }
         .modal-image img { width: 100%; height: 100%; object-fit: contain; display: block; }
         .modal-details { flex: 1; padding: 50px 40px; display: flex; flex-direction: column; justify-content: center; overflow-y: auto; }
-        .modal-title { font-size: 2rem; text-transform: uppercase; margin: 0 0 15px; letter-spacing: 2px; color: #111; }
+        .modal-title { font-size: 2rem; text-transform: uppercase; margin: 0 0 10px; letter-spacing: 2px; color: #111; }
+        .modal-medium { font-size: 1rem; color: #888888; text-transform: uppercase; letter-spacing: 2px; margin: 0 0 8px; }
+        .modal-size { font-size: 1.1rem; color: #555; margin: 0; letter-spacing: 1px; }
         .modal-desc { font-size: 1.1rem; color: #555; line-height: 1.8; margin: 0; }
         .close-modal { position: absolute; top: 15px; right: 20px; font-size: 2.5rem; color: #111; cursor: pointer; line-height: 1; z-index: 10; transition: color 0.3s; }
-        .close-modal:hover { color: #b8962e; }
+        .close-modal:hover { color: #888888; }
 
         .main-footer { background-color: #fcfcfc; padding: 40px 60px; border-top: 1px solid #eaeaea; color: #444; margin-top: 60px; }
         .footer-container { max-width: 1300px; margin: 0 auto; display: flex; flex-wrap: wrap; justify-content: space-between; align-items: flex-start; gap: 30px; }
@@ -65,16 +110,17 @@
         .footer-col h4 { font-size: 1rem; text-transform: uppercase; letter-spacing: 4px; margin: 0 0 20px 0; color: #111; }
         .links-col ul { list-style: none; padding: 0; margin: 0; display: grid; grid-template-columns: 1fr 1fr; gap: 10px 20px; }
         .links-col ul a { color: #666; text-decoration: none; text-transform: uppercase; font-size: 0.8rem; letter-spacing: 2px; transition: color 0.3s ease; }
-        .links-col ul a:hover { color: #b8962e; }
+        .links-col ul a:hover { color: #888888; }
         .contact-col { display: flex; flex-direction: column; gap: 20px; align-items: flex-start; }
         .social-links-vertical { display: flex; flex-direction: column; gap: 15px; }
         .social-links-vertical a { color: #555; text-decoration: none; transition: color 0.3s; display: flex; align-items: center; gap: 10px; font-size: 0.85rem; font-weight: bold; letter-spacing: 1px; }
-        .social-links-vertical a:hover { color: #b8962e; }
+        .social-links-vertical a:hover { color: #888888; }
         .social-links-vertical svg { width: 18px; height: 18px; fill: currentColor; } 
         .btn-contact { background-color: #111; color: #fff; padding: 10px 25px; border-radius: 40px; text-decoration: none; font-size: 0.8rem; font-weight: bold; text-transform: uppercase; letter-spacing: 2px; transition: background 0.3s; border: 2px solid #111; display: inline-block; }
-        .btn-contact:hover { background-color: #b8962e; border-color: #b8962e; color: #fff; }
+        .btn-contact:hover { background-color: #888888; border-color: #888888; color: #fff; }
 
         @media (max-width: 992px) {
+            :root { --header-height: 90px; --year-nav-height: 53px; }
             .main-header, .main-header.solid-nav { padding: 20px 25px; background-color: #ffffff !important; position: fixed; box-shadow: 0 4px 20px rgba(0,0,0,0.05); }
             .logo img { max-height: 50px; }
             .header-spacer { display: none; }
@@ -87,11 +133,20 @@
             .menu-toggle.active span:nth-child(1) { transform: rotate(45deg) translate(5px, 6px); background-color: #fff; z-index: 2002; position: relative;}
             .menu-toggle.active span:nth-child(2) { opacity: 0; }
             .menu-toggle.active span:nth-child(3) { transform: rotate(-45deg) translate(5px, -6px); background-color: #fff; z-index: 2002; position: relative;}
-            .page-header { padding: 120px 20px 50px; }
+            .page-header { padding: 120px 20px 50px; margin-top: var(--header-height); }
             .page-title { font-size: 2.8rem; }
+            .year-nav-inner { overflow-x: auto; -webkit-overflow-scrolling: touch; scrollbar-width: none; }
+            .year-nav-inner::-webkit-scrollbar { display: none; }
+            .year-nav ul { justify-content: flex-start; min-width: max-content; padding: 0 10px; }
+            .year-nav-link { padding: 14px 24px; font-size: 0.85rem; letter-spacing: 3px; }
             .container { padding: 60px 20px; }
+            .year-title { font-size: 2rem; letter-spacing: 5px; }
+            .year-header { gap: 15px; margin-bottom: 35px; }
+            .year-subtitle { margin-top: -25px; margin-bottom: 35px; }
+            .year-section { margin-bottom: 70px; }
             .art-grid { grid-template-columns: 1fr; gap: 20px; }
-            .art-card img { height: 400px; }
+            .art-card > img, .art-card-dual .art-carousel { height: 400px; }
+            .carousel-btn { opacity: 1; width: 36px; height: 36px; }
             .footer-container { flex-direction: column; text-align: center; align-items: center; gap: 40px; }
             .about-col { align-items: center; }
             .links-col ul { grid-template-columns: 1fr; text-align: center; }
@@ -115,8 +170,6 @@
                 <li><a href="artworks.html" class="active">ARTWORKS</a></li>
                 <li><a href="exhibitions.html">EXHIBITIONS</a></li>
                 <li><a href="curation.html">CURATION & EXHIBITION DESIGN</a></li>
-                <li><a href="projects.html">PROJECTS</a></li>
-                <li><a href="heritage.html">ARCHITECTURAL HERITAGE</a></li>
             </ul>
         </nav>
         <div class="header-spacer"></div>
@@ -127,41 +180,407 @@
         <div class="page-subtitle">A Visual Journey</div>
     </div>
 
-    <main class="container">
-        <div class="art-grid">
-            <!-- Existing Artworks 1-8 -->
-            <div class="art-card"><img src="assets/artwork/art-1.jpg" alt="Art 1"><div class="art-overlay"><h4>Artwork 1</h4><p>Mixed Media</p></div></div>
-            <div class="art-card"><img src="assets/artwork/art-2.jpg" alt="Art 2"><div class="art-overlay"><h4>Artwork 2</h4><p>Mixed Media</p></div></div>
-            <div class="art-card"><img src="assets/artwork/art-3.jpg" alt="Art 3"><div class="art-overlay"><h4>Artwork 3</h4><p>Mixed Media</p></div></div>
-            <div class="art-card"><img src="assets/artwork/art-4.jpg" alt="Art 4"><div class="art-overlay"><h4>Artwork 4</h4><p>Mixed Media</p></div></div>
-            <div class="art-card"><img src="assets/artwork/art-5.jpg" alt="Art 5"><div class="art-overlay"><h4>Artwork 5</h4><p>Mixed Media</p></div></div>
-            <div class="art-card"><img src="assets/artwork/art-6.jpg" alt="Art 6"><div class="art-overlay"><h4>Artwork 6</h4><p>Mixed Media</p></div></div>
-            <div class="art-card"><img src="assets/artwork/art-7.jpg" alt="Art 7"><div class="art-overlay"><h4>Artwork 7</h4><p>Mixed Media</p></div></div>
-            <div class="art-card"><img src="assets/artwork/art-8.jpg" alt="Art 8"><div class="art-overlay"><h4>Artwork 8</h4><p>Mixed Media</p></div></div>
-            
-            <!-- New Artworks 9-30 -->
-            <div class="art-card"><img src="assets/artwork/art-9.jpg" alt="Art 9"><div class="art-overlay"><h4>Artwork 9</h4><p>Mixed Media</p></div></div>
-            <div class="art-card"><img src="assets/artwork/art-10.jpg" alt="Art 10"><div class="art-overlay"><h4>Artwork 10</h4><p>Mixed Media</p></div></div>
-            <div class="art-card"><img src="assets/artwork/art-11.jpg" alt="Art 11"><div class="art-overlay"><h4>Artwork 11</h4><p>Mixed Media</p></div></div>
-            <div class="art-card"><img src="assets/artwork/art-12.jpg" alt="Art 12"><div class="art-overlay"><h4>Artwork 12</h4><p>Mixed Media</p></div></div>
-            <div class="art-card"><img src="assets/artwork/art-13.jpg" alt="Art 13"><div class="art-overlay"><h4>Artwork 13</h4><p>Mixed Media</p></div></div>
-            <div class="art-card"><img src="assets/artwork/art-14.jpg" alt="Art 14"><div class="art-overlay"><h4>Artwork 14</h4><p>Mixed Media</p></div></div>
-            <div class="art-card"><img src="assets/artwork/art-15.jpg" alt="Art 15"><div class="art-overlay"><h4>Artwork 15</h4><p>Mixed Media</p></div></div>
-            <div class="art-card"><img src="assets/artwork/art-16.jpg" alt="Art 16"><div class="art-overlay"><h4>Artwork 16</h4><p>Mixed Media</p></div></div>
-            <div class="art-card"><img src="assets/artwork/art-17.jpg" alt="Art 17"><div class="art-overlay"><h4>Artwork 17</h4><p>Mixed Media</p></div></div>
-            <div class="art-card"><img src="assets/artwork/art-18.jpg" alt="Art 18"><div class="art-overlay"><h4>Artwork 18</h4><p>Mixed Media</p></div></div>
-            <div class="art-card"><img src="assets/artwork/art-19.jpg" alt="Art 19"><div class="art-overlay"><h4>Artwork 19</h4><p>Mixed Media</p></div></div>
-            <div class="art-card"><img src="assets/artwork/art-20.jpg" alt="Art 20"><div class="art-overlay"><h4>Artwork 20</h4><p>Mixed Media</p></div></div>
-            <div class="art-card"><img src="assets/artwork/art-21.jpg" alt="Art 21"><div class="art-overlay"><h4>Artwork 21</h4><p>Mixed Media</p></div></div>
-            <div class="art-card"><img src="assets/artwork/art-22.jpg" alt="Art 22"><div class="art-overlay"><h4>Artwork 22</h4><p>Mixed Media</p></div></div>
-            <div class="art-card"><img src="assets/artwork/art-23.jpg" alt="Art 23"><div class="art-overlay"><h4>Artwork 23</h4><p>Mixed Media</p></div></div>
-            <div class="art-card"><img src="assets/artwork/art-24.jpg" alt="Art 24"><div class="art-overlay"><h4>Artwork 24</h4><p>Mixed Media</p></div></div>
-            <div class="art-card"><img src="assets/artwork/art-25.jpg" alt="Art 25"><div class="art-overlay"><h4>Artwork 25</h4><p>Mixed Media</p></div></div>
-            <div class="art-card"><img src="assets/artwork/art-26.jpg" alt="Art 26"><div class="art-overlay"><h4>Artwork 26</h4><p>Mixed Media</p></div></div>
-            <div class="art-card"><img src="assets/artwork/art-27.jpg" alt="Art 27"><div class="art-overlay"><h4>Artwork 27</h4><p>Mixed Media</p></div></div>
-            <div class="art-card"><img src="assets/artwork/art-28.jpg" alt="Art 28"><div class="art-overlay"><h4>Artwork 28</h4><p>Mixed Media</p></div></div>
-            <div class="art-card"><img src="assets/artwork/art-29.jpg" alt="Art 29"><div class="art-overlay"><h4>Artwork 29</h4><p>Mixed Media</p></div></div>
+    <nav class="year-nav" aria-label="Browse artworks by year">
+        <div class="year-nav-inner">
+            <ul>
+                <li><a href="#year-2023" class="year-nav-link active" data-year="2023">2023</a></li>
+                <li><a href="#year-2024" class="year-nav-link" data-year="2024">2024</a></li>
+                <li><a href="#year-2025" class="year-nav-link" data-year="2025">2025</a></li>
+                <li><a href="#year-2026" class="year-nav-link" data-year="2026">2026</a></li>
+            </ul>
         </div>
+    </nav>
+
+    <main class="container">
+
+        <!-- 2023 -->
+        <section class="year-section" id="year-2023">
+            <div class="year-header">
+                <span class="year-line"></span>
+                <h2 class="year-title">2023</h2>
+                <span class="year-line"></span>
+            </div>
+
+            <div class="art-grid">
+                <div class="art-card" data-title="Metamorphosis" data-medium="Mixed media on canvas" data-size="70 x 100 cm">
+                    <img src="assets/artwork/2023/1.jpg" alt="Metamorphosis">
+                    <div class="art-overlay"><h4>Metamorphosis</h4><p>Mixed media on canvas<br>70 x 100 cm</p></div>
+                </div>
+                <div class="art-card" data-title="Europa" data-medium="Mixed media on canvas" data-size="50 x 70 cm">
+                    <img src="assets/artwork/2023/2.jpg" alt="Europa">
+                    <div class="art-overlay"><h4>Europa</h4><p>Mixed media on canvas<br>50 x 70 cm</p></div>
+                </div>
+                <div class="art-card" data-title="The Bull" data-medium="Mixed media on canvas" data-size="50 x 70 cm">
+                    <img src="assets/artwork/2023/3.jpg" alt="The Bull">
+                    <div class="art-overlay"><h4>The Bull</h4><p>Mixed media on canvas<br>50 x 70 cm</p></div>
+                </div>
+                <div class="art-card" data-title="The Rebirth of Venus" data-medium="Acrylic on canvas" data-size="60 x 80 cm">
+                    <img src="assets/artwork/2023/4.jpg" alt="The Rebirth of Venus">
+                    <div class="art-overlay"><h4>The Rebirth of Venus</h4><p>Acrylic on canvas<br>60 x 80 cm</p></div>
+                </div>
+                <div class="art-card" data-title="A Tribute to Matisse: Lady and Her Cat" data-medium="Charcoal on canvas" data-size="70 x 100 cm">
+                    <img src="assets/artwork/2023/5.jpg" alt="A Tribute to Matisse: Lady and Her Cat">
+                    <div class="art-overlay"><h4>A Tribute to Matisse: Lady and Her Cat</h4><p>Charcoal on canvas<br>70 x 100 cm</p></div>
+                </div>
+                <div class="art-card" data-title="Portrait d'une femme" data-medium="Oil on canvas panel" data-size="50 x 90 cm">
+                    <img src="assets/artwork/2023/6.jpg" alt="Portrait d'une femme">
+                    <div class="art-overlay"><h4>Portrait d'une femme</h4><p>Oil on canvas panel<br>50 x 90 cm</p></div>
+                </div>
+            </div>
+
+            <div class="subsection">
+                <div class="subsection-header">
+                    <h3 class="subsection-title">Artists of Tomorrow 2023 — 9th Edition</h3>
+                </div>
+                <div class="art-grid">
+                    <div class="art-card" data-title="Artwork 1" data-medium="" data-size="">
+                        <img src="assets/artwork/2023/artists-of-tomorrow/1.jpg" alt="Artists of Tomorrow — Artwork 1">
+                        <div class="art-overlay"><h4>Artwork 1</h4><p>Description coming soon</p></div>
+                    </div>
+                    <div class="art-card" data-title="Artwork 2" data-medium="" data-size="">
+                        <img src="assets/artwork/2023/artists-of-tomorrow/2.jpg" alt="Artists of Tomorrow — Artwork 2">
+                        <div class="art-overlay"><h4>Artwork 2</h4><p>Description coming soon</p></div>
+                    </div>
+                    <div class="art-card" data-title="Artwork 3" data-medium="" data-size="">
+                        <img src="assets/artwork/2023/artists-of-tomorrow/3.jpg" alt="Artists of Tomorrow — Artwork 3">
+                        <div class="art-overlay"><h4>Artwork 3</h4><p>Description coming soon</p></div>
+                    </div>
+                    <div class="art-card" data-title="Artwork 4" data-medium="" data-size="">
+                        <img src="assets/artwork/2023/artists-of-tomorrow/4.jpg" alt="Artists of Tomorrow — Artwork 4">
+                        <div class="art-overlay"><h4>Artwork 4</h4><p>Description coming soon</p></div>
+                    </div>
+                    <div class="art-card" data-title="Artwork 5" data-medium="" data-size="">
+                        <img src="assets/artwork/2023/artists-of-tomorrow/5.jpg" alt="Artists of Tomorrow — Artwork 5">
+                        <div class="art-overlay"><h4>Artwork 5</h4><p>Description coming soon</p></div>
+                    </div>
+                    <div class="art-card" data-title="Artwork 6" data-medium="" data-size="">
+                        <img src="assets/artwork/2023/artists-of-tomorrow/6.jpg" alt="Artists of Tomorrow — Artwork 6">
+                        <div class="art-overlay"><h4>Artwork 6</h4><p>Description coming soon</p></div>
+                    </div>
+                    <div class="art-card" data-title="Artwork 7" data-medium="" data-size="">
+                        <img src="assets/artwork/2023/artists-of-tomorrow/7.jpg" alt="Artists of Tomorrow — Artwork 7">
+                        <div class="art-overlay"><h4>Artwork 7</h4><p>Description coming soon</p></div>
+                    </div>
+                    <div class="art-card" data-title="Artwork 8" data-medium="" data-size="">
+                        <img src="assets/artwork/2023/artists-of-tomorrow/8.jpg" alt="Artists of Tomorrow — Artwork 8">
+                        <div class="art-overlay"><h4>Artwork 8</h4><p>Description coming soon</p></div>
+                    </div>
+                    <div class="art-card" data-title="Artwork 9" data-medium="" data-size="">
+                        <img src="assets/artwork/2023/artists-of-tomorrow/9.jpg" alt="Artists of Tomorrow — Artwork 9">
+                        <div class="art-overlay"><h4>Artwork 9</h4><p>Description coming soon</p></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 2024 -->
+        <section class="year-section" id="year-2024">
+            <div class="year-header">
+                <span class="year-line"></span>
+                <h2 class="year-title">2024</h2>
+                <span class="year-line"></span>
+            </div>
+            <span class="year-subtitle">TAM Gallery — Cairo Art Fair 10th Edition 2024</span>
+
+            <div class="art-grid">
+                <div class="art-card" data-title="Woman Sitting" data-medium="Oil on canvas" data-size="50 x 60 cm">
+                    <img src="assets/artwork/2024/1.jpg" alt="Woman Sitting">
+                    <div class="art-overlay"><h4>Woman Sitting</h4><p>Oil on canvas<br>50 x 60 cm</p></div>
+                </div>
+
+                <div class="art-card art-card-dual" data-title="Ritratto di una donna" data-medium="Oil on canvas" data-size="30 x 40 cm">
+                    <div class="art-carousel">
+                        <div class="art-carousel-track">
+                            <div class="art-carousel-slide"><img src="assets/artwork/2024/2.jpg" alt="Ritratto di una donna"></div>
+                            <div class="art-carousel-slide"><img src="assets/artwork/2024/2-a.jpg" alt="Ritratto di una donna — alternate view"></div>
+                        </div>
+                        <button type="button" class="carousel-btn carousel-prev" aria-label="Previous view">&lsaquo;</button>
+                        <button type="button" class="carousel-btn carousel-next" aria-label="Next view">&rsaquo;</button>
+                        <div class="carousel-dots"></div>
+                    </div>
+                    <div class="art-overlay"><h4>Ritratto di una donna</h4><p>Oil on canvas · 30 x 40 cm</p><span class="dual-hint">Swipe or use arrows to view both angles</span></div>
+                </div>
+
+                <div class="art-card art-card-dual" data-title="Portrait of a Woman" data-medium="Oil on canvas" data-size="40 x 47 cm">
+                    <div class="art-carousel">
+                        <div class="art-carousel-track">
+                            <div class="art-carousel-slide"><img src="assets/artwork/2024/3.jpg" alt="Portrait of a Woman"></div>
+                            <div class="art-carousel-slide"><img src="assets/artwork/2024/3-a.jpg" alt="Portrait of a Woman — alternate view"></div>
+                        </div>
+                        <button type="button" class="carousel-btn carousel-prev" aria-label="Previous view">&lsaquo;</button>
+                        <button type="button" class="carousel-btn carousel-next" aria-label="Next view">&rsaquo;</button>
+                        <div class="carousel-dots"></div>
+                    </div>
+                    <div class="art-overlay"><h4>Portrait of a Woman</h4><p>Oil on canvas · 40 x 47 cm</p><span class="dual-hint">Swipe or use arrows to view both angles</span></div>
+                </div>
+
+                <div class="art-card" data-title="Lady in White Dress" data-medium="Mixed media on canvas" data-size="70 x 100 cm">
+                    <img src="assets/artwork/2024/4.jpg" alt="Lady in White Dress">
+                    <div class="art-overlay"><h4>Lady in White Dress</h4><p>Mixed media on canvas<br>70 x 100 cm</p></div>
+                </div>
+
+                <div class="art-card" data-title="Lady in Black" data-medium="Oil on canvas" data-size="40 x 60 cm">
+                    <img src="assets/artwork/2024/5.jpg" alt="Lady in Black">
+                    <div class="art-overlay"><h4>Lady in Black</h4><p>Oil on canvas<br>40 x 60 cm</p></div>
+                </div>
+
+                <div class="art-card art-card-dual" data-title="Lady Holding a Flower" data-medium="Mixed media on canvas" data-size="40 x 45 cm">
+                    <div class="art-carousel">
+                        <div class="art-carousel-track">
+                            <div class="art-carousel-slide"><img src="assets/artwork/2024/6.jpg" alt="Lady Holding a Flower"></div>
+                            <div class="art-carousel-slide"><img src="assets/artwork/2024/6-a.jpg" alt="Lady Holding a Flower — alternate view"></div>
+                        </div>
+                        <button type="button" class="carousel-btn carousel-prev" aria-label="Previous view">&lsaquo;</button>
+                        <button type="button" class="carousel-btn carousel-next" aria-label="Next view">&rsaquo;</button>
+                        <div class="carousel-dots"></div>
+                    </div>
+                    <div class="art-overlay"><h4>Lady Holding a Flower</h4><p>Mixed media on canvas · 40 x 45 cm</p><span class="dual-hint">Swipe or use arrows to view both angles</span></div>
+                </div>
+
+                <div class="art-card art-card-dual" data-title="Face II" data-medium="Oil on canvas panel" data-size="30 x 35 cm">
+                    <div class="art-carousel">
+                        <div class="art-carousel-track">
+                            <div class="art-carousel-slide"><img src="assets/artwork/2024/7.jpg" alt="Face II"></div>
+                            <div class="art-carousel-slide"><img src="assets/artwork/2024/7-a.jpg" alt="Face II — alternate view"></div>
+                        </div>
+                        <button type="button" class="carousel-btn carousel-prev" aria-label="Previous view">&lsaquo;</button>
+                        <button type="button" class="carousel-btn carousel-next" aria-label="Next view">&rsaquo;</button>
+                        <div class="carousel-dots"></div>
+                    </div>
+                    <div class="art-overlay"><h4>Face II</h4><p>Oil on canvas panel · 30 x 35 cm</p><span class="dual-hint">Swipe or use arrows to view both angles</span></div>
+                </div>
+
+                <div class="art-card art-card-dual" data-title="Face I" data-medium="Oil on canvas panel" data-size="25 x 35 cm">
+                    <div class="art-carousel">
+                        <div class="art-carousel-track">
+                            <div class="art-carousel-slide"><img src="assets/artwork/2024/8.jpg" alt="Face I"></div>
+                            <div class="art-carousel-slide"><img src="assets/artwork/2024/8-a.jpg" alt="Face I — alternate view"></div>
+                        </div>
+                        <button type="button" class="carousel-btn carousel-prev" aria-label="Previous view">&lsaquo;</button>
+                        <button type="button" class="carousel-btn carousel-next" aria-label="Next view">&rsaquo;</button>
+                        <div class="carousel-dots"></div>
+                    </div>
+                    <div class="art-overlay"><h4>Face I</h4><p>Oil on canvas panel · 25 x 35 cm</p><span class="dual-hint">Swipe or use arrows to view both angles</span></div>
+                </div>
+
+                <div class="art-card" data-title="Rouga Cubique" data-medium="Mixed media on canvas" data-size="70 x 90 cm">
+                    <img src="assets/artwork/2024/9.jpg" alt="Rouga Cubique">
+                    <div class="art-overlay"><h4>Rouga Cubique</h4><p>Mixed media on canvas<br>70 x 90 cm</p></div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 2025 -->
+        <section class="year-section" id="year-2025">
+            <div class="year-header">
+                <span class="year-line"></span>
+                <h2 class="year-title">2025</h2>
+                <span class="year-line"></span>
+            </div>
+            <span class="year-subtitle">TAM Gallery — Cairo Art Fair 11th Edition 2025</span>
+
+            <div class="art-grid">
+                <div class="art-card" data-title="Lady in a Black Dress" data-medium="Oil on canvas" data-size="100 x 70 cm">
+                    <img src="assets/artwork/2025/1.png" alt="Lady in a Black Dress">
+                    <div class="art-overlay"><h4>Lady in a Black Dress</h4><p>Oil on canvas<br>100 x 70 cm</p></div>
+                </div>
+                <div class="art-card" data-title="Naked Rose" data-medium="Oil on canvas" data-size="50 x 70 cm">
+                    <img src="assets/artwork/2025/2.jpg" alt="Naked Rose">
+                    <div class="art-overlay"><h4>Naked Rose</h4><p>Oil on canvas<br>50 x 70 cm</p></div>
+                </div>
+                <div class="art-card" data-title="La Muse vigilante" data-medium="Oil on canvas" data-size="40 x 45 cm">
+                    <img src="assets/artwork/2025/3.jpg" alt="La Muse vigilante">
+                    <div class="art-overlay"><h4>La Muse vigilante</h4><p>Oil on canvas<br>40 x 45 cm</p></div>
+                </div>
+                <div class="art-card" data-title="Portrait en noir et blanc" data-medium="Oil on canvas" data-size="30 x 45 cm">
+                    <img src="assets/artwork/2025/4.jpg" alt="Portrait en noir et blanc">
+                    <div class="art-overlay"><h4>Portrait en noir et blanc</h4><p>Oil on canvas<br>30 x 45 cm</p></div>
+                </div>
+                <div class="art-card" data-title="Portrait en vert-de-gris" data-medium="Oil on canvas" data-size="40 x 45 cm">
+                    <img src="assets/artwork/2025/5.jpg" alt="Portrait en vert-de-gris">
+                    <div class="art-overlay"><h4>Portrait en vert-de-gris</h4><p>Oil on canvas<br>40 x 45 cm</p></div>
+                </div>
+                <div class="art-card" data-title="Portrait linéaire 1" data-medium="Oil on canvas" data-size="40 x 40 cm">
+                    <img src="assets/artwork/2025/6.jpg" alt="Portrait linéaire 1">
+                    <div class="art-overlay"><h4>Portrait linéaire 1</h4><p>Oil on canvas<br>40 x 40 cm</p></div>
+                </div>
+                <div class="art-card" data-title="Portrait linéaire 2" data-medium="Oil on canvas" data-size="40 x 40 cm">
+                    <img src="assets/artwork/2025/7.jpg" alt="Portrait linéaire 2">
+                    <div class="art-overlay"><h4>Portrait linéaire 2</h4><p>Oil on canvas<br>40 x 40 cm</p></div>
+                </div>
+                <div class="art-card" data-title="Portrait linéaire 3" data-medium="Oil on canvas" data-size="40 x 40 cm">
+                    <img src="assets/artwork/2025/8.jpg" alt="Portrait linéaire 3">
+                    <div class="art-overlay"><h4>Portrait linéaire 3</h4><p>Oil on canvas<br>40 x 40 cm</p></div>
+                </div>
+                <div class="art-card" data-title="Portrait linéaire 4" data-medium="Oil on canvas" data-size="40 x 40 cm">
+                    <img src="assets/artwork/2025/9.jpg" alt="Portrait linéaire 4">
+                    <div class="art-overlay"><h4>Portrait linéaire 4</h4><p>Oil on canvas<br>40 x 40 cm</p></div>
+                </div>
+                <div class="art-card" data-title="She Who Waits" data-medium="Oil on canvas" data-size="50 x 70 cm">
+                    <img src="assets/artwork/2025/10.jpg" alt="She Who Waits">
+                    <div class="art-overlay"><h4>She Who Waits</h4><p>Oil on canvas<br>50 x 70 cm</p></div>
+                </div>
+                <div class="art-card" data-title="Sienna Dreams" data-medium="Oil on canvas" data-size="60 x 60 cm">
+                    <img src="assets/artwork/2025/11.jpg" alt="Sienna Dreams">
+                    <div class="art-overlay"><h4>Sienna Dreams</h4><p>Oil on canvas<br>60 x 60 cm</p></div>
+                </div>
+                <div class="art-card" data-title="Serenity" data-medium="Oil on canvas" data-size="60 x 60 cm">
+                    <img src="assets/artwork/2025/12.jpg" alt="Serenity">
+                    <div class="art-overlay"><h4>Serenity</h4><p>Oil on canvas<br>60 x 60 cm</p></div>
+                </div>
+                <div class="art-card" data-title="Presence" data-medium="Oil on canvas" data-size="60 x 80 cm">
+                    <img src="assets/artwork/2025/13.jpg" alt="Presence">
+                    <div class="art-overlay"><h4>Presence</h4><p>Oil on canvas<br>60 x 80 cm</p></div>
+                </div>
+            </div>
+
+            <div class="subsection">
+                <div class="subsection-header">
+                    <h3 class="subsection-title">Arttalks — Collective Exhibition</h3>
+                </div>
+                <div class="art-grid">
+                    <div class="art-card" data-title="Demi-portrait" data-medium="Oil on canvas" data-size="50 x 70 cm">
+                        <img src="assets/artwork/2025/14.jpg" alt="Demi-portrait">
+                        <div class="art-overlay"><h4>Demi-portrait</h4><p>Oil on canvas<br>50 x 70 cm</p></div>
+                    </div>
+                    <div class="art-card" data-title="Portrait d'une femme" data-medium="Oil on canvas" data-size="30 x 40 cm">
+                        <img src="assets/artwork/2025/15.jpg" alt="Portrait d'une femme">
+                        <div class="art-overlay"><h4>Portrait d'une femme</h4><p>Oil on canvas<br>30 x 40 cm</p></div>
+                    </div>
+                    <div class="art-card" data-title="Portrait d'une femme" data-medium="Oil on canvas" data-size="35 x 50 cm">
+                        <img src="assets/artwork/2025/16.jpg" alt="Portrait d'une femme">
+                        <div class="art-overlay"><h4>Portrait d'une femme</h4><p>Oil on canvas<br>35 x 50 cm</p></div>
+                    </div>
+                    <div class="art-card" data-title="Girl at Table" data-medium="Oil on canvas" data-size="50 x 60 cm">
+                        <img src="assets/artwork/2025/17.jpg" alt="Girl at Table">
+                        <div class="art-overlay"><h4>Girl at Table</h4><p>Oil on canvas<br>50 x 60 cm</p></div>
+                    </div>
+                    <div class="art-card" data-title="Lady Sitting in a Blue Dress" data-medium="Oil on canvas" data-size="50 x 60 cm">
+                        <img src="assets/artwork/2025/18.jpg" alt="Lady Sitting in a Blue Dress">
+                        <div class="art-overlay"><h4>Lady Sitting in a Blue Dress</h4><p>Oil on canvas<br>50 x 60 cm</p></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 2026 -->
+        <section class="year-section" id="year-2026">
+            <div class="year-header">
+                <span class="year-line"></span>
+                <h2 class="year-title">2026</h2>
+                <span class="year-line"></span>
+            </div>
+            <span class="year-subtitle">TAM Gallery — Artists of Tomorrow 2026 | The Grand Egyptian Museum</span>
+
+            <div class="art-grid">
+                <div class="art-card" data-title="La Fleur Cachée" data-medium="Oil on canvas" data-size="70 x 100 cm">
+                    <img src="assets/artwork/2026/1.PNG" alt="La Fleur Cachée">
+                    <div class="art-overlay"><h4>La Fleur Cachée</h4><p>Oil on canvas<br>70 x 100 cm</p></div>
+                </div>
+                <div class="art-card" data-title="L'Anticipation" data-medium="Oil on canvas" data-size="70 x 100 cm">
+                    <img src="assets/artwork/2026/2.PNG" alt="L'Anticipation">
+                    <div class="art-overlay"><h4>L'Anticipation</h4><p>Oil on canvas<br>70 x 100 cm</p></div>
+                </div>
+                <div class="art-card" data-title="Présence Rouge" data-medium="Oil on canvas" data-size="45 x 60 cm">
+                    <img src="assets/artwork/2026/3.PNG" alt="Présence Rouge">
+                    <div class="art-overlay"><h4>Présence Rouge</h4><p>Oil on canvas<br>45 x 60 cm</p></div>
+                </div>
+            </div>
+
+            <div class="subsection">
+                <div class="subsection-header">
+                    <h3 class="subsection-title">Portrait de femme</h3>
+                    <p class="subsection-note">TAM Gallery — Solo Exhibition</p>
+                </div>
+                <div class="art-grid">
+                    <div class="art-card" data-title="Quinque Musae" data-medium="Oil on canvas" data-size="100 x 120 cm">
+                        <img src="assets/artwork/2026/solo-art-work/1.jpg" alt="Quinque Musae">
+                        <div class="art-overlay"><h4>Quinque Musae</h4><p>Oil on canvas<br>100 x 120 cm</p></div>
+                    </div>
+                    <div class="art-card" data-title="Alina, Helena, & Lena" data-medium="Oil on canvas" data-size="90 x 100 cm">
+                        <img src="assets/artwork/2026/solo-art-work/2.jpg" alt="Alina, Helena, & Lena">
+                        <div class="art-overlay"><h4>Alina, Helena, & Lena</h4><p>Oil on canvas<br>90 x 100 cm</p></div>
+                    </div>
+                    <div class="art-card" data-title="Femme en robe blanche et fleurs" data-medium="Oil on canvas" data-size="50 x 70 cm">
+                        <img src="assets/artwork/2026/solo-art-work/3.jpg" alt="Femme en robe blanche et fleurs">
+                        <div class="art-overlay"><h4>Femme en robe blanche et fleurs</h4><p>Oil on canvas<br>50 x 70 cm</p></div>
+                    </div>
+                    <div class="art-card" data-title="Femme aux longs cheveux" data-medium="Oil on canvas" data-size="50 x 70 cm">
+                        <img src="assets/artwork/2026/solo-art-work/4.jpg" alt="Femme aux longs cheveux">
+                        <div class="art-overlay"><h4>Femme aux longs cheveux</h4><p>Oil on canvas<br>50 x 70 cm</p></div>
+                    </div>
+                    <div class="art-card" data-title="Dame aux yeux bleus" data-medium="Oil on canvas" data-size="35 x 45 cm">
+                        <img src="assets/artwork/2026/solo-art-work/5.jpg" alt="Dame aux yeux bleus">
+                        <div class="art-overlay"><h4>Dame aux yeux bleus</h4><p>Oil on canvas<br>35 x 45 cm</p></div>
+                    </div>
+                    <div class="art-card" data-title="Noire et jaune" data-medium="Oil on canvas" data-size="25 x 30 cm">
+                        <img src="assets/artwork/2026/solo-art-work/6.jpg" alt="Noire et jaune">
+                        <div class="art-overlay"><h4>Noire et jaune</h4><p>Oil on canvas<br>25 x 30 cm</p></div>
+                    </div>
+                    <div class="art-card" data-title="Portrait (Untitled)" data-medium="Oil on canvas" data-size="25 x 30 cm">
+                        <img src="assets/artwork/2026/solo-art-work/7.jpg" alt="Portrait (Untitled)">
+                        <div class="art-overlay"><h4>Portrait (Untitled)</h4><p>Oil on canvas<br>25 x 30 cm</p></div>
+                    </div>
+                    <div class="art-card" data-title="Portrait (untitled)" data-medium="Oil on canvas" data-size="30 x 40 cm">
+                        <img src="assets/artwork/2026/solo-art-work/8.jpg" alt="Portrait (untitled)">
+                        <div class="art-overlay"><h4>Portrait (untitled)</h4><p>Oil on canvas<br>30 x 40 cm</p></div>
+                    </div>
+                    <div class="art-card" data-title="Portrait (untitled)" data-medium="Oil on canvas" data-size="30 x 40 cm">
+                        <img src="assets/artwork/2026/solo-art-work/9.jpg" alt="Portrait (untitled)">
+                        <div class="art-overlay"><h4>Portrait (untitled)</h4><p>Oil on canvas<br>30 x 40 cm</p></div>
+                    </div>
+                    <div class="art-card" data-title="Deux femmes dans les bois" data-medium="Oil on canvas" data-size="100 x 70 cm">
+                        <img src="assets/artwork/2026/solo-art-work/10.jpg" alt="Deux femmes dans les bois">
+                        <div class="art-overlay"><h4>Deux femmes dans les bois</h4><p>Oil on canvas<br>100 x 70 cm</p></div>
+                    </div>
+                    <div class="art-card" data-title="Quiétude solitaire" data-medium="Oil on canvas" data-size="100 x 70 cm">
+                        <img src="assets/artwork/2026/solo-art-work/11.jpg" alt="Quiétude solitaire">
+                        <div class="art-overlay"><h4>Quiétude solitaire</h4><p>Oil on canvas<br>100 x 70 cm</p></div>
+                    </div>
+                    <div class="art-card" data-title="Portrait nu d'une jeune femme" data-medium="Oil on canvas" data-size="100 x 70 cm">
+                        <img src="assets/artwork/2026/solo-art-work/12.jpg" alt="Portrait nu d'une jeune femme">
+                        <div class="art-overlay"><h4>Portrait nu d'une jeune femme</h4><p>Oil on canvas<br>100 x 70 cm</p></div>
+                    </div>
+                    <div class="art-card" data-title="Murmures amicaux" data-medium="Oil on canvas" data-size="100 x 70 cm">
+                        <img src="assets/artwork/2026/solo-art-work/13.jpg" alt="Murmures amicaux">
+                        <div class="art-overlay"><h4>Murmures amicaux</h4><p>Oil on canvas<br>100 x 70 cm</p></div>
+                    </div>
+                    <div class="art-card" data-title="Soeurs" data-medium="Oil on canvas" data-size="60 x 80 cm">
+                        <img src="assets/artwork/2026/solo-art-work/14.jpg" alt="Soeurs">
+                        <div class="art-overlay"><h4>Soeurs</h4><p>Oil on canvas<br>60 x 80 cm</p></div>
+                    </div>
+                    <div class="art-card" data-title="La dame" data-medium="Oil on canvas" data-size="60 x 80 cm">
+                        <img src="assets/artwork/2026/solo-art-work/15.jpg" alt="La dame">
+                        <div class="art-overlay"><h4>La dame</h4><p>Oil on canvas<br>60 x 80 cm</p></div>
+                    </div>
+                    <div class="art-card" data-title="Dame de profil" data-medium="Oil on canvas" data-size="40 x 50 cm">
+                        <img src="assets/artwork/2026/solo-art-work/16.jpg" alt="Dame de profil">
+                        <div class="art-overlay"><h4>Dame de profil</h4><p>Oil on canvas<br>40 x 50 cm</p></div>
+                    </div>
+                    <div class="art-card" data-title="Portrait (untitled)" data-medium="Oil on canvas" data-size="35 x 45 cm">
+                        <img src="assets/artwork/2026/solo-art-work/17.jpg" alt="Portrait (untitled)">
+                        <div class="art-overlay"><h4>Portrait (untitled)</h4><p>Oil on canvas<br>35 x 45 cm</p></div>
+                    </div>
+                    <div class="art-card" data-title="Femme au chapeau" data-medium="Oil on canvas" data-size="60 x 50 cm">
+                        <img src="assets/artwork/2026/solo-art-work/18.jpg" alt="Femme au chapeau">
+                        <div class="art-overlay"><h4>Femme au chapeau</h4><p>Oil on canvas<br>60 x 50 cm</p></div>
+                    </div>
+                    <div class="art-card" data-title="Intégrée" data-medium="Oil on canvas panel" data-size="30 x 40 cm">
+                        <img src="assets/artwork/2026/solo-art-work/19.jpg" alt="Intégrée">
+                        <div class="art-overlay"><h4>Intégrée</h4><p>Oil on canvas panel<br>30 x 40 cm</p></div>
+                    </div>
+                    <div class="art-card" data-title="Portrait d'une jeune fille" data-medium="Charcoal on hardboard paper" data-size="40 x 55 cm">
+                        <img src="assets/artwork/2026/solo-art-work/20.jpg" alt="Portrait d'une jeune fille">
+                        <div class="art-overlay"><h4>Portrait d'une jeune fille</h4><p>Charcoal on hardboard paper<br>40 x 55 cm</p></div>
+                    </div>
+                    <div class="art-card" data-title="Vénus renaissante" data-medium="Red chalk on paper" data-size="45 x 65 cm">
+                        <img src="assets/artwork/2026/solo-art-work/21.jpg" alt="Vénus renaissante">
+                        <div class="art-overlay"><h4>Vénus renaissante</h4><p>Red chalk on paper<br>45 x 65 cm</p></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
     </main>
 
     <!-- Slim Footer -->
@@ -179,7 +598,6 @@
                     <li><a href="artworks.html">Artworks</a></li>
                     <li><a href="exhibitions.html">Exhibitions</a></li>
                     <li><a href="curation.html">Curation</a></li>
-                    <li><a href="projects.html">Projects</a></li>
                 </ul>
             </div>
             <div class="footer-col contact-col">
@@ -200,7 +618,8 @@
             </div>
             <div class="modal-details">
                 <h3 class="modal-title" id="modalTitle">Title</h3>
-                <p class="modal-desc" id="modalDesc">Description</p>
+                <p class="modal-medium" id="modalMedium"></p>
+                <p class="modal-size" id="modalSize"></p>
             </div>
         </div>
     </div>
@@ -209,48 +628,143 @@
         document.addEventListener("DOMContentLoaded", function() {
             const menuToggle = document.getElementById('mobileMenuToggle');
             const mainNav = document.querySelector('.main-nav');
-            if(menuToggle) {
+            if (menuToggle) {
                 menuToggle.addEventListener('click', () => {
                     menuToggle.classList.toggle('active');
                     mainNav.classList.toggle('active');
                 });
             }
 
+            /* --- Year navigation (scroll spy + smooth jump) --- */
+            const yearNavLinks = document.querySelectorAll('.year-nav-link');
+            const yearSections = document.querySelectorAll('.year-section[id]');
+
+            yearNavLinks.forEach(link => {
+                link.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    const target = document.querySelector(link.getAttribute('href'));
+                    if (target) {
+                        target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                        yearNavLinks.forEach(l => l.classList.remove('active'));
+                        link.classList.add('active');
+                    }
+                });
+            });
+
+            if (yearSections.length && yearNavLinks.length) {
+                const observer = new IntersectionObserver((entries) => {
+                    entries.forEach(entry => {
+                        if (entry.isIntersecting) {
+                            const id = entry.target.id;
+                            yearNavLinks.forEach(link => {
+                                link.classList.toggle('active', link.getAttribute('href') === '#' + id);
+                            });
+                        }
+                    });
+                }, { rootMargin: '-40% 0px -50% 0px', threshold: 0 });
+
+                yearSections.forEach(section => observer.observe(section));
+            }
+
+            /* --- Dual-image carousels --- */
+            document.querySelectorAll('.art-card-dual').forEach(card => {
+                const track = card.querySelector('.art-carousel-track');
+                const slides = card.querySelectorAll('.art-carousel-slide');
+                const dotsContainer = card.querySelector('.carousel-dots');
+                const prevBtn = card.querySelector('.carousel-prev');
+                const nextBtn = card.querySelector('.carousel-next');
+                if (!track || slides.length < 2) return;
+
+                slides.forEach((_, i) => {
+                    const dot = document.createElement('button');
+                    dot.type = 'button';
+                    dot.className = 'carousel-dot' + (i === 0 ? ' active' : '');
+                    dot.setAttribute('aria-label', 'View ' + (i + 1));
+                    dot.addEventListener('click', (e) => {
+                        e.stopPropagation();
+                        goToSlide(i);
+                    });
+                    dotsContainer.appendChild(dot);
+                });
+
+                const dots = dotsContainer.querySelectorAll('.carousel-dot');
+
+                function goToSlide(index) {
+                    const i = Math.max(0, Math.min(index, slides.length - 1));
+                    track.scrollTo({ left: slides[i].offsetLeft, behavior: 'smooth' });
+                    dots.forEach((d, j) => d.classList.toggle('active', j === i));
+                }
+
+                function currentSlideIndex() {
+                    return Math.round(track.scrollLeft / track.clientWidth);
+                }
+
+                prevBtn.addEventListener('click', (e) => {
+                    e.stopPropagation();
+                    goToSlide(currentSlideIndex() - 1);
+                });
+                nextBtn.addEventListener('click', (e) => {
+                    e.stopPropagation();
+                    goToSlide(currentSlideIndex() + 1);
+                });
+
+                track.addEventListener('scroll', () => {
+                    const i = currentSlideIndex();
+                    dots.forEach((d, j) => d.classList.toggle('active', j === i));
+                }, { passive: true });
+            });
+
+            /* --- Artwork modal --- */
             const modal = document.getElementById("artModal");
             const modalImg = document.getElementById("modalImg");
             const modalTitle = document.getElementById("modalTitle");
-            const modalDesc = document.getElementById("modalDesc");
+            const modalMedium = document.getElementById("modalMedium");
+            const modalSize = document.getElementById("modalSize");
             const closeModal = document.getElementById("closeModal");
             const artCards = document.querySelectorAll(".art-card");
 
-            if (modal && artCards.length > 0) {
-                artCards.forEach(card => {
-                    card.addEventListener("click", function() {
-                        const img = this.querySelector("img");
-                        const title = this.querySelector("h4") ? this.querySelector("h4").innerText : "Artwork";
-                        const shortDesc = this.querySelector("p") ? this.querySelector("p").innerText : "";
-                        
-                        if(img) modalImg.src = img.src;
-                        modalTitle.innerText = title;
-                        modalDesc.innerText = shortDesc + " — Detailed background, medium, dimensions, and curatorial notes will be dynamically loaded here from the database."; 
-
-                        modal.classList.add("active");
-                        document.body.style.overflow = 'hidden'; 
-                    });
-                });
-
-                closeModal.addEventListener("click", () => {
-                    modal.classList.remove("active");
-                    document.body.style.overflow = 'auto'; 
-                });
-
-                window.addEventListener("click", (e) => {
-                    if (e.target === modal) {
-                        modal.classList.remove("active");
-                        document.body.style.overflow = 'auto';
-                    }
-                });
+            function getCardImage(card) {
+                const carousel = card.querySelector('.art-carousel-track');
+                if (carousel) {
+                    const idx = Math.round(carousel.scrollLeft / carousel.clientWidth);
+                    const slides = card.querySelectorAll('.art-carousel-slide img');
+                    return slides[idx] || slides[0];
+                }
+                return card.querySelector('img');
             }
+
+            function openModal(card) {
+                const img = getCardImage(card);
+                const title = card.dataset.title || 'Artwork';
+                const medium = card.dataset.medium || '';
+                const size = card.dataset.size || '';
+
+                if (img) modalImg.src = img.src;
+                modalTitle.textContent = title;
+                modalMedium.textContent = medium;
+                modalMedium.style.display = medium ? 'block' : 'none';
+                modalSize.textContent = size;
+                modalSize.style.display = size ? 'block' : 'none';
+
+                modal.classList.add("active");
+                document.body.style.overflow = 'hidden';
+            }
+
+            artCards.forEach(card => {
+                card.addEventListener("click", () => openModal(card));
+            });
+
+            closeModal.addEventListener("click", () => {
+                modal.classList.remove("active");
+                document.body.style.overflow = 'auto';
+            });
+
+            window.addEventListener("click", (e) => {
+                if (e.target === modal) {
+                    modal.classList.remove("active");
+                    document.body.style.overflow = 'auto';
+                }
+            });
         });
     </script>
 </body>
