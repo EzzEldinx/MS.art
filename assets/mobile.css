@@ -1,0 +1,174 @@
+/* Global mobile typography & layout polish */
+@media (max-width: 992px) {
+    body {
+        letter-spacing: 0.25px;
+        line-height: 1.65;
+        -webkit-text-size-adjust: 100%;
+        text-size-adjust: 100%;
+    }
+
+    p,
+    .about-text p,
+    .about-text-block p,
+    .curation-brief,
+    .project-body p,
+    .exhibition-desc,
+    .hero-description,
+    .contact-intro,
+    .modal-desc {
+        text-align: left !important;
+        letter-spacing: 0.15px !important;
+        word-spacing: normal !important;
+        line-height: 1.65 !important;
+        hyphens: auto;
+        -webkit-hyphens: auto;
+    }
+
+    .page-header { margin-top: var(--header-height, 90px); }
+
+    .page-title {
+        font-size: 2.4rem !important;
+        letter-spacing: 2px !important;
+    }
+
+    .page-subtitle {
+        font-size: 0.85rem !important;
+        letter-spacing: 2px !important;
+    }
+
+    .curation-title,
+    .project-title {
+        letter-spacing: 1px !important;
+    }
+
+    .curation-brief {
+        font-size: 1rem !important;
+        line-height: 1.7 !important;
+    }
+
+    .project-body p {
+        font-size: 1rem !important;
+        margin-bottom: 18px !important;
+    }
+
+    .project-quote {
+        padding: 28px 22px !important;
+    }
+
+    .project-quote-text {
+        font-size: 1.15rem !important;
+        line-height: 1.55 !important;
+    }
+
+    .about-text p {
+        font-size: 1rem !important;
+    }
+
+    .container {
+        padding-left: 18px !important;
+        padding-right: 18px !important;
+    }
+
+    .year-nav-link {
+        letter-spacing: 2px !important;
+        padding: 14px 20px !important;
+    }
+
+    .year-title {
+        letter-spacing: 4px !important;
+    }
+
+    .year-subtitle,
+    .subsection-title {
+        letter-spacing: 2px !important;
+        font-size: 0.75rem !important;
+    }
+
+    .main-footer {
+        padding: 32px 18px !important;
+    }
+
+    .footer-container {
+        flex-direction: column !important;
+        text-align: center !important;
+        align-items: center !important;
+        gap: 36px !important;
+    }
+
+    .about-col {
+        align-items: center !important;
+    }
+
+    .links-col ul {
+        grid-template-columns: 1fr !important;
+        grid-template-rows: auto !important;
+        grid-auto-flow: row !important;
+        text-align: center !important;
+        justify-items: center;
+    }
+
+    .contact-col {
+        align-items: center !important;
+    }
+
+    .social-links-vertical {
+        align-items: center !important;
+    }
+
+    .hero-description {
+        font-size: 1rem !important;
+        letter-spacing: 0.2px !important;
+    }
+}
+
+@media (max-width: 992px) {
+    /* Artworks: show details while scrolling (no hover on touch) */
+    .art-card.in-view .art-overlay {
+        opacity: 1;
+    }
+
+    .art-overlay h4 {
+        font-size: 1.1rem;
+        letter-spacing: 0.5px;
+        text-transform: none;
+    }
+
+    .art-overlay p {
+        font-size: 0.85rem;
+        letter-spacing: 0.2px;
+    }
+
+    /* Artwork modal — smaller, sentence case */
+    .modal-content {
+        max-height: 92vh;
+        overflow-y: auto;
+    }
+
+    .modal-details {
+        padding: 22px 18px 28px !important;
+    }
+
+    .modal-title {
+        font-size: 1.2rem !important;
+        text-transform: none !important;
+        letter-spacing: 0.3px !important;
+        line-height: 1.35 !important;
+    }
+
+    .modal-medium {
+        font-size: 0.85rem !important;
+        text-transform: none !important;
+        letter-spacing: 0.2px !important;
+    }
+
+    .modal-size {
+        font-size: 0.9rem !important;
+        letter-spacing: 0.2px !important;
+    }
+
+    .close-modal {
+        font-size: 2rem;
+        top: 10px;
+        right: 14px;
+    }
+}

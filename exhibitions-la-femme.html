@@ -3,15 +3,16 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Exhibitions | Mahmoud Saïd Art</title>
+    <title>La Femme Exhibition | Mahmoud Saïd Art</title>
     <link rel="stylesheet" href="assets/mobile.css">
     <style>
         @font-face { font-family: 'Aptos'; src: url('assets/Aptos.ttf') format('truetype'); font-weight: normal; }
         @font-face { font-family: 'Aptos'; src: url('assets/Aptos-Bold.ttf') format('truetype'); font-weight: bold; }
 
         body { margin: 0; padding: 0; background-color: #ffffff; color: #111111; font-family: 'Aptos', sans-serif; overflow-x: hidden; letter-spacing: 1.5px; line-height: 1.9; }
-        .reveal { opacity: 0; transform: translateY(40px); transition: all 1s ease-out; }
+        .reveal { opacity: 0; transform: translateY(40px); transition: all 1.2s cubic-bezier(0.25, 1, 0.5, 1); }
         .reveal.active { opacity: 1; transform: translateY(0); }
+        .delay-1 { transition-delay: 0.2s; }
 
         .main-header { position: absolute; top: 0; width: 100%; display: flex; justify-content: space-between; align-items: center; padding: 40px 60px; box-sizing: border-box; z-index: 1000; }
         .logo { flex: 1; display: flex; align-items: center; }
@@ -32,21 +33,31 @@
         .page-header { text-align: center; padding: 120px 20px 60px; background: linear-gradient(rgba(245,245,245,0.4), rgba(245,245,245,0.4)), url('assets/photo3.jpg') center/cover; border-bottom: 1px solid #eaeaea; }
         .page-title { font-size: 4rem; text-transform: uppercase; letter-spacing: 4px; margin: 0 0 15px 0; color: #000000; }
         .page-subtitle { color: #888888; font-size: 1.25rem; letter-spacing: 5px; text-transform: uppercase; font-weight: bold; }
+        .back-link { display: inline-block; margin-top: 25px; color: #111; text-decoration: none; text-transform: uppercase; letter-spacing: 2px; font-size: 0.85rem; font-weight: bold; border-bottom: 2px solid #888888; padding-bottom: 5px; transition: color 0.3s ease; }
+        .back-link:hover { color: #888888; }
 
-        .container { max-width: 1300px; margin: 0 auto; padding: 80px 20px; }
-        .curation-grid { display: flex; flex-direction: column; gap: 80px; }
-        .curation-card { display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: center; }
-        .curation-card:nth-child(even) { direction: rtl; }
-        .curation-card:nth-child(even) > * { direction: ltr; }
-        .curation-image { overflow: hidden; border-radius: 6px; box-shadow: 0 20px 50px rgba(0,0,0,0.1); }
-        .curation-image img { width: 100%; height: 420px; object-fit: cover; display: block; transition: transform 1.2s ease; }
-        .curation-card:hover .curation-image img { transform: scale(1.04); }
-        .curation-info { display: flex; flex-direction: column; justify-content: center; }
-        .curation-meta { font-size: 0.85rem; color: #888888; text-transform: uppercase; letter-spacing: 3px; font-weight: bold; margin-bottom: 15px; }
-        .curation-title { font-size: 2.2rem; font-weight: bold; color: #111; text-transform: uppercase; letter-spacing: 2px; margin: 0 0 20px 0; line-height: 1.2; }
-        .curation-brief { font-size: 1.1rem; color: #555; line-height: 2; margin: 0 0 30px 0; text-align: justify; }
-        .read-more-btn { display: inline-block; align-self: flex-start; color: #111; text-decoration: none; text-transform: uppercase; letter-spacing: 2px; font-size: 0.85rem; font-weight: bold; border-bottom: 2px solid #888888; padding-bottom: 5px; transition: color 0.3s ease; }
-        .read-more-btn:hover { color: #888888; }
+        .container { max-width: 1400px; margin: 0 auto; padding: 100px 20px; }
+        .featured-project { display: flex; flex-direction: column; gap: 60px; }
+        .project-image-wrapper { width: 100%; overflow: hidden; border-radius: 6px; box-shadow: 0 20px 50px rgba(0,0,0,0.1); }
+        .project-image-wrapper img { width: 100%; height: auto; display: block; }
+        .project-info-grid { display: grid; grid-template-columns: 1fr 1.5fr; gap: 80px; align-items: stretch; }
+        .meta-info { font-size: 0.85rem; color: #888888; text-transform: uppercase; letter-spacing: 3px; font-weight: bold; margin-bottom: 15px; display: block; }
+        .project-title { font-size: 3rem; font-weight: bold; color: #111; line-height: 1.1; text-transform: uppercase; letter-spacing: 2px; margin: 0 0 15px 0; }
+        .project-subtitle { font-size: 1.2rem; color: #555; text-transform: uppercase; letter-spacing: 4px; margin: 0 0 25px 0; }
+        .curator-tag { display: inline-block; background-color: #111; color: #fff; padding: 8px 20px; font-size: 0.85rem; text-transform: uppercase; letter-spacing: 2px; font-weight: bold; margin-bottom: 20px; }
+        .sponsor-label { display: block; font-size: 0.8rem; color: #888; text-transform: uppercase; letter-spacing: 2px; margin-bottom: 15px; font-weight: bold; }
+        .sponsor-logo { max-height: 45px; width: auto; display: block; opacity: 0.85; }
+        .sidebar-images { display: flex; flex-direction: column; gap: 40px; margin-top: auto; }
+        .sidebar-images img { width: 100%; height: auto; display: block; border-radius: 6px; box-shadow: 0 15px 35px rgba(0,0,0,0.08); }
+        .project-body { display: flex; flex-direction: column; height: 100%; }
+        .project-body p { font-size: 1.15rem; color: #444; line-height: 2; margin-top: 0; margin-bottom: 25px; text-align: justify; }
+        @keyframes auroraGradient { 0% { background-position: 0% 50%; } 50% { background-position: 100% 50%; } 100% { background-position: 0% 50%; } }
+        .project-quote { flex-grow: 1; margin-top: 20px; padding: 60px 50px; border-left: 6px solid #888888; border-radius: 0 12px 12px 0; background: linear-gradient(270deg, rgba(136,136,136,0.35), rgba(136,136,136,0.05), rgba(0,0,0,0.05), rgba(136,136,136,0.3)); background-size: 300% 300%; animation: auroraGradient 6s ease infinite; }
+        .project-quote-text { font-size: 1.8rem; font-style: italic; color: #111; line-height: 1.6; }
+        .project-quote-author { display: block; margin-top: 30px; font-size: 0.95rem; color: #777; text-transform: uppercase; letter-spacing: 3px; font-weight: bold; }
+        .project-gallery { display: grid; grid-template-columns: repeat(3, 1fr); gap: 40px; margin-top: 40px; }
+        .gallery-img-wrapper { overflow: hidden; border-radius: 6px; box-shadow: 0 20px 50px rgba(0,0,0,0.1); }
+        .gallery-img-wrapper img { width: 100%; height: 100%; object-fit: cover; display: block; aspect-ratio: 3/4; }
 
         .main-footer { background-color: #fcfcfc; padding: 40px 60px; border-top: 1px solid #eaeaea; color: #444; margin-top: 60px; }
         .footer-container { max-width: 1300px; margin: 0 auto; display: flex; flex-wrap: wrap; justify-content: space-between; align-items: flex-start; gap: 30px; }
@@ -56,15 +67,13 @@
         .footer-copyright { font-size: 0.8rem; color: #888; letter-spacing: 2px; text-transform: uppercase; line-height: 1.6; }
         .footer-col h4 { font-size: 1rem; text-transform: uppercase; letter-spacing: 4px; margin: 0 0 20px 0; color: #111; }
         .links-col ul { list-style: none; padding: 0; margin: 0; display: grid; grid-template-columns: 1fr 1fr; grid-template-rows: repeat(3, auto); grid-auto-flow: column; gap: 10px 30px; align-content: start; }
-        .links-col ul a { color: #666; text-decoration: none; text-transform: uppercase; font-size: 0.8rem; letter-spacing: 2px; transition: color 0.3s ease; white-space: nowrap; }
+        .links-col ul a { color: #666; text-decoration: none; text-transform: uppercase; font-size: 0.8rem; letter-spacing: 2px; white-space: nowrap; }
         .links-col ul a:hover { color: #888888; }
         .contact-col { display: flex; flex-direction: column; gap: 20px; align-items: flex-start; }
         .social-links-vertical { display: flex; flex-direction: column; gap: 15px; }
-        .social-links-vertical a { color: #555; text-decoration: none; transition: color 0.3s; display: flex; align-items: center; gap: 10px; font-size: 0.85rem; font-weight: bold; letter-spacing: 1px; }
-        .social-links-vertical a:hover { color: #888888; }
+        .social-links-vertical a { color: #555; text-decoration: none; display: flex; align-items: center; gap: 10px; font-size: 0.85rem; font-weight: bold; letter-spacing: 1px; }
         .social-links-vertical svg { width: 18px; height: 18px; fill: currentColor; flex-shrink: 0; }
-        .btn-contact { background-color: #111; color: #fff; padding: 10px 25px; border-radius: 40px; text-decoration: none; font-size: 0.8rem; font-weight: bold; text-transform: uppercase; letter-spacing: 2px; transition: background 0.3s; border: 2px solid #111; display: inline-block; }
-        .btn-contact:hover { background-color: #555; border-color: #555; color: #fff; }
+        .btn-contact { background-color: #111; color: #fff; padding: 10px 25px; border-radius: 40px; text-decoration: none; font-size: 0.8rem; font-weight: bold; text-transform: uppercase; letter-spacing: 2px; border: 2px solid #111; display: inline-block; }
 
         @media (max-width: 992px) {
             .main-header, .main-header.solid-nav { padding: 20px 25px; background-color: #ffffff !important; position: fixed; box-shadow: 0 4px 20px rgba(0,0,0,0.05); }
@@ -76,9 +85,9 @@
             .main-nav.active { right: 0; }
             .main-nav ul { flex-direction: column; gap: 30px; text-align: center; }
             .main-nav a, .main-header.solid-nav .main-nav a { color: #fff; text-shadow: none; white-space: normal; }
-            .curation-card, .curation-card:nth-child(even) { grid-template-columns: 1fr; direction: ltr; gap: 30px; }
-            .curation-image img { height: 300px; }
-            .curation-title { font-size: 1.8rem; }
+            .project-info-grid { grid-template-columns: 1fr; gap: 40px; }
+            .project-title { font-size: 2.2rem; }
+            .project-gallery { grid-template-columns: 1fr; }
             .footer-container { flex-direction: column; text-align: center; align-items: center; gap: 40px; }
             .about-col { align-items: center; }
             .links-col ul { grid-template-columns: 1fr; grid-template-rows: auto; grid-auto-flow: row; text-align: center; }
@@ -106,23 +115,46 @@
     </header>
 
     <div class="page-header">
-        <h1 class="page-title">Exhibitions</h1>
-        <div class="page-subtitle">Past & Upcoming</div>
+        <h1 class="page-title">La Femme</h1>
+        <div class="page-subtitle">Through Time</div>
+        <a href="exhibitions.html" class="back-link">&larr; Back to All Exhibitions</a>
     </div>
 
     <main class="container">
-        <div class="curation-grid">
-            <article class="curation-card reveal">
-                <div class="curation-image">
-                    <img src="assets/femme/ex1.jpg" alt="La Femme Exhibition">
+        <div class="featured-project">
+            <div class="project-image-wrapper reveal">
+                <img src="assets/femme/ex1.jpg" alt="La Femme Exhibition">
+            </div>
+            <div class="project-info-grid">
+                <div class="project-left-column reveal">
+                    <span class="meta-info">October 2025 &bull; Fine Arts Museum</span>
+                    <h2 class="project-title">La Femme <br>Through Time</h2>
+                    <h3 class="project-subtitle">A Tribute to Egyptian Identity</h3>
+                    <div class="curator-tag">Featured Exhibition</div>
+                    <div class="project-sponsor">
+                        <span class="sponsor-label">In Collaboration With</span>
+                        <img src="assets/femme/tam_logo_2.png" alt="TAM Gallery" class="sponsor-logo">
+                    </div>
+                    <div class="sidebar-images">
+                        <img src="assets/femme/ex5.jpg" alt="Exhibition Detail">
+                    </div>
                 </div>
-                <div class="curation-info">
-                    <span class="curation-meta">October 2025 &bull; Fine Arts Museum</span>
-                    <h2 class="curation-title">La Femme Through Time</h2>
-                    <p class="curation-brief">A comprehensive visual journey exploring the role, influence, and enduring beauty of women in Egyptian culture — curated as an immersive narrative through light, space, and contemporary artworks.</p>
-                    <a href="exhibitions-la-femme.html" class="read-more-btn">View More</a>
+                <div class="project-body reveal delay-1">
+                    <p>This exhibition represents a comprehensive visual journey exploring the role, influence, and enduring beauty of women in Egyptian culture. Through a carefully curated selection of contemporary artworks and historical references, the spatial design invites the viewer to experience art not just as a visual medium, but as an immersive narrative.</p>
+                    <p>The layout of the exhibition was meticulously planned to create a dialogue between light, space, and the featured pieces. Each section of the gallery is dedicated to a different era or thematic expression, allowing visitors to transition smoothly through the evolution of the artistic representation of the Egyptian woman.</p>
+                    <p>Archival documents, preparatory sketches, and final masterpieces are displayed in custom-designed vitrines, bridging the gap between the artist's initial vision and the final execution. The scenography emphasizes intimacy, encouraging the audience to pause, reflect, and engage deeply with the details of each work.</p>
+                    <p>By blending modern exhibition techniques with profound cultural heritage, the event stands as a testament to the timeless nature of art and its ability to capture the essence of identity across generations.</p>
+                    <div class="project-quote">
+                        <span class="project-quote-text">"Art is not just what you see, but the space you create for others to feel it."</span>
+                        <span class="project-quote-author">&mdash; Exhibition Philosophy</span>
+                    </div>
                 </div>
-            </article>
+            </div>
+            <div class="project-gallery reveal">
+                <div class="gallery-img-wrapper"><img src="assets/femme/ex2.jpg" alt="Exhibition Artwork 1"></div>
+                <div class="gallery-img-wrapper"><img src="assets/femme/ex3.jpg" alt="Exhibition Artwork 2"></div>
+                <div class="gallery-img-wrapper"><img src="assets/femme/ex4.jpg" alt="Exhibition Artwork 3"></div>
+            </div>
         </div>
     </main>
 
