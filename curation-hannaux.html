@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Curation & Exhibition Design | Mahmoud Saïd Art</title>
+    <title>Hannaux Treasure | Curation | Mahmoud Saïd Art</title>
     <link rel="stylesheet" href="assets/mobile.css">
     
     <style>
@@ -12,8 +12,9 @@
 
         body { margin: 0; padding: 0; background-color: #ffffff; color: #111111; font-family: 'Aptos', sans-serif; overflow-x: hidden; letter-spacing: 1.5px; line-height: 1.9; }
 
-        .reveal { opacity: 0; transform: translateY(40px); transition: all 1s ease-out; }
+        .reveal { opacity: 0; transform: translateY(40px); transition: all 1.2s cubic-bezier(0.25, 1, 0.5, 1); }
         .reveal.active { opacity: 1; transform: translateY(0); }
+        .delay-1 { transition-delay: 0.2s; }
 
         .main-header { position: absolute; top: 0; width: 100%; display: flex; justify-content: space-between; align-items: center; padding: 40px 60px; box-sizing: border-box; z-index: 1000; background-color: transparent; }
         .logo { flex: 1; display: flex; align-items: center; }
@@ -24,35 +25,52 @@
         .main-nav ul { list-style: none; display: flex; gap: 40px; margin: 0; padding: 0; }
         .main-nav a { color: #ffffff; text-decoration: none; font-size: 0.95rem; font-weight: bold; text-transform: uppercase; letter-spacing: 1.5px; transition: opacity 0.3s ease; white-space: nowrap; text-shadow: 1px 1px 3px rgba(0,0,0,0.3); }
         .main-nav a:hover, .main-nav a.active { opacity: 0.7; border-bottom: 2px solid #ffffff; padding-bottom: 5px; }
-        .menu-toggle { display: none; flex-direction: column; cursor: pointer; gap: 6px; z-index: 2001; }
-        .menu-toggle span { width: 30px; height: 2px; background-color: #fff; transition: 0.3s; }
 
         .main-header.solid-nav { position: sticky; top: 0; background-color: #ffffff; box-shadow: 0 4px 20px rgba(0,0,0,0.03); padding: 20px 60px; }
         .main-header.solid-nav .main-nav a { color: #111111; text-shadow: none; }
         .main-header.solid-nav .main-nav a:hover, .main-header.solid-nav .main-nav a.active { border-bottom: 2px solid #111111; opacity: 0.5; }
-        .main-header.solid-nav .menu-toggle span { background-color: #111111; }
 
         .page-header { text-align: center; padding: 120px 20px 60px; background: linear-gradient(rgba(245,245,245,0.4), rgba(245,245,245,0.4)), url('assets/backex.jpg') center/cover; border-bottom: 1px solid #eaeaea; }
         .page-title { font-size: 4rem; text-transform: uppercase; letter-spacing: 4px; margin: 0 0 15px 0; color: #000000; }
         .page-subtitle { color: #888888; font-size: 1.25rem; letter-spacing: 5px; text-transform: uppercase; font-weight: bold; }
+        .back-link { display: inline-block; margin-top: 25px; color: #111; text-decoration: none; text-transform: uppercase; letter-spacing: 2px; font-size: 0.85rem; font-weight: bold; border-bottom: 2px solid #888888; padding-bottom: 5px; transition: color 0.3s ease; }
+        .back-link:hover { color: #888888; }
 
-        .container { max-width: 1300px; margin: 0 auto; padding: 80px 20px; }
+        .container { max-width: 1400px; margin: 0 auto; padding: 100px 20px; }
+        .featured-project { display: flex; flex-direction: column; gap: 60px; }
 
-        .curation-grid { display: flex; flex-direction: column; gap: 80px; }
-        .curation-card { display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: center; }
-        .curation-card:nth-child(even) { direction: rtl; }
-        .curation-card:nth-child(even) > * { direction: ltr; }
+        .project-top-header { display: flex; align-items: baseline; gap: 15px; margin-bottom: -40px; }
+        .project-number { font-size: 2.5rem; color: #888888; font-weight: bold; line-height: 1; font-family: 'Aptos', sans-serif; }
+        .project-top-title { font-size: 1.5rem; text-transform: uppercase; color: #111; letter-spacing: 3px; font-weight: bold; margin: 0; }
 
-        .curation-image { overflow: hidden; border-radius: 6px; box-shadow: 0 20px 50px rgba(0,0,0,0.1); }
-        .curation-image img { width: 100%; height: 420px; object-fit: cover; display: block; transition: transform 1.2s ease; }
-        .curation-card:hover .curation-image img { transform: scale(1.04); }
+        .project-image-wrapper { width: 100%; overflow: hidden; border-radius: 6px; box-shadow: 0 20px 50px rgba(0,0,0,0.1); }
+        .project-image-wrapper img { width: 100%; height: auto; display: block; transition: transform 1.5s cubic-bezier(0.25, 1, 0.5, 1); }
+        .project-image-wrapper:hover img { transform: scale(1.03); }
 
-        .curation-info { display: flex; flex-direction: column; justify-content: center; }
-        .curation-meta { font-size: 0.85rem; color: #888888; text-transform: uppercase; letter-spacing: 3px; font-weight: bold; margin-bottom: 15px; }
-        .curation-title { font-size: 2.2rem; font-weight: bold; color: #111; text-transform: uppercase; letter-spacing: 2px; margin: 0 0 20px 0; line-height: 1.2; }
-        .curation-brief { font-size: 1.1rem; color: #555; line-height: 2; margin: 0 0 30px 0; text-align: justify; }
-        .read-more-btn { display: inline-block; align-self: flex-start; color: #111; text-decoration: none; text-transform: uppercase; letter-spacing: 2px; font-size: 0.85rem; font-weight: bold; border-bottom: 2px solid #888888; padding-bottom: 5px; transition: color 0.3s ease; }
-        .read-more-btn:hover { color: #888888; }
+        .project-info-grid { display: grid; grid-template-columns: 1fr 1.5fr; gap: 80px; align-items: start; }
+        .project-left-column { display: flex; flex-direction: column; }
+        .meta-info { font-size: 0.85rem; color: #888888; text-transform: uppercase; letter-spacing: 3px; font-weight: bold; margin-bottom: 15px; display: block; }
+        .project-title { font-size: 3rem; font-weight: bold; color: #111; line-height: 1.1; text-transform: uppercase; letter-spacing: 2px; margin: 0 0 15px 0; }
+        .project-subtitle { font-size: 1.2rem; color: #555; text-transform: uppercase; letter-spacing: 4px; margin: 0 0 25px 0; font-weight: normal; }
+        .project-sponsor { font-size: 0.95rem; color: #777; letter-spacing: 1px; margin-bottom: 30px; font-style: italic; border-left: 2px solid #888888; padding-left: 15px; }
+        .curator-tag { display: inline-block; background-color: #111; color: #fff; padding: 8px 20px; font-size: 0.85rem; text-transform: uppercase; letter-spacing: 2px; font-weight: bold; align-self: flex-start; }
+
+        /* 2x2 Grid for Sidebar Images */
+        .sidebar-images { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-top: 40px; }
+        .sidebar-images img { width: 100%; height: 100%; object-fit: cover; aspect-ratio: 3/4; display: block; border-radius: 6px; box-shadow: 0 15px 35px rgba(0,0,0,0.08); transition: transform 0.5s ease; }
+        .sidebar-images img:hover { transform: scale(1.02); }
+
+        .project-body p { font-size: 1.15rem; color: #444; line-height: 2; margin-top: 0; margin-bottom: 30px; text-align: justify; }
+        
+        .project-quote { margin-top: 60px; padding-left: 30px; border-left: 4px solid #888888; font-size: 1.6rem; font-style: italic; color: #111; line-height: 1.6; position: relative; }
+        .project-quote-author { display: block; margin-top: 20px; font-size: 0.85rem; color: #777; text-transform: uppercase; letter-spacing: 3px; font-style: normal; font-weight: bold; }
+
+        .project-gallery { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; margin-top: 40px; }
+        .gallery-col-portrait { height: 100%; }
+        .gallery-col-landscapes { display: flex; flex-direction: column; gap: 40px; }
+        .gallery-img-wrapper { overflow: hidden; border-radius: 6px; box-shadow: 0 20px 50px rgba(0,0,0,0.1); flex: 1; }
+        .gallery-img-wrapper img { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform 1.5s cubic-bezier(0.25, 1, 0.5, 1); }
+        .gallery-img-wrapper:hover img { transform: scale(1.03); }
 
         .main-footer { background-color: #fcfcfc; padding: 40px 60px; border-top: 1px solid #eaeaea; color: #444; margin-top: 60px; }
         .footer-container { max-width: 1300px; margin: 0 auto; display: flex; flex-wrap: wrap; justify-content: space-between; align-items: flex-start; gap: 30px; }
@@ -87,9 +105,12 @@
             .menu-toggle.active span:nth-child(3) { transform: rotate(-45deg) translate(5px, -6px); background-color: #fff; z-index: 2002; position: relative;}
             .page-header { padding: 120px 20px 50px; }
             .page-title { font-size: 2.8rem; }
-            .curation-card, .curation-card:nth-child(even) { grid-template-columns: 1fr; direction: ltr; gap: 30px; }
-            .curation-image img { height: 300px; }
-            .curation-title { font-size: 1.8rem; }
+            .project-top-header { margin-bottom: 20px; flex-direction: column; gap: 5px; }
+            .project-info-grid { grid-template-columns: 1fr; gap: 40px; }
+            .project-title { font-size: 2.2rem; }
+            .sidebar-images { margin-top: 0; }
+            .project-quote { margin-top: 30px; font-size: 1.3rem; }
+            .project-gallery { grid-template-columns: 1fr; gap: 30px; }
             .footer-container { flex-direction: column; text-align: center; align-items: center; gap: 40px; }
             .about-col { align-items: center; }
             .links-col ul { grid-template-columns: 1fr; text-align: center; }
@@ -105,7 +126,6 @@
         <div class="logo">
             <a href="index.html"><img src="assets/Logo.png" alt="Mahmoud Saïd Logo"></a>
         </div>
-        <div class="menu-toggle" id="mobileMenuToggle"><span></span><span></span><span></span></div>
         <nav class="main-nav">
             <ul>
                 <li><a href="index.html">HOME</a></li>
@@ -119,79 +139,68 @@
     </header>
 
     <div class="page-header">
-        <h1 class="page-title">Curation</h1>
-        <div class="page-subtitle">Exhibition Design</div>
+        <h1 class="page-title">Hannaux Treasure</h1>
+        <div class="page-subtitle">Curation & Exhibition Design</div>
+        <a href="curation.html" class="back-link">&larr; Back to All Curations & Exhibitions</a>
     </div>
 
     <main class="container">
-        <div class="curation-grid">
+        <div class="featured-project">
+            <div class="project-top-header reveal">
+                <span class="project-number">03 -</span>
+                <h2 class="project-top-title">LES SECRETS DU TRÉSOR D’HANNAUX</h2>
+            </div>
 
-            <!-- Exhibition Card 1: Museo Loria (2025) -->
-            <article class="curation-card reveal">
-                <div class="curation-image">
-                    <img src="assets/curations/Museo Loria 2025/Cover.jpg" alt="Museo Loria Exhibition">
-                </div>
-                <div class="curation-info">
-                    <span class="curation-meta">2025 &bull; Kelada Building, Alexandria</span>
-                    <h2 class="curation-title">MUSEO LORIA</h2>
-                    <p class="curation-brief">For the first time, the Centre d'Études Alexandrines (CEAlex) presents an exhibition dedicated to the architect Giacomo Alessandro Loria (1876–1956), one of the key figures in shaping modern Alexandria during the first half of the twentieth century.</p>
-                    <a href="curation-museo-loria.html" class="read-more-btn">View More</a>
-                </div>
-            </article>
+            <div class="project-image-wrapper reveal delay-1">
+                <img src="assets/Curations/les secrets du trésor d’Hannaux - Alexandria National Museum 2024/Cover.jpg" alt="Hannaux Exhibition Cover">
+            </div>
 
-            <!-- Exhibition Card 2: St. Catherine (2024) -->
-            <article class="curation-card reveal">
-                <div class="curation-image">
-                    <img src="assets/catrien/ex1.jpg" alt="St. Catherine's Cathedral Exhibition">
+            <div class="project-info-grid">
+                <div class="project-left-column reveal">
+                    <span class="meta-info">2024 &bull; Alexandria National Museum</span>
+                    <h2 class="project-title">Les secrets du trésor d’Hannaux</h2>
+                    <h3 class="project-subtitle">Alexandria National Museum 2024</h3>
+                    <div class="project-sponsor">
+                        15th edition of Journées du Patrimoine Alexandrines (2024)
+                    </div>
+                    <div class="curator-tag">Curated by Mahmoud Saïd</div>
+                    
+                    <!-- 2x2 Grid for Sidebar Images -->
+                    <div class="sidebar-images">
+                        <img src="assets/Curations/les secrets du trésor d’Hannaux - Alexandria National Museum 2024/MONE0200.jpg" alt="Exhibition View 1">
+                        <img src="assets/Curations/les secrets du trésor d’Hannaux - Alexandria National Museum 2024/MONE0203.jpg" alt="Exhibition View 2">
+                        <img src="assets/Curations/les secrets du trésor d’Hannaux - Alexandria National Museum 2024/MONE0214.jpg" alt="Exhibition View 3">
+                        <img src="assets/Curations/les secrets du trésor d’Hannaux - Alexandria National Museum 2024/MONE0219.jpg" alt="Exhibition View 4">
+                    </div>
                 </div>
-                <div class="curation-info">
-                    <span class="curation-meta">November 2024 &bull; Alexandria, Egypt</span>
-                    <h2 class="curation-title">St. Catherine Histoire et Architecture</h2>
-                    <p class="curation-brief">St. Catherine's Cathedral was transformed into a temporary museum for the first time in its history, exploring nearly 175 years of architectural, religious, and urban heritage through archival documents, photographs, and architectural studies.</p>
-                    <a href="curation-st-catherine.html" class="read-more-btn">View More</a>
-                </div>
-            </article>
 
-            <!-- Exhibition Card 3: Hannaux (2024) -->
-            <article class="curation-card reveal">
-                <div class="curation-image">
-                    <img src="assets/Curations/les secrets du trésor d’Hannaux - Alexandria National Museum 2024/Cover.jpg" alt="Les secrets du trésor d’Hannaux Exhibition">
+                <div class="project-body reveal delay-1">
+                    <p>Once one of Egypt’s most prominent luxury department stores, Hannaux occupied a distinctive place in the social and cultural life of Alexandria. Beyond its role as a destination for fashion and luxury, the store preserved an unexpected historical legacy within its main vault.</p>
+                    
+                    <p>This exhibition presents 86 historical coins discovered inside Hannaux’s vault and later examined in 2022 to verify their authenticity and historical significance before being donated to the Ministry of Tourism and Antiquities in 2024. The collection spans different periods—including Ptolemaic, Alexandrian, Roman, Ottoman, and European eras—and reflects centuries of political, economic, and cultural exchange. Among the highlights is a rare coin depicting Alexander the Great.</p>
+                    
+                    <p>Curated and designed by Mahmoud Saïd, the exhibition takes place at the Alexandria National Museum as part of the 15th edition of Journées du Patrimoine Alexandrines (2024).</p>
+                    
+                    <div class="project-quote">
+                        "The collection spans different periods and reflects centuries of political, economic, and cultural exchange."
+                        <span class="project-quote-author">&mdash; Curatorial Vision</span>
+                    </div>
                 </div>
-                <div class="curation-info">
-                    <span class="curation-meta">2024 &bull; Alexandria National Museum</span>
-                    <h2 class="curation-title">Les secrets du trésor d’Hannaux</h2>
-                    <p class="curation-brief">Once one of Egypt's most prominent luxury department stores, Hannaux occupied a distinctive place in the social and cultural life of Alexandria. Beyond its role as a destination for fashion and luxury, the store preserved an unexpected historical legacy within its main vault.</p>
-                    <a href="curation-hannaux.html" class="read-more-btn">View More</a>
-                </div>
-            </article>
+            </div>
 
-            <!-- Exhibition Card 4: Mare Nostrum (2023) -->
-            <article class="curation-card reveal">
-                <div class="curation-image">
-                    <img src="assets/curations/Mare Nostrum 2023/Cover.jpg" alt="Mare Nostrum Exhibition">
+            <div class="project-gallery reveal">
+                <div class="gallery-col-portrait gallery-img-wrapper">
+                    <img src="assets/Curations/les secrets du trésor d’Hannaux - Alexandria National Museum 2024/MONE0070.jpg" alt="Exhibition Detail Portrait">
                 </div>
-                <div class="curation-info">
-                    <span class="curation-meta">2023 &bull; Institut français d’Alexandrie</span>
-                    <h2 class="curation-title">Mare Nostrum</h2>
-                    <p class="curation-brief">Curated by Mahmoud Saïd, Mare Nostrum was a group exhibition presented in 2023 at the Institut français d’Alexandrie as part of the 11th edition of Écrire la Méditerranée. Bringing together Alexandria-based artists, the exhibition presented different disciplines of contemporary art.</p>
-                    <a href="curation-mare-nostrum.html" class="read-more-btn">View More</a>
+                <div class="gallery-col-landscapes">
+                    <div class="gallery-img-wrapper">
+                        <img src="assets/Curations/les secrets du trésor d’Hannaux - Alexandria National Museum 2024/MONE0196.jpg" alt="Exhibition Detail Landscape 1">
+                    </div>
+                    <div class="gallery-img-wrapper">
+                        <img src="assets/Curations/les secrets du trésor d’Hannaux - Alexandria National Museum 2024/MONE0250.jpg" alt="Exhibition Detail Landscape 2">
+                    </div>
                 </div>
-            </article>
-
-            <!-- Exhibition Card 5: Rue Fouad (2023) -->
-            <article class="curation-card reveal">
-                <div class="curation-image">
-                    <!-- Using MONI8599.jpg as Cover based on your folder screenshot -->
-                    <img src="assets/curations/rue foad/MONI8641.jpg" alt="101 Rue Fouad Exhibition">
-                </div>
-                <div class="curation-info">
-                    <span class="curation-meta">2023 &bull; Alexandria National Museum</span>
-                    <h2 class="curation-title">101 Rue Fouad</h2>
-                    <p class="curation-brief">Completed in 1931 in the Neo-Renaissance style, Palais Assaad Bassili was designed by the Alexandrian architect of French nationality Victor Erlanger. Through archival materials, this exhibition revisited the history and memory of the villa as both a domestic and institutional space.</p>
-                    <a href="curation-rue-fouad.html" class="read-more-btn">View More</a>
-                </div>
-            </article>
-
+            </div>
         </div>
     </main>
 
@@ -223,26 +232,16 @@
     </footer>
 
     <script>
-        document.addEventListener("DOMContentLoaded", function() {
-            const menuToggle = document.getElementById('mobileMenuToggle');
-            const mainNav = document.querySelector('.main-nav');
-            if(menuToggle) {
-                menuToggle.addEventListener('click', () => {
-                    menuToggle.classList.toggle('active');
-                    mainNav.classList.toggle('active');
-                });
-            }
-            const reveals = document.querySelectorAll('.reveal');
-            const revealOnScroll = () => {
-                for (let i = 0; i < reveals.length; i++) {
-                    if (reveals[i].getBoundingClientRect().top < window.innerHeight - 100) {
-                        reveals[i].classList.add('active');
-                    }
+        const reveals = document.querySelectorAll('.reveal');
+        const revealOnScroll = () => {
+            for (let i = 0; i < reveals.length; i++) {
+                if (reveals[i].getBoundingClientRect().top < window.innerHeight - 100) {
+                    reveals[i].classList.add('active');
                 }
-            };
-            window.addEventListener('scroll', revealOnScroll);
-            revealOnScroll();
-        });
+            }
+        };
+        window.addEventListener('scroll', revealOnScroll);
+        revealOnScroll();
     </script>
 </body>
 </html>

@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Museo Loria | Curation | Mahmoud Saïd Art</title>
+    <link rel="stylesheet" href="assets/mobile.css">
+    
+    <style>
+        @font-face { font-family: 'Aptos'; src: url('assets/Aptos.ttf') format('truetype'); font-weight: normal; }
+        @font-face { font-family: 'Aptos'; src: url('assets/Aptos-Bold.ttf') format('truetype'); font-weight: bold; }
+
+        body { margin: 0; padding: 0; background-color: #ffffff; color: #111111; font-family: 'Aptos', sans-serif; overflow-x: hidden; letter-spacing: 1.5px; line-height: 1.9; }
+
+        .reveal { opacity: 0; transform: translateY(40px); transition: all 1.2s cubic-bezier(0.25, 1, 0.5, 1); }
+        .reveal.active { opacity: 1; transform: translateY(0); }
+        .delay-1 { transition-delay: 0.2s; }
+
+        .main-header { position: absolute; top: 0; width: 100%; display: flex; justify-content: space-between; align-items: center; padding: 40px 60px; box-sizing: border-box; z-index: 1000; background-color: transparent; }
+        .logo { flex: 1; display: flex; align-items: center; }
+        .logo img { max-height: 65px; width: auto; display: block; transition: transform 0.3s ease; }
+        .logo img:hover { transform: scale(1.02); }
+        .header-spacer { flex: 1; }
+        .main-nav { flex: 4; display: flex; justify-content: center; }
+        .main-nav ul { list-style: none; display: flex; gap: 40px; margin: 0; padding: 0; }
+        .main-nav a { color: #ffffff; text-decoration: none; font-size: 0.95rem; font-weight: bold; text-transform: uppercase; letter-spacing: 1.5px; transition: opacity 0.3s ease; white-space: nowrap; text-shadow: 1px 1px 3px rgba(0,0,0,0.3); }
+        .main-nav a:hover, .main-nav a.active { opacity: 0.7; border-bottom: 2px solid #ffffff; padding-bottom: 5px; }
+
+        .main-header.solid-nav { position: sticky; top: 0; background-color: #ffffff; box-shadow: 0 4px 20px rgba(0,0,0,0.03); padding: 20px 60px; }
+        .main-header.solid-nav .main-nav a { color: #111111; text-shadow: none; }
+        .main-header.solid-nav .main-nav a:hover, .main-header.solid-nav .main-nav a.active { border-bottom: 2px solid #111111; opacity: 0.5; }
+
+        .page-header { text-align: center; padding: 120px 20px 60px; background: linear-gradient(rgba(245,245,245,0.4), rgba(245,245,245,0.4)), url('assets/backex.jpg') center/cover; border-bottom: 1px solid #eaeaea; }
+        .page-title { font-size: 4rem; text-transform: uppercase; letter-spacing: 4px; margin: 0 0 15px 0; color: #000000; }
+        .page-subtitle { color: #888888; font-size: 1.25rem; letter-spacing: 5px; text-transform: uppercase; font-weight: bold; }
+        .back-link { display: inline-block; margin-top: 25px; color: #111; text-decoration: none; text-transform: uppercase; letter-spacing: 2px; font-size: 0.85rem; font-weight: bold; border-bottom: 2px solid #888888; padding-bottom: 5px; transition: color 0.3s ease; }
+        .back-link:hover { color: #888888; }
+
+        .container { max-width: 1400px; margin: 0 auto; padding: 100px 20px; }
+        .featured-project { display: flex; flex-direction: column; gap: 60px; }
+
+        .project-top-header { display: flex; align-items: baseline; gap: 15px; margin-bottom: -40px; }
+        .project-number { font-size: 2.5rem; color: #888888; font-weight: bold; line-height: 1; font-family: 'Aptos', sans-serif; }
+        .project-top-title { font-size: 1.5rem; text-transform: uppercase; color: #111; letter-spacing: 3px; font-weight: bold; margin: 0; }
+
+        .project-image-wrapper { width: 100%; overflow: hidden; border-radius: 6px; box-shadow: 0 20px 50px rgba(0,0,0,0.1); }
+        .project-image-wrapper img { width: 100%; height: auto; display: block; transition: transform 1.5s cubic-bezier(0.25, 1, 0.5, 1); }
+        .project-image-wrapper:hover img { transform: scale(1.03); }
+
+        .project-info-grid { display: grid; grid-template-columns: 1fr 1.5fr; gap: 80px; align-items: start; }
+        .project-left-column { display: flex; flex-direction: column; }
+        .meta-info { font-size: 0.85rem; color: #888888; text-transform: uppercase; letter-spacing: 3px; font-weight: bold; margin-bottom: 15px; display: block; }
+        .project-title { font-size: 3rem; font-weight: bold; color: #111; line-height: 1.1; text-transform: uppercase; letter-spacing: 2px; margin: 0 0 15px 0; }
+        .project-subtitle { font-size: 1.2rem; color: #555; text-transform: uppercase; letter-spacing: 4px; margin: 0 0 25px 0; font-weight: normal; }
+        .project-sponsor { font-size: 0.95rem; color: #777; letter-spacing: 1px; margin-bottom: 30px; font-style: italic; border-left: 2px solid #888888; padding-left: 15px; }
+        .curator-tag { display: inline-block; background-color: #111; color: #fff; padding: 8px 20px; font-size: 0.85rem; text-transform: uppercase; letter-spacing: 2px; font-weight: bold; align-self: flex-start; }
+
+        /* Modified Sidebar Images to 2x2 Grid */
+        .sidebar-images { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-top: 40px; }
+        .sidebar-images img { width: 100%; height: 100%; object-fit: cover; aspect-ratio: 3/4; display: block; border-radius: 6px; box-shadow: 0 15px 35px rgba(0,0,0,0.08); transition: transform 0.5s ease; }
+        .sidebar-images img:hover { transform: scale(1.02); }
+
+        .project-body p { font-size: 1.15rem; color: #444; line-height: 2; margin-top: 0; margin-bottom: 30px; text-align: justify; }
+        
+        .project-quote { margin-top: 60px; padding-left: 30px; border-left: 4px solid #888888; font-size: 1.6rem; font-style: italic; color: #111; line-height: 1.6; position: relative; }
+        .project-quote-author { display: block; margin-top: 20px; font-size: 0.85rem; color: #777; text-transform: uppercase; letter-spacing: 3px; font-style: normal; font-weight: bold; }
+
+        .project-gallery { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; margin-top: 40px; }
+        .gallery-col-portrait { height: 100%; }
+        .gallery-col-landscapes { display: flex; flex-direction: column; gap: 40px; }
+        .gallery-img-wrapper { overflow: hidden; border-radius: 6px; box-shadow: 0 20px 50px rgba(0,0,0,0.1); flex: 1; }
+        .gallery-img-wrapper img { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform 1.5s cubic-bezier(0.25, 1, 0.5, 1); }
+        .gallery-img-wrapper:hover img { transform: scale(1.03); }
+
+        .main-footer { background-color: #fcfcfc; padding: 40px 60px; border-top: 1px solid #eaeaea; color: #444; margin-top: 60px; }
+        .footer-container { max-width: 1300px; margin: 0 auto; display: flex; flex-wrap: wrap; justify-content: space-between; align-items: flex-start; gap: 30px; }
+        .footer-col { flex: 1; min-width: 200px; }
+        .about-col { display: flex; flex-direction: column; gap: 15px; }
+        .footer-logo { max-height: 70px; display: block; width: fit-content; }
+        .footer-copyright { font-size: 0.8rem; color: #888; letter-spacing: 2px; text-transform: uppercase; line-height: 1.6; }
+        .footer-col h4 { font-size: 1rem; text-transform: uppercase; letter-spacing: 4px; margin: 0 0 20px 0; color: #111; }
+        .links-col ul { list-style: none; padding: 0; margin: 0; display: grid; grid-template-columns: 1fr 1fr; gap: 10px 20px; }
+        .links-col ul a { color: #666; text-decoration: none; text-transform: uppercase; font-size: 0.8rem; letter-spacing: 2px; transition: color 0.3s ease; }
+        .links-col ul a:hover { color: #888888; }
+        .contact-col { display: flex; flex-direction: column; gap: 20px; align-items: flex-start; }
+        .social-links-vertical { display: flex; flex-direction: column; gap: 15px; }
+        .social-links-vertical a { color: #555; text-decoration: none; transition: color 0.3s; display: flex; align-items: center; gap: 10px; font-size: 0.85rem; font-weight: bold; letter-spacing: 1px; }
+        .social-links-vertical a:hover { color: #888888; }
+        .social-links-vertical svg { width: 18px; height: 18px; fill: currentColor; }
+
+        @media (max-width: 992px) {
+            .main-header, .main-header.solid-nav { padding: 20px 25px; background-color: #ffffff !important; position: fixed; box-shadow: 0 4px 20px rgba(0,0,0,0.05); }
+            .main-nav { display: none; } /* Kept simple for space */
+            .page-header { padding: 120px 20px 50px; }
+            .project-info-grid { grid-template-columns: 1fr; gap: 40px; }
+            .project-gallery { grid-template-columns: 1fr; gap: 30px; }
+            .footer-container { flex-direction: column; text-align: center; align-items: center; gap: 40px; }
+            .links-col ul { grid-template-columns: 1fr; text-align: center; }
+            .contact-col, .about-col, .social-links-vertical { align-items: center; }
+        }
+    </style>
+</head>
+<body>
+
+    <header class="main-header solid-nav">
+        <div class="logo">
+            <a href="index.html"><img src="assets/Logo.png" alt="Mahmoud Saïd Logo"></a>
+        </div>
+        <nav class="main-nav">
+            <ul>
+                <li><a href="index.html">HOME</a></li>
+                <li><a href="about.html">ABOUT</a></li>
+                <li><a href="artworks.html">ARTWORKS</a></li>
+                <li><a href="exhibitions.html">EXHIBITIONS</a></li>
+                <li><a href="curation.html" class="active">CURATION & EXHIBITION DESIGN</a></li>
+            </ul>
+        </nav>
+        <div class="header-spacer"></div>
+    </header>
+
+    <div class="page-header">
+        <h1 class="page-title">Museo Loria</h1>
+        <div class="page-subtitle">Curation & Exhibition Design</div>
+        <a href="curation.html" class="back-link">&larr; Back to All Curations & Exhibitions</a>
+    </div>
+
+    <main class="container">
+        <div class="featured-project">
+            <div class="project-top-header reveal">
+                <span class="project-number">01 -</span>
+                <h2 class="project-top-title">MUSEO LORIA</h2>
+            </div>
+
+            <div class="project-image-wrapper reveal delay-1">
+                <img src="assets/curations/Museo Loria 2025/Cover.jpg" alt="Museo Loria Exhibition Cover">
+            </div>
+
+            <div class="project-info-grid">
+                <div class="project-left-column reveal">
+                    <span class="meta-info">2025 &bull; Kelada Building, Alexandria</span>
+                    <h2 class="project-title">MUSEO LORIA</h2>
+                    <h3 class="project-subtitle">Les œuvres architecturales de Giacomo Alessandro Loria</h3>
+                    <div class="project-sponsor">
+                        Centre d’Études Alexandrines (CEAlex)
+                    </div>
+                    <div class="curator-tag">Curated by Mahmoud Saïd</div>
+                    
+                    <!-- 2x2 Grid for Sidebar Images -->
+                    <div class="sidebar-images">
+                        <img src="assets/curations/Museo Loria 2025/Museo Loria_1 (10).jpg" alt="Exhibition View 1">
+                        <img src="assets/curations/Museo Loria 2025/Museo Loria_1 (14).jpg" alt="Exhibition View 2">
+                        <img src="assets/curations/Museo Loria 2025/Museo Loria_1 (37).jpg" alt="Exhibition View 3">
+                        <img src="assets/curations/Museo Loria 2025/Museo Loria_1 (43).jpg" alt="Exhibition View 4">
+                    </div>
+                </div>
+
+                <div class="project-body reveal delay-1">
+                    <p>For the first time, the Centre d’Études Alexandrines (CEAlex) presents an exhibition dedicated to the architect Giacomo Alessandro Loria (1876–1956), one of the key figures in shaping modern Alexandria during the first half of the twentieth century. The exhibition brings together previously unpublished archival material, including original architectural drawings preserved within the private archives of the Kelada Antoun Family, presented as part of an ongoing CEAlex archival digitization project dedicated to preserving and enhancing access to Alexandria’s architectural heritage.</p>
+                    
+                    <p>Hosted within the Kelada Building itself—designed by Loria and made available through the generosity of Mr. Mansour Kelada—the exhibition creates a dialogue between archival documents and built space, allowing visitors to encounter the architect’s work within one of his own architectural projects. Additional archival material related to the Coterie of the Little Venice Building further expands the reading of Loria’s contribution to Alexandria’s urban and architectural history.</p>
+                    
+                    <p>Coinciding with the relocation of the CEAlex headquarters to the Kelada Building in 2024, the exhibition reflects on the role of archives in reconstructing the city’s architectural memory and reintroduces Loria’s work within the contemporary life of Alexandria.</p>
+                    
+                    <div class="project-quote">
+                        "The exhibition creates a dialogue between archival documents and built space, allowing visitors to encounter the architect’s work within his own architectural project."
+                        <span class="project-quote-author">&mdash; Curatorial Vision</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="project-gallery reveal">
+                <div class="gallery-col-portrait gallery-img-wrapper">
+                    <img src="assets/curations/Museo Loria 2025/Museo Loria_1 (38).jpg" alt="Exhibition Detail Portrait">
+                </div>
+                <div class="gallery-col-landscapes">
+                    <div class="gallery-img-wrapper">
+                        <img src="assets/curations/Museo Loria 2025/Museo Loria_1 (12).jpg" alt="Exhibition Detail Landscape 1">
+                    </div>
+                    <div class="gallery-img-wrapper">
+                        <img src="assets/curations/Museo Loria 2025/Museo Loria_1 (28).jpg" alt="Exhibition Detail Landscape 2">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer omitted for brevity, use the exact same footer as index.html -->
+    <script>
+        const reveals = document.querySelectorAll('.reveal');
+        const revealOnScroll = () => {
+            for (let i = 0; i < reveals.length; i++) {
+                if (reveals[i].getBoundingClientRect().top < window.innerHeight - 100) {
+                    reveals[i].classList.add('active');
+                }
+            }
+        };
+        window.addEventListener('scroll', revealOnScroll);
+        revealOnScroll();
+    </script>
+</body>
+</html>
